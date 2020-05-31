@@ -1,0 +1,422 @@
+/* Header */
+header {
+    background-image: url("https://i.imgur.com/4Ge8o6x.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(12, 1fr);
+    background-color: #fff;
+    min-height: 210px;
+}
+
+#home {
+    border: none;
+}
+
+h3 > a {
+    color: #000;
+}
+
+nav {
+    grid-area: 1 / 7 / span 1 / span 6;
+    justify-self: right;
+}
+
+.tips {
+    color: #000;
+    grid-area: 2 / 10 / span 1 / span 3;
+    justify-self: right;
+    align-self: flex-end;
+}
+
+h4 > a, .about, .contact, .login {
+    color: black;
+}
+
+/* Modals */
+.modalBg {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    display: flex;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s;
+}
+
+.bg-active {
+    visibility: visible;
+    opacity: 1;
+}
+
+#modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-weight: bold;
+    color: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+.modalContent {
+    width: 75%;
+    height: 90%;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.aboutModal {
+    width: 85%;
+    height: 100%;
+    background-color: #00274C;
+    overflow: inherit;
+}
+
+.aboutContent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.aboutHead, .aboutBody {
+    color: #fff05A;
+}
+
+.contactsModal {
+    width: 65%;
+    height: 100%;
+    background-color: #00274C;
+    overflow: inherit;
+}
+
+.contactsContent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loginModal {
+    width: 50%;
+    height: 60%;
+    background-image: url("https://i.imgur.com/oWbFIt6.jpg");
+    background-size: cover;
+    overflow: inherit;
+}
+
+.loginContent {
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+#login {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+#registerLink {
+    color: #fff05a;
+}
+
+.newsModal {
+    width: 75%;
+    height: 95%;
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+}
+
+#storyImage {
+    height: 75px;
+    width: auto;
+    align-self: center;
+}
+
+.postsModal {
+    width: 50%;
+    height: 100%;
+    overflow: inherit;
+}
+
+.postsContent {
+    background-image: url("https://i.imgur.com/kA9JB0r.jpg");
+    background-position: center;
+}
+
+#createPostHead {
+    align-self: center;
+    justify-self: flex-end;
+}
+
+#postLogin {
+    color: #FFF05A;
+}
+
+.postsForm {
+    padding-top: 20px;
+    height: 350px;
+    display: flex;
+    color: #FFF;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Main Content */
+.homeMain {
+    background-image: url("https://i.imgur.com/OYgioQA.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 500px;
+    display: grid;
+    grid-template: repeat(14, 1fr)/repeat(12, 1fr);
+}
+
+.heading {
+    grid-area: 1/1/span 1/span 12;
+    justify-self: center;
+    align-self: flex-start;
+    border: none;
+    color: #FFF05A;
+    font-family: Merienda;
+}
+
+#map {
+    grid-area: 2/1/span 5/span 12;
+    height: 450px;
+    width: 90%;
+    justify-self: center;
+    align-self: center;
+}
+
+.mapVisibility{
+    visibility: hidden !important;
+}
+
+h2 {
+    color: #fff;
+    grid-area: 7/1/span 1/span 4;
+    justify-self: center;
+    align-self: flex-end;
+}
+
+#searchForm {
+    color: #fff;
+    grid-area: 8/1/span 2/span 4;
+    border: solid white 1px;
+}
+
+#location {
+    margin-top: 5px;
+}
+
+#species {
+    padding-top: 15px;
+}
+
+#search {
+    margin-top: 25px;
+    border: outset;
+}
+
+#posts, #newsHead {
+    border: outset; 
+    align-self: center;
+    margin-top: 50px;
+}
+
+.news {
+    color: #fff;
+    justify-content: right;
+    grid-area: 7/7/span 8/span 6;
+    display: flex;
+    flex-direction: column;
+}
+
+li > a {
+    color: #fff;
+}
+
+.posts {
+    color: #fff;
+    grid-area: 10/1/span 3/span 4;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    display: grid;
+    grid-template: repeat(5, 1fr)/repeat(12, 1fr);
+    background-color: #00274C;
+}
+
+#connect {
+    border: none;
+    margin: 0;
+}
+
+#left {
+    height: 100px;
+    grid-area: 1/1/span 2/span 2;
+}
+
+#right {
+    height: 100px;
+    grid-area: 1/11/span 2/span 2;
+    justify-self: right;
+}
+
+#wateringHole {
+    color: #FFF05A;
+    grid-area: 1/3/span 1/span 8;
+    justify-self: center;
+}
+
+#connect {
+    color: #FFF05A;
+    grid-area: 2/1/span 1/span 12;
+    justify-self: center;
+    align-self: flex-start;
+}
+
+/* Register Page */
+.registerMain {
+    background-image: url("https://i.imgur.com/mHqV1dN.jpg");
+    background-position: center;
+    min-height: 675px;
+    }
+
+#registerForm {
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.registerEls {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tips Page */
+#tipsForm {
+    border: none;
+    padding-top: 80px;
+}
+
+.tipsMain {
+    display: flex;
+    flex-direction: column;
+    background-image: url("https://i.imgur.com/YSy40Uo.jpg");
+    background-size: cover;
+    min-height: 700px;
+}
+
+#tipsForm {
+    align-self: center;
+    padding-top: 100px;
+}
+
+#techniques {
+    height: 300px;
+    width: 500px;
+    border: solid black 1px;
+    color: #000;
+    align-self: center;
+}
+
+/* Lake Search Page */
+.searchMain {
+    display: grid;
+    grid-template: repeat(12, 1fr) / repeat(12, 1fr);
+    background-image: url("https://i.imgur.com/mHqV1dN.jpg");
+    background-position: center;
+    min-height: 650px;
+    }
+    
+table {
+        grid-area: 3/5/span 9/span 4;
+        justify-content: center;
+        color: #fff;
+    }
+    
+th {
+        border: outset;
+    }
+
+/* Lake Page */
+.lakePageMain {
+    background-image: url("https://i.imgur.com/E9NUrEM.jpg");
+    background-size: cover;
+    display: grid;
+    grid-template: repeat(10, 1fr)/repeat(12, 1fr);
+}
+
+#lakeTitle {
+    grid-area: 1/3/span 1/span 8;
+    justify-self: center;
+    color: #FFF05A;
+    font-family: Merienda;
+    font-size: xx-large;
+    align-self: flex-start;
+}
+
+#speciesHead, #amenitiesHead, #commentsHead {
+    font-weight: bolder;
+}
+
+#speciesList {
+    grid-area: 2/1/span 1/span 6;
+    color: #FFF;
+}
+
+#amenities {
+    grid-area: 3/1/span 2/span 4;
+    color: #FFF;
+}
+
+#lakeMap {
+    grid-area: 2/8/span 3/span 5;
+}
+
+#locationDetails {
+    grid-area: 5/7/span 1/span 2;
+    color: #FFF;
+}
+
+#directions {
+    color: #FFF;
+}
+
+#lakeComments {
+    grid-area: 5/1/span 2/span 6;
+    color: #FFF;
+}
+
+#lakeRules {
+    grid-area: 5/10/span 3/span 3;
+    color: #FFF;
+}
+
+#lakePosts {
+    grid-area: 7/1/span 4/span 6;
+}
+
+#contourMap {
+    grid-area: 8/7/span 3/span 6;
+    justify-self: center;
+}
+
+/*# sourceMappingURL=/FishNinja(SPA).9ad09f98.css.map */
