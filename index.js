@@ -1,46 +1,4 @@
-import { Header, Main, Footer } from "./components";
-import { default as Router } from "./lib/Router";
-import { default as toggleModal } from "./lib/ToggleModal";
-import { default as ModalClose } from "./lib/ModalClose";
-// import { default as AddModalListers } from "./lib/AddModalListeners";
-import { default as NewsFeed } from "./lib/News";
-// import { default as AddListeners } from "./lib/AddListeners";
-import { default as CreatePost } from "./lib/Post";
-import {default as ModalVars } from "./lib/ModalVars";
-// import { default as ModalListeners } from "./lib/ModalListeners";
-import { default as Tips } from "./lib/Tips";
-import * as state from "./store";
-// import Stories from "./news.js";
-import Navigo from "navigo";
-import { capitalize, round } from "lodash";
-// import { initialMap } from "./lib/CreateMap";
-
-function render(st = state.Home) {
-    document.querySelector("#root").innerHTML= `
-    ${Header()}
-    ${Main(st)}
-    ${Footer()}
-    `
-    // ModalListeners();
-    // toggleModal();
-    ModalClose();
-    AddListeners();
-    // AddModalListers();
-    // NewsFeed();
-    Tips();
-}
-
-render();
-export { render }
-
-// const router = new Navigo(window.location.origin);
-
-// router.on({
-//     "/": () => render(state.Home), 
-//     ":page": params => {
-//       let page = capitalize(params.page);
-//       render(state[page]);
-//     }});
+import { default as router } from "./lib/Router";
 
 function AddListeners() {
 

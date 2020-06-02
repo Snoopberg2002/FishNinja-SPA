@@ -1,1 +1,4 @@
-export default { view: "Home" }
+export default { 
+    view: "Home", 
+    controller: "Home"
+}

@@ -1,1 +1,4 @@
-export default { view: "Register" }
+export default { 
+    view: "Register", 
+    controller: "Register"
+}

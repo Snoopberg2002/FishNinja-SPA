@@ -1,1 +1,4 @@
-export default { view: "Tips" }
+export default { 
+    view: "Tips", 
+    controller: "Tips"
+}

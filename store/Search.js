@@ -1,1 +1,4 @@
-export default { view: "Search" }
+export default { 
+    view: "Search", 
+    controller: "Search"
+}
