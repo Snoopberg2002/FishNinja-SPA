@@ -305,6 +305,10 @@ footer {
     padding-top: 100px;
 }
 
+#registerLoginBtn {
+    color: #FFF;
+}
+
 .registerEls {
     display: flex;
     flex-direction: column;

@@ -3,7 +3,7 @@ const st = () => `
     <h1 class="heading">Keeping Lines Tight Across America!</h1>
     <div id="map"></div>
     <h2>Lake Search:</h2>
-    <form id="searchForm" action="./search.html" method="POST">
+    <form id="searchForm" action="/Search" method="POST">
         <section id="location">
             <label for="location" id="location">City, State:  </label>
             <input type="text" name="location" id="location" value="location" placeholder="Login for location">

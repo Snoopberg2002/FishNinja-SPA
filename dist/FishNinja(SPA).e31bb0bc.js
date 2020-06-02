@@ -239,7 +239,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _default = function _default() {
-  return "\n<header>\n    <h3 id=\"home\"><a id=\"home\" href=\"/Home\">Home</a></h3>\n\n    <nav>\n        <a href=\"#\" class=\"about\">About</a>\n        <a href=\"#\" class=\"contact\">Contact</a>\n        <a href=\"#\" class=\"login\">Login/Register</a>\n    </nav>\n\n    <h4 class=\"tips\"><a href=\"/Tips\" data-navigo>Tips & Techniques<a></h4>\n\n    <!-- Create Nav Modals -->\n    <div class=\"modalBg\">\n        <div class=\"modalContent\">\n\n        </div>\n        <span id=\"modal-close\">X</span>\n    </div>\n    <!-- About Modal -->\n    <template class=\"aboutTemplate\">\n        <div class=\"aboutModal\">\n            <section class=\"aboutContent\">\n                <h1 class=\"aboutHead\">About</h1>\n                <h4 class=\"aboutBody\">We here at the Fish Ninja are committed to providing in-depth, detailed and accurate information, about fishing areas, to anglers everywhere.  For far too long it has been far too difficult to find valuable details about where to fish and, just as important, what fish species may be present in any given lake to fish for.  We intend to change that.  Furthermore, it is our hope that allowing anglers to connect with one another will provide an even greater opportunity to share knowledge between individuals or with the entire fishing world.  In this ever changing landscape, we shall remain diligent in our approach to gathering, updating, and sharing everything we can find in order to help improve fishing experiences across America.</h4>\n            </section>\n        </div>\n    </template>\n    <!-- Contacts Modal -->\n    <template class=\"contactsTemplate\">\n        <div class=\"contactsModal\">\n            <section class=\"contactsContent\">\n                <h1>Contacts</h1>\n            </section>\n        </div>\n    </template>\n    <!-- Login Modal -->\n    <template class=\"loginTemplate\">\n        <div class=\"loginModal\">\n            <section class=\"loginContent\">\n                <form action=\"index.html\" method=\"POST\" id=\"login\">\n                    <label for=\"username\">Username:</label>\n                    <input type=\"text\" name=\"username\" id=\"username\">\n                    <br>\n                    <label for=\"user-pw\">Password:</label>\n                    <input id=\"user-pw\" type=\"password\" name=\"user-pw\">\n                    <h3>Not already a member?  <a href=\"/Register\" id=\"registerLink\" data-navigo>Register  </a></h3>\n                    <br>\n                    <input id=\"submit\" type=\"submit\" value=\"Submit\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- News Modal -->\n    <template class=\"newsTemplate\">\n        <div class=\"newsModal\">\n            <section class=\"newsContent\">\n                <img src=\"\" alt=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"storyImage>\n                <h2 id=\"title\">Title</h2>\n                <h4 id=\"author\">Author</h4>\n                <a href=\"\" id=\"storyLink\">Link to Page</a>\n                <br>\n                <p id=\"story\">Content</p>\n            </section>\n        </div>\n    </template>\n\n    <!-- Posts Modal -->\n    <template class=\"postsTemplate\">\n        <div class=\"postsModal\">\n            <section class=\"postsContent\">\n                <form class=\"postsForm\" action=\"./index.html\" method=\"POST\">\n                    <h2 id=\"createPostHead\">CreatePost</h2>\n                    <label for=\"createPostHead\" class=\"postLogin\">Must be <a href=\"/Register\" data-navigo class=\"login\" id=\"postLogin\">Logged In </a>to post.</label>\n                    <br>\n                    <label class=\"postsEls\" for=\"postLake\">Lake Name:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postLake\" name=\"postLake\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addImage\">Upload Image</label>\n                    <input class=\"postsEls\" type=\"file\" id=\"addImage\" name=\"addImage\" value=\"addImage\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addComment\">Add Comments</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"addComment\" name=\"addComment\" placeholder=\"Add Text Here\">\n                    <br>\n                    <input class=\"postsEls\" type=\"submit\" id=\"createPost\" name=\"createPost\" value=\"Create Post\">\n                </form>\n            </section>\n        </div>\n    </template>\n</header>\n";
+  return "\n<header>\n    <h3 id=\"home\"><a id=\"home\" href=\"/Home\">Home</a></h3>\n\n    <nav>\n        <a href=\"#\" class=\"about\">About</a>\n        <a href=\"#\" class=\"contact\">Contact</a>\n        <a href=\"#\" class=\"login\">Login/Register</a>\n    </nav>\n\n    <h4 class=\"tips\"><a href=\"/Tips\" data-navigo>Tips & Techniques</a></h4>\n\n    <!-- About Modal -->\n    <template class=\"aboutTemplate\">\n        <div class=\"aboutModal\">\n            <section class=\"aboutContent\">\n                <h1 class=\"aboutHead\">About</h1>\n                <h4 class=\"aboutBody\">We here at the Fish Ninja are committed to providing in-depth, detailed and accurate information, about fishing areas, to anglers everywhere.  For far too long it has been far too difficult to find valuable details about where to fish and, just as important, what fish species may be present in any given lake to fish for.  We intend to change that.  Furthermore, it is our hope that allowing anglers to connect with one another will provide an even greater opportunity to share knowledge between individuals or with the entire fishing world.  In this ever changing landscape, we shall remain diligent in our approach to gathering, updating, and sharing everything we can find in order to help improve fishing experiences across America.</h4>\n            </section>\n        </div>\n    </template>\n    <!-- Contacts Modal -->\n    <template class=\"contactsTemplate\">\n        <div class=\"contactsModal\">\n            <section class=\"contactsContent\">\n                <h1>Contacts</h1>\n            </section>\n        </div>\n    </template>\n    <!-- Login Modal -->\n    <template class=\"loginTemplate\">\n        <div class=\"loginModal\">\n            <section class=\"loginContent\">\n                <form action=\"index.html\" method=\"POST\" id=\"login\">\n                    <label for=\"username\">Username:</label>\n                    <input type=\"text\" name=\"username\" id=\"username\">\n                    <br>\n                    <label for=\"user-pw\">Password:</label>\n                    <input id=\"user-pw\" type=\"password\" name=\"user-pw\">\n                    <h3>Not already a member?  <a href=\"/Register\" id=\"registerLink\" data-navigo>Register  </a></h3>\n                    <br>\n                    <input id=\"submit\" type=\"submit\" value=\"Submit\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- News Modal -->\n    <template class=\"newsTemplate\">\n        <div class=\"newsModal\">\n            <section class=\"newsContent\">\n                <img src=\"\" alt=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"storyImage>\n                <h2 id=\"title\">Title</h2>\n                <h4 id=\"author\">Author</h4>\n                <a href=\"\" id=\"storyLink\">Link to Page</a>\n                <br>\n                <p id=\"story\">Content</p>\n            </section>\n        </div>\n    </template>\n\n    <!-- Posts Modal -->\n    <template class=\"postsTemplate\">\n        <div class=\"postsModal\">\n            <section class=\"postsContent\">\n                <form class=\"postsForm\" action=\"#\" method=\"POST\">\n                    <h2 id=\"createPostHead\">CreatePost</h2>\n                    <label for=\"createPostHead\" class=\"postLogin\">Must be <a href=\"/Register\" data-navigo class=\"login\" id=\"postLogin\">Logged In </a>to post.</label>\n                    <br>\n                    <label class=\"postsEls\" for=\"postLake\">Lake Name:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postLake\" name=\"postLake\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addImage\">Upload Image</label>\n                    <input class=\"postsEls\" type=\"file\" id=\"addImage\" name=\"addImage\" value=\"addImage\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addComment\">Add Comments</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"addComment\" name=\"addComment\" placeholder=\"Add Text Here\">\n                    <br>\n                    <input class=\"postsEls\" type=\"submit\" id=\"createPost\" name=\"createPost\" value=\"Create Post\">\n                </form>\n            </section>\n        </div>\n    </template>\n</header>\n";
 };
 
 exports.default = _default;
@@ -252,7 +252,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var st = function st() {
-  return "\n<section class=\"homeMain\">\n    <h1 class=\"heading\">Keeping Lines Tight Across America!</h1>\n    <div id=\"map\"></div>\n    <h2>Lake Search:</h2>\n    <form id=\"searchForm\" action=\"./search.html\" method=\"POST\">\n        <section id=\"location\">\n            <label for=\"location\" id=\"location\">City, State:  </label>\n            <input type=\"text\" name=\"location\" id=\"location\" value=\"location\" placeholder=\"Login for location\">\n        </section>\n        <br>\n\n        <label for=\"distance\">Distance:</label>\n        <section id=\"distance\">\n            <input type=\"radio\" class=\"search\" id=\"any\" name=\"choice\" value=\"any\" checked>\n            <label for=\"any\">25 miles</label>\n                \n            <input type=\"radio\" class=\"search\" id=\"public\" name=\"choice\" value=\"public\">\n            <label for=\"public\">50 miles</label>\n                \n            <input type=\"radio\" class=\"search\" id=\"private\" name=\"choice\" value=\"private\">\n            <label for=\"private\">100 miles</label>\n        </section>\n\n        <section id=\"species\">\n            <label>Species:  </label>\n            <input type=\"text\" name=\"species\" value=\"species\" placeholder=\"Optional\">\n        </section>\n\n        <input type=\"submit\" value=\"Search\" id=\"search\">\n    </form>\n\n    <div class=\"news\">\n        <h3 id=\"newsHead\">Fishing News</h3>\n        <ul id=\"news\">\n            \n        </ul>\n    </div>\n\n    <div class=\"posts\">\n        <h3 id=\"posts\">Recent Posts</h3>\n        <ul>\n            <li>Goose Takeover in Benton Park!</li>\n            <li>Where's the fish?</li>\n        </ul>\n        <input type=\"submit\" value=\"AddComment/UploadImage\" class=\"post\" id=\"post\">\n    </div>\n</section>\n";
+  return "\n<section class=\"homeMain\">\n    <h1 class=\"heading\">Keeping Lines Tight Across America!</h1>\n    <div id=\"map\"></div>\n    <h2>Lake Search:</h2>\n    <form id=\"searchForm\" action=\"/Search\" method=\"POST\">\n        <section id=\"location\">\n            <label for=\"location\" id=\"location\">City, State:  </label>\n            <input type=\"text\" name=\"location\" id=\"location\" value=\"location\" placeholder=\"Login for location\">\n        </section>\n        <br>\n\n        <label for=\"distance\">Distance:</label>\n        <section id=\"distance\">\n            <input type=\"radio\" class=\"search\" id=\"any\" name=\"choice\" value=\"any\" checked>\n            <label for=\"any\">25 miles</label>\n                \n            <input type=\"radio\" class=\"search\" id=\"public\" name=\"choice\" value=\"public\">\n            <label for=\"public\">50 miles</label>\n                \n            <input type=\"radio\" class=\"search\" id=\"private\" name=\"choice\" value=\"private\">\n            <label for=\"private\">100 miles</label>\n        </section>\n\n        <section id=\"species\">\n            <label>Species:  </label>\n            <input type=\"text\" name=\"species\" value=\"species\" placeholder=\"Optional\">\n        </section>\n\n        <input type=\"submit\" value=\"Search\" id=\"search\">\n    </form>\n\n    <div class=\"news\">\n        <h3 id=\"newsHead\">Fishing News</h3>\n        <ul id=\"news\">\n            \n        </ul>\n    </div>\n\n    <div class=\"posts\">\n        <h3 id=\"posts\">Recent Posts</h3>\n        <ul>\n            <li>Goose Takeover in Benton Park!</li>\n            <li>Where's the fish?</li>\n        </ul>\n        <input type=\"submit\" value=\"AddComment/UploadImage\" class=\"post\" id=\"post\">\n    </div>\n</section>\n";
 };
 
 var _default = st;
@@ -266,7 +266,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _default = function _default(st) {
-  return "\n<section class=\"lakePageMain\">\n    <h1 id=\"lakeTitle\">This Lake</h1>\n\n    <div id=\"speciesList\">\n        <h3 id=\"speciesHead\">Resident Species</h3>\n        <h4 id=\"residentSpecies\">These Fish</h4>\n    </div>\n\n    <div id=\"amenities\">\n        <h3 id=\"amenitiesHead\">Amenities</h3>\n        <h4 id=\"amenities\">These Amenities</h4>\n    </div>\n\n    <div id=\"lakeComments\">\n        <h3 id=\"commentsHead\">Comments:</h3>\n    <p id=\"commentslist\"></p>\n    </div>\n\n    <div id=\"lakeMap\">\n\n    </div>\n\n    <div id=\"locationDetails\">\n        <h4 id=\"county\">County:</h4>\n        <h4 id=\"directions\"><a id=\"directions\" href=\"#\">Directions</a></h4>\n    </div>\n\n    <img id=\"contourMap\" src=\"\">\n\n    <div id=\"lakeRules\">\n        <h4 id=\"lakeStandards\">Lake Standards</h4>\n        <ul id=\"rulesList\">\n            <li>Boating:</li>\n            <li>Boat Launch:</li>\n            <li>Ice Fishing:</li>\n            <li>Bow Fishing:</li>\n        </ul>\n        <a id=\"regulations\" href=\"\">Regulations</a>\n    </div>\n\n    <div id=\"lakePosts\">\n        <h2 id=\"lakePostsHead\">Lake Posts</h2>\n        <ul id=\"postsList\">\n            <li>Add Posts</li>\n        </ul>\n        <input type=\"submit\" name=\"comment\" value=\"Comment\" class=\"post\" id=\"lakePost\">\n    </div>\n</section>\n";
+  return "\n<section class=\"lakePageMain\">\n    <h1 id=\"lakeTitle\">This Lake</h1>\n\n    <div id=\"speciesList\">\n        <h3 id=\"speciesHead\">Resident Species</h3>\n        <h4 id=\"residentSpecies\">These Fish</h4>\n    </div>\n\n    <div id=\"amenities\">\n        <h3 id=\"amenitiesHead\">Amenities</h3>\n        <h4 id=\"amenities\">These Amenities</h4>\n    </div>\n\n    <div id=\"lakeComments\">\n        <h3 id=\"commentsHead\">Comments:</h3>\n    <p id=\"commentslist\"></p>\n    </div>\n\n    <div id=\"lakeMap\">\n\n    </div>\n\n    <div id=\"locationDetails\">\n        <h4 id=\"county\">County:</h4>\n        <h4 id=\"directions\"><a id=\"directions\" href=\"#\">Directions</a></h4>\n    </div>\n\n    <img id=\"contourMap\" src=\"\">\n\n    <div id=\"lakeRules\">\n        <h4 id=\"lakeStandards\">Lake Standards</h4>\n        <ul id=\"rulesList\">\n            <li>Boating:</li>\n            <li>Boat Launch:</li>\n            <li>Ice Fishing:</li>\n            <li>Bow Fishing:</li>\n        </ul>\n        <a id=\"regulations\" href=\"\">Regulations</a>\n    </div>\n\n    <div id=\"lakePosts\">\n        <h2 id=\"lakePostsHead\">Lake Posts</h2>\n        <ul id=\"postsList\">\n            <li>Add Posts</li>\n        </ul>\n        <input type=\"submit\" name=\"comment\" value=\"Comment\">\n    </div>\n</section>\n";
 };
 
 exports.default = _default;
@@ -385,7 +385,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _default = function _default() {
-  return "\n<footer>\n    <img src=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"left\">\n    <img src=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"right\">\n    <h1 id=\"wateringHole\">Local Watering Hole</h1>\n    <h4 id=\"connect\">Connect with other anglers to share tips, favorite places, and secrets.</h4>\n</footer>\n";
+  return "\n<footer>\n    <img src=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"left\">\n    <img src=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"right\">\n    <h1 id=\"wateringHole\">Local Watering Hole</h1>\n    <h4 id=\"connect\">Connect with other anglers to share tips, favorite places, and secrets.</h4>\n</footer>\n\n<!-- Create Nav Modals -->\n<div class=\"modalBg\">\n    <div class=\"modalContent\">\n\n    </div>\n    <span id=\"modal-close\">X</span>\n</div>\n";
 };
 
 exports.default = _default;
@@ -447,7 +447,8 @@ var initMapTest = /*#__PURE__*/function () {
         lng: -94.147841
       }
     };
-    this.map = new google.maps.Map(document.getElementById("map"), this.options);
+    var mapContainer = document.getElementById("map");
+    this.map = new google.maps.Map(mapContainer, this.options);
   }
 
   _createClass(initMapTest, [{
@@ -473,6 +474,41 @@ var initMapTest = /*#__PURE__*/function () {
 }();
 
 exports.default = initMapTest;
+},{}],"lib/InfoWindow.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var InfoWindow = /*#__PURE__*/function () {
+  function InfoWindow() {
+    _classCallCheck(this, InfoWindow);
+  }
+
+  _createClass(InfoWindow, [{
+    key: "attachButton",
+    value: function attachButton(passInObj, name, cb) {
+      var button = document.createElement("button");
+      button.innerText = name;
+      button.addEventListener("click", function () {
+        cb(passInObj);
+      });
+      return button;
+    }
+  }]);
+
+  return InfoWindow;
+}();
+
+exports.default = InfoWindow;
 },{}],"lib/ToggleModal.js":[function(require,module,exports) {
 "use strict";
 
@@ -483,14 +519,13 @@ exports.default = toggleModal;
 
 function toggleModal(content) {
   document.querySelector(".modalContent").innerHTML = content;
-  document.querySelector(".modalBg").classList.add("bg-active");
-  document.querySelector("#map").classList.add("mapVisibility");
-} // //Close Modals
-// document.querySelector("#modal-close").addEventListener("click", e => {
-// e.preventDefault();
-// document.querySelector(".modalBg").classList.remove("bg-active");
-// document.querySelector("#map").classList.remove("mapVisibility");
-// });
+  document.querySelector(".modalBg").classList.add("bg-active"); //Close Modals
+
+  document.querySelector("#modal-close").addEventListener("click", function (e) {
+    e.preventDefault();
+    document.querySelector(".modalBg").classList.remove("bg-active");
+  });
+}
 },{}],"lib/News.js":[function(require,module,exports) {
 "use strict";
 
@@ -523,9 +558,11 @@ function NewsFeed() {
         e.preventDefault();
         console.log(story.author);
         (0, _ToggleModal.default)(document.querySelector(".newsTemplate").innerHTML);
-        document.querySelector("#title").textContent = story.title;
-        document.querySelector("#").textContent = "by ".concat(story.author);
-        document.querySelector("#story").textContent = story.content;
+        setTimeout(function () {
+          document.querySelector("#title").textContent = story.title;
+          document.querySelector("#author").textContent = "by ".concat(story.author);
+          document.querySelector("#story").textContent = story.content;
+        }, 100);
       });
       target.appendChild(elem);
     });
@@ -545,7 +582,87 @@ function NewsFeed() {
 // title: "22 Surprising Tips to Master 'Animal Crossing: New Horizons'"
 // url: "https://www.wired.com/story/animal-crossing-new-horizons-tips/"
 // urlToImage: "https:/
-},{"./ToggleModal":"lib/ToggleModal.js"}],"components/controllers/Home.js":[function(require,module,exports) {
+},{"./ToggleModal":"lib/ToggleModal.js"}],"lib/ModalListeners.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = modalListeners;
+
+var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function modalListeners() {
+  // Modals' Elements
+  var activeModal = document.querySelector(".activeModal");
+  var aboutBtn = document.querySelector(".about");
+  var aboutModal = document.querySelector(".aboutTemplate").innerHTML;
+  var contactsBtn = document.querySelector(".contact");
+  var contactsModal = document.querySelector(".contactsTemplate").innerHTML;
+  var loginBtn = document.querySelector(".login");
+  var loginModal = document.querySelector(".loginTemplate").innerHTML;
+  var newsBtn = document.querySelector(".newsStory");
+  var newsModal = document.querySelector(".newsTemplate").innerHTML;
+  var map = document.querySelector("#map");
+  var modal = document.querySelector(".modalBg");
+  var modalContent = document.querySelector(".modalContent"); //About Modal Content
+
+  aboutBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    (0, _ToggleModal.default)(aboutModal);
+  }); //Contacts Modal Content
+
+  contactsBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    (0, _ToggleModal.default)(contactsModal);
+  }); //Login Modal Content
+
+  loginBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    (0, _ToggleModal.default)(loginModal);
+  });
+}
+},{"./ToggleModal":"lib/ToggleModal.js"}],"lib/HomeListeners.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = HomeListeners;
+
+var _ModalListeners = _interopRequireDefault(require("./ModalListeners"));
+
+var _Router = _interopRequireDefault(require("./Router"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function HomeListeners() {
+  var postsBtn = document.querySelector("#post");
+  var postsModal = document.querySelector(".postsTemplate").innerHTML;
+  var postLoginBtn = document.querySelector("#postLogin"); //Search Button
+
+  document.querySelector("#search").addEventListener("click", function (e) {
+    e.preventDefault();
+
+    _Router.default.navigate("/Lake");
+  }); //Posts Modal Content
+
+  document.querySelector("#post").addEventListener("click", function (event) {
+    event.preventDefault();
+    toggleModal(postsModal);
+    postLoginBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+      toggleModal(loginModal);
+    });
+    document.querySelector(".postsForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      CreatePost();
+    });
+  });
+}
+},{"./ModalListeners":"lib/ModalListeners.js","./Router":"lib/Router.js"}],"components/controllers/Home.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -555,19 +672,87 @@ exports.default = void 0;
 
 var _Map = _interopRequireDefault(require("../../lib/Map"));
 
+var _InfoWindow = _interopRequireDefault(require("../../lib/InfoWindow"));
+
 var _News = _interopRequireDefault(require("../../lib/News"));
+
+var _HomeListeners = _interopRequireDefault(require("../../lib/HomeListeners"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import CreateMap from "../../lib/CreateMap";
 var _default = function _default(st) {
-  (0, _News.default)();
+  // NewsFeed();
+  (0, _HomeListeners.default)();
+  _Map.default;
+  _InfoWindow.default;
   setTimeout(function () {
-    var map = new _Map.default();
+    var mainMap = new _Map.default();
+    var InfoWindows = new _InfoWindow.default();
+    var initialMarkers = [{
+      "lat": 41.634915,
+      "lng": -99.885121,
+      "name": "Nebraska"
+    }, {
+      "lat": 42.418086,
+      "lng": -93.589918,
+      "name": "Iowa"
+    }, {
+      "lat": 43.201730,
+      "lng": -75.532868,
+      "name": "NewYork"
+    }, {
+      "lat": 43.994966,
+      "lng": -72.666294,
+      "name": "Vermont"
+    }]; // //Pull Marker info from JSON
+    // fetch("../JSONFiles/states.json")
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         data.forEach(state => {
+    //             initialMarkers.push(state);
+    //         })
+    //         setMarkers();
+    //     });
+    //Set Markers Function
+
+    var setMarkers = function setMarkers() {
+      initialMarkers.forEach(function (marker) {
+        mainMap.addMarker(marker, function (state) {
+          return InfoWindows.attachButton(marker, marker.name, zoomToState);
+        });
+      });
+    };
+
+    setMarkers(); // Marker info for individual lakes
+
+    var stateMarkers = {
+      Iowa: [],
+      Nebraska: [],
+      NewYork: [],
+      Tennessee: [],
+      Vermont: []
+    };
+    var lakes = [];
+
+    function zoomToState(marker) {
+      console.log(mainMap.map); // remove old marker,
+      // place new markers
+
+      stateMarkers[marker.name].forEach(function (newMarker) {
+        mainMap.addMarker(newMarker, function (state) {
+          return InfoWindows.attachButton(newMarker, newMarker.name, goToLake);
+        });
+      }); // zoom & center
+
+      mainMap.map.setZoom(7);
+      mainMap.map.setCenter(marker);
+    }
   }, 500);
 };
 
 exports.default = _default;
-},{"../../lib/Map":"lib/Map.js","../../lib/News":"lib/News.js"}],"components/controllers/Lake.js":[function(require,module,exports) {
+},{"../../lib/Map":"lib/Map.js","../../lib/InfoWindow":"lib/InfoWindow.js","../../lib/News":"lib/News.js","../../lib/HomeListeners":"lib/HomeListeners.js"}],"components/controllers/Lake.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -578,9 +763,37 @@ exports.default = void 0;
 var _default = function _default(st) {};
 
 exports.default = _default;
-},{}],"components/controllers/Register.js":[function(require,module,exports) {
+},{}],"lib/Register.js":[function(require,module,exports) {
+"use strict";
 
-},{}],"components/controllers/Search.js":[function(require,module,exports) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Register;
+
+var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Register() {}
+},{"./ToggleModal":"lib/ToggleModal.js"}],"components/controllers/Register.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Register = _interopRequireDefault(require("../../lib/Register"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(st) {
+  (0, _Register.default)();
+};
+
+exports.default = _default;
+},{"../../lib/Register":"lib/Register.js"}],"components/controllers/Search.js":[function(require,module,exports) {
 
 },{}],"lib/TipsObject.js":[function(require,module,exports) {
 "use strict";
@@ -588,7 +801,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.techniques = void 0;
+exports.default = void 0;
 var techniques = {
   bluegill: {
     winter: "Bluegill will migrate to deeper waters as the vegetation in shallower areas dies off.  Finding remaining plant life around points, bends, and flats near drop-offs will lead to greater numbers of fish.  Focus on the deeper end of the depth range during ice-over conditions.  Use ice jigs tipped with wax worms or other larvae and try either traditional jigging or placing it under a bobber.  Target the areas just above or outside of the weed beds.  When not finding sufficient action, try different combinations of colors and larvae, along with changing locations, until desired result is achieved.  Keeping the larvae fresh may also lead to greater success.",
@@ -642,7 +855,8 @@ var techniques = {
     fall: "Search out mid-depth flats containing vegetation adjacent to drop-offs, inside bends,  deeper/steeper points in the main body of the lake, and drop-offs.  The sharp inside bends can be worked vertically  with quick-strike rigs baited with large minnows, or jigging large soft plastics.  Cast around structure and clumps of vegetation with crank baits, plastic swim baits, spinner baits, jigs, buck tails, and large weighted jerk baits.  Work the flats around drop-offs by positioning over the deeper water surrounding them and casting jerk baits spinners, and buck tails over and around them."
   }
 };
-exports.techniques = techniques;
+var _default = techniques;
+exports.default = _default;
 },{}],"lib/Tips.js":[function(require,module,exports) {
 "use strict";
 
@@ -651,32 +865,28 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = getTips;
 
-var _TipsObject = _interopRequireDefault(require("./TipsObject"));
+var _TipsObject = _interopRequireDefault(require("./TipsObject.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function getTips() {
   var species = document.getElementById("species");
   var seasons = document.getElementById("season");
-  var par = document.querySelector("p");
+  var par = document.querySelector("#techniques");
   var background = document.querySelector(".tipsMain");
   var bluegill = "https://i.imgur.com/4i6DkKG.jpg";
   var tipsImages = [bluegill];
-  console.log(state.view);
-
-  if (state.view === "Tips") {
-    document.querySelector("#tipsForm").addEventListener("submit", function (event) {
-      event.preventDefault();
-      var choice1 = _TipsObject.default[species.value];
-      par.textContent = choice1[seasons.value]; // tipsImages.forEach(el => {
-      //     if (species.value === el) {
-      //         background.style.background-image = `url("${el}")`;
-      //     }
-      // })
-    });
-  }
+  document.querySelector("#tipsForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    var choice1 = _TipsObject.default[species.value];
+    par.textContent = choice1[seasons.value]; // tipsImages.forEach(el => {
+    //     if (species.value === el) {
+    //         background.style.background-image = `url("${el}")`;
+    //     }
+    // })
+  });
 }
-},{"./TipsObject":"lib/TipsObject.js"}],"components/controllers/Tips.js":[function(require,module,exports) {
+},{"./TipsObject.js":"lib/TipsObject.js"}],"components/controllers/Tips.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -760,84 +970,7 @@ var _default = function _default(st) {
 };
 
 exports.default = _default;
-},{"./controllers":"components/controllers/index.js"}],"lib/ModalClose.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = ModalClose;
-
-function ModalClose() {
-  //Close Modals
-  document.querySelector("#modal-close").addEventListener("click", function (e) {
-    e.preventDefault();
-    document.querySelector(".modalBg").classList.remove("bg-active");
-    document.querySelector("#map").classList.remove("mapVisibility");
-  });
-}
-},{}],"lib/ModalListeners.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = modalListeners;
-
-var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function modalListeners() {
-  // Modals' Elements
-  var activeModal = document.querySelector(".activeModal");
-  var aboutBtn = document.querySelector(".about");
-  var aboutModal = document.querySelector(".aboutTemplate").innerHTML;
-  var contactsBtn = document.querySelector(".contact");
-  var contactsModal = document.querySelector(".contactsTemplate").innerHTML;
-  var loginBtn = document.querySelector(".login");
-  var postLoginBtn = document.querySelector("#postLogin");
-  var loginModal = document.querySelector(".loginTemplate").innerHTML;
-  var newsBtn = document.querySelector(".newsStory");
-  var newsModal = document.querySelector(".newsTemplate").innerHTML;
-  var postsBtn = document.querySelector("#post");
-  var postsModal = document.querySelector(".postsTemplate").innerHTML;
-  var map = document.querySelector("#map");
-  var modal = document.querySelector(".modalBg");
-  var modalContent = document.querySelector(".modalContent"); //About Modal Content
-
-  aboutBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    (0, _ToggleModal.default)(aboutModal);
-  }); //Contacts Modal Content
-
-  contactsBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    (0, _ToggleModal.default)(contactsModal);
-  }); //Login Modal Content
-
-  loginBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    (0, _ToggleModal.default)(loginModal);
-    document.querySelector("#registerLink").addEventListener("click", function (e) {
-      e.preventDefault();
-      render(state[Register]);
-    });
-  }); //Posts Modal Content
-
-  postsBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    (0, _ToggleModal.default)(postsModal);
-    postLoginBtn.addEventListener("click", function (event) {
-      event.preventDefault();
-      (0, _ToggleModal.default)(loginModal); // document.querySelector("#registerLink").addEventListener("click", e => {
-      //     e.preventDefault();
-      //     render(state["Register"]);
-      // })
-    });
-  });
-}
-},{"./ToggleModal":"lib/ToggleModal.js"}],"lib/Render.js":[function(require,module,exports) {
+},{"./controllers":"components/controllers/index.js"}],"lib/Render.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -850,8 +983,6 @@ var state = _interopRequireWildcard(require("../store"));
 var _components = require("../components");
 
 var _Controller = _interopRequireDefault(require("../components/Controller"));
-
-var _ModalClose = _interopRequireDefault(require("./ModalClose"));
 
 var _ModalListeners = _interopRequireDefault(require("./ModalListeners"));
 
@@ -866,9 +997,8 @@ function render() {
   document.querySelector("#root").innerHTML = "\n    ".concat((0, _components.Header)(st), "\n    ").concat((0, _components.Main)(st), "\n    ").concat((0, _components.Footer)(), "\n    ");
   (0, _Controller.default)(st);
   (0, _ModalListeners.default)();
-  (0, _ModalClose.default)();
 }
-},{"../store":"store/index.js","../components":"components/index.js","../components/Controller":"components/Controller.js","./ModalClose":"lib/ModalClose.js","./ModalListeners":"lib/ModalListeners.js"}],"node_modules/base64-js/index.js":[function(require,module,exports) {
+},{"../store":"store/index.js","../components":"components/index.js","../components/Controller":"components/Controller.js","./ModalListeners":"lib/ModalListeners.js"}],"node_modules/base64-js/index.js":[function(require,module,exports) {
 'use strict'
 
 exports.byteLength = byteLength
@@ -20067,83 +20197,6 @@ exports.default = _default;
 var _Router = _interopRequireDefault(require("./lib/Router"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function AddListeners() {
-  //Home Listeners
-  if (state.view === home) {
-    //Create Posts
-    if (document.querySelector(".modalContent").innerHTML === document.querySelector(".postsTemplate").innerHTML) {
-      document.querySelector("#createPost").addEventListener("click", function (e) {
-        e.preventDefault();
-        CreatePost();
-      });
-    } //Search Button
-
-
-    document.querySelector("#search").addEventListener("click", function (e) {
-      e.preventDefault();
-      render(state.Lake);
-    });
-  }
-} //Create Modals
-
-
-var activeModal = document.querySelector(".activeModal");
-var aboutBtn = document.querySelector(".about");
-var aboutModal = document.querySelector(".aboutTemplate").innerHTML;
-var contactsBtn = document.querySelector(".contact");
-var contactsModal = document.querySelector(".contactsTemplate").innerHTML;
-var loginBtn = document.querySelector(".login");
-var loginModal = document.querySelector(".loginTemplate").innerHTML;
-var newsBtn = document.querySelector(".newsStory");
-var newsModal = document.querySelector(".newsTemplate").innerHTML;
-var postsBtn = document.querySelector("#post");
-var postsModal = document.querySelector(".postsTemplate").innerHTML;
-var map = document.querySelector("#map");
-var modal = document.querySelector(".modalBg");
-var modalContent = document.querySelector(".modalContent"); //About Modal
-
-aboutBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  toggleModal(aboutModal);
-}); //Contacts Modal
-
-contactsBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  toggleModal(contactsModal);
-}); //Login Modal
-
-loginBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  toggleModal(loginModal);
-  document.querySelector("#registerLink").addEventListener("click", function (e) {
-    e.preventDefault();
-    render(state.Register);
-  });
-}); //Posts Modal
-
-postsBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  toggleModal(postsModal);
-  loginBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    modal.classList.remove("bg-active");
-    toggleModal(loginModal);
-  });
-}); // //Home Modals
-// if ( state.view === "Home") {
-//     //Posts Modal
-//     postsBtn.addEventListener("click", event => {
-//     event.preventDefault();
-//     toggleModal(postsModal);
-//     loginBtn.addEventListener("click", (event) => {
-//         event.preventDefault();
-//         modal.classList.remove("bg-active");
-//         toggleModal(loginModal);
-//       });
-//     });
-//     //News Modal
-// }
 },{"./lib/Router":"lib/Router.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -20172,7 +20225,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54707" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51392" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

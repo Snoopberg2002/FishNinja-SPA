@@ -8,15 +8,8 @@ export default () => `
         <a href="#" class="login">Login/Register</a>
     </nav>
 
-    <h4 class="tips"><a href="/Tips" data-navigo>Tips & Techniques<a></h4>
+    <h4 class="tips"><a href="/Tips" data-navigo>Tips & Techniques</a></h4>
 
-    <!-- Create Nav Modals -->
-    <div class="modalBg">
-        <div class="modalContent">
-
-        </div>
-        <span id="modal-close">X</span>
-    </div>
     <!-- About Modal -->
     <template class="aboutTemplate">
         <div class="aboutModal">
@@ -70,7 +63,7 @@ export default () => `
     <template class="postsTemplate">
         <div class="postsModal">
             <section class="postsContent">
-                <form class="postsForm" action="./index.html" method="POST">
+                <form class="postsForm" action="#" method="POST">
                     <h2 id="createPostHead">CreatePost</h2>
                     <label for="createPostHead" class="postLogin">Must be <a href="/Register" data-navigo class="login" id="postLogin">Logged In </a>to post.</label>
                     <br>

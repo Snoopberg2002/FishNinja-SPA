@@ -5,4 +5,12 @@ export default () => `
     <h1 id="wateringHole">Local Watering Hole</h1>
     <h4 id="connect">Connect with other anglers to share tips, favorite places, and secrets.</h4>
 </footer>
+
+<!-- Create Nav Modals -->
+<div class="modalBg">
+    <div class="modalContent">
+
+    </div>
+    <span id="modal-close">X</span>
+</div>
 `

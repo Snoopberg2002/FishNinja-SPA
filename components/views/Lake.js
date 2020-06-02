@@ -44,7 +44,7 @@ export default st => `
         <ul id="postsList">
             <li>Add Posts</li>
         </ul>
-        <input type="submit" name="comment" value="Comment" class="post" id="lakePost">
+        <input type="submit" name="comment" value="Comment">
     </div>
 </section>
 `
