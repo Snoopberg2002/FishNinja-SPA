@@ -117,7 +117,120 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"components/Header.js":[function(require,module,exports) {
+})({"node_modules/navigo/lib/navigo.min.js":[function(require,module,exports) {
+var define;
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.Navigo=t()}(this,function(){"use strict";var e="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};function t(){return!("undefined"==typeof window||!window.history||!window.history.pushState)}function n(e,n,o){this.root=null,this._routes=[],this._useHash=n,this._hash=void 0===o?"#":o,this._paused=!1,this._destroyed=!1,this._lastRouteResolved=null,this._notFoundHandler=null,this._defaultHandler=null,this._usePushState=!n&&t(),this._onLocationChange=this._onLocationChange.bind(this),this._genericHooks=null,this._historyAPIUpdateMethod="pushState",e?this.root=n?e.replace(/\/$/,"/"+this._hash):e.replace(/\/$/,""):n&&(this.root=this._cLoc().split(this._hash)[0].replace(/\/$/,"/"+this._hash)),this._listen(),this.updatePageLinks()}function o(e){return e instanceof RegExp?e:e.replace(/\/+$/,"").replace(/^\/+/,"^/")}function i(e){return e.replace(/\/$/,"").split("/").length}function s(e,t){return i(t)-i(e)}function r(e,t){return function(e){return(arguments.length>1&&void 0!==arguments[1]?arguments[1]:[]).map(function(t){var i=function(e){var t=[];return{regexp:e instanceof RegExp?e:new RegExp(e.replace(n.PARAMETER_REGEXP,function(e,o,i){return t.push(i),n.REPLACE_VARIABLE_REGEXP}).replace(n.WILDCARD_REGEXP,n.REPLACE_WILDCARD)+n.FOLLOWED_BY_SLASH_REGEXP,n.MATCH_REGEXP_FLAGS),paramNames:t}}(o(t.route)),s=i.regexp,r=i.paramNames,a=e.replace(/^\/+/,"/").match(s),h=function(e,t){return 0===t.length?null:e?e.slice(1,e.length).reduce(function(e,n,o){return null===e&&(e={}),e[t[o]]=decodeURIComponent(n),e},null):null}(a,r);return!!a&&{match:a,route:t,params:h}}).filter(function(e){return e})}(e,t)[0]||!1}function a(e,t){var n=t.map(function(t){return""===t.route||"*"===t.route?e:e.split(new RegExp(t.route+"($|/)"))[0]}),i=o(e);return n.length>1?n.reduce(function(e,t){return e.length>t.length&&(e=t),e},n[0]):1===n.length?n[0]:i}function h(e,n,o){var i,s=function(e){return e.split(/\?(.*)?$/)[0]};return void 0===o&&(o="#"),t()&&!n?s(e).split(o)[0]:(i=e.split(o)).length>1?s(i[1]):s(i[0])}function u(t,n,o){if(n&&"object"===(void 0===n?"undefined":e(n))){if(n.before)return void n.before(function(){(!(arguments.length>0&&void 0!==arguments[0])||arguments[0])&&(t(),n.after&&n.after(o))},o);if(n.after)return t(),void(n.after&&n.after(o))}t()}return n.prototype={helpers:{match:r,root:a,clean:o,getOnlyURL:h},navigate:function(e,t){var n;return e=e||"",this._usePushState?(n=(n=(t?"":this._getRoot()+"/")+e.replace(/^\/+/,"/")).replace(/([^:])(\/{2,})/g,"$1/"),history[this._historyAPIUpdateMethod]({},"",n),this.resolve()):"undefined"!=typeof window&&(e=e.replace(new RegExp("^"+this._hash),""),window.location.href=window.location.href.replace(/#$/,"").replace(new RegExp(this._hash+".*$"),"")+this._hash+e),this},on:function(){for(var t=this,n=arguments.length,o=Array(n),i=0;i<n;i++)o[i]=arguments[i];if("function"==typeof o[0])this._defaultHandler={handler:o[0],hooks:o[1]};else if(o.length>=2)if("/"===o[0]){var r=o[1];"object"===e(o[1])&&(r=o[1].uses),this._defaultHandler={handler:r,hooks:o[2]}}else this._add(o[0],o[1],o[2]);else"object"===e(o[0])&&Object.keys(o[0]).sort(s).forEach(function(e){t.on(e,o[0][e])});return this},off:function(e){return null!==this._defaultHandler&&e===this._defaultHandler.handler?this._defaultHandler=null:null!==this._notFoundHandler&&e===this._notFoundHandler.handler&&(this._notFoundHandler=null),this._routes=this._routes.reduce(function(t,n){return n.handler!==e&&t.push(n),t},[]),this},notFound:function(e,t){return this._notFoundHandler={handler:e,hooks:t},this},resolve:function(e){var n,o,i=this,s=(e||this._cLoc()).replace(this._getRoot(),"");this._useHash&&(s=s.replace(new RegExp("^/"+this._hash),"/"));var a=function(e){return e.split(/\?(.*)?$/).slice(1).join("")}(e||this._cLoc()),l=h(s,this._useHash,this._hash);return!this._paused&&(this._lastRouteResolved&&l===this._lastRouteResolved.url&&a===this._lastRouteResolved.query?(this._lastRouteResolved.hooks&&this._lastRouteResolved.hooks.already&&this._lastRouteResolved.hooks.already(this._lastRouteResolved.params),!1):(o=r(l,this._routes))?(this._callLeave(),this._lastRouteResolved={url:l,query:a,hooks:o.route.hooks,params:o.params,name:o.route.name},n=o.route.handler,u(function(){u(function(){o.route.route instanceof RegExp?n.apply(void 0,o.match.slice(1,o.match.length)):n(o.params,a)},o.route.hooks,o.params,i._genericHooks)},this._genericHooks,o.params),o):this._defaultHandler&&(""===l||"/"===l||l===this._hash||function(e,n,o){if(t()&&!n)return!1;if(!e.match(o))return!1;var i=e.split(o);return i.length<2||""===i[1]}(l,this._useHash,this._hash))?(u(function(){u(function(){i._callLeave(),i._lastRouteResolved={url:l,query:a,hooks:i._defaultHandler.hooks},i._defaultHandler.handler(a)},i._defaultHandler.hooks)},this._genericHooks),!0):(this._notFoundHandler&&u(function(){u(function(){i._callLeave(),i._lastRouteResolved={url:l,query:a,hooks:i._notFoundHandler.hooks},i._notFoundHandler.handler(a)},i._notFoundHandler.hooks)},this._genericHooks),!1))},destroy:function(){this._routes=[],this._destroyed=!0,this._lastRouteResolved=null,this._genericHooks=null,clearTimeout(this._listeningInterval),"undefined"!=typeof window&&(window.removeEventListener("popstate",this._onLocationChange),window.removeEventListener("hashchange",this._onLocationChange))},updatePageLinks:function(){var e=this;"undefined"!=typeof document&&this._findLinks().forEach(function(t){t.hasListenerAttached||(t.addEventListener("click",function(n){if((n.ctrlKey||n.metaKey)&&"a"==n.target.tagName.toLowerCase())return!1;var o=e.getLinkPath(t);e._destroyed||(n.preventDefault(),e.navigate(o.replace(/\/+$/,"").replace(/^\/+/,"/")))}),t.hasListenerAttached=!0)})},generate:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=this._routes.reduce(function(n,o){var i;if(o.name===e)for(i in n=o.route,t)n=n.toString().replace(":"+i,t[i]);return n},"");return this._useHash?this._hash+n:n},link:function(e){return this._getRoot()+e},pause:function(){var e=!(arguments.length>0&&void 0!==arguments[0])||arguments[0];this._paused=e,this._historyAPIUpdateMethod=e?"replaceState":"pushState"},resume:function(){this.pause(!1)},historyAPIUpdateMethod:function(e){return void 0===e?this._historyAPIUpdateMethod:(this._historyAPIUpdateMethod=e,e)},disableIfAPINotAvailable:function(){t()||this.destroy()},lastRouteResolved:function(){return this._lastRouteResolved},getLinkPath:function(e){return e.getAttribute("href")},hooks:function(e){this._genericHooks=e},_add:function(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null;return"string"==typeof t&&(t=encodeURI(t)),this._routes.push("object"===(void 0===n?"undefined":e(n))?{route:t,handler:n.uses,name:n.as,hooks:o||n.hooks}:{route:t,handler:n,hooks:o}),this._add},_getRoot:function(){return null!==this.root?this.root:(this.root=a(this._cLoc().split("?")[0],this._routes),this.root)},_listen:function(){var e=this;if(this._usePushState)window.addEventListener("popstate",this._onLocationChange);else if("undefined"!=typeof window&&"onhashchange"in window)window.addEventListener("hashchange",this._onLocationChange);else{var t=this._cLoc(),n=void 0,o=void 0;(o=function(){n=e._cLoc(),t!==n&&(t=n,e.resolve()),e._listeningInterval=setTimeout(o,200)})()}},_cLoc:function(){return"undefined"!=typeof window?void 0!==window.__NAVIGO_WINDOW_LOCATION_MOCK__?window.__NAVIGO_WINDOW_LOCATION_MOCK__:o(window.location.href):""},_findLinks:function(){return[].slice.call(document.querySelectorAll("[data-navigo]"))},_onLocationChange:function(){this.resolve()},_callLeave:function(){var e=this._lastRouteResolved;e&&e.hooks&&e.hooks.leave&&e.hooks.leave(e.params)}},n.PARAMETER_REGEXP=/([:*])(\w+)/g,n.WILDCARD_REGEXP=/\*/g,n.REPLACE_VARIABLE_REGEXP="([^/]+)",n.REPLACE_WILDCARD="(?:.*)",n.FOLLOWED_BY_SLASH_REGEXP="(?:/$|$)",n.MATCH_REGEXP_FLAGS="",n});
+
+
+},{}],"store/Home.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  view: "Home",
+  controller: "Home"
+};
+exports.default = _default;
+},{}],"store/Lake.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  view: "Lake",
+  controller: "Lake"
+};
+exports.default = _default;
+},{}],"store/Register.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  view: "Register",
+  controller: "Register"
+};
+exports.default = _default;
+},{}],"store/Search.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  view: "Search",
+  controller: "Search"
+};
+exports.default = _default;
+},{}],"store/Tips.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  view: "Tips",
+  controller: "Tips"
+};
+exports.default = _default;
+},{}],"store/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Home", {
+  enumerable: true,
+  get: function () {
+    return _Home.default;
+  }
+});
+Object.defineProperty(exports, "Lake", {
+  enumerable: true,
+  get: function () {
+    return _Lake.default;
+  }
+});
+Object.defineProperty(exports, "Register", {
+  enumerable: true,
+  get: function () {
+    return _Register.default;
+  }
+});
+Object.defineProperty(exports, "Search", {
+  enumerable: true,
+  get: function () {
+    return _Search.default;
+  }
+});
+Object.defineProperty(exports, "Tips", {
+  enumerable: true,
+  get: function () {
+    return _Tips.default;
+  }
+});
+
+var _Home = _interopRequireDefault(require("./Home"));
+
+var _Lake = _interopRequireDefault(require("./Lake"));
+
+var _Register = _interopRequireDefault(require("./Register"));
+
+var _Search = _interopRequireDefault(require("./Search"));
+
+var _Tips = _interopRequireDefault(require("./Tips"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./Home":"store/Home.js","./Lake":"store/Lake.js","./Register":"store/Register.js","./Search":"store/Search.js","./Tips":"store/Tips.js"}],"components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -126,7 +239,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _default = function _default() {
-  return "\n<header>\n    <h3 id=\"home\"><a id=\"home\" href=\"/Home\">Home</a></h3>\n\n    <nav>\n        <a href=\"#\" class=\"about\">About</a>\n        <a href=\"#\" class=\"contact\">Contact</a>\n        <a href=\"#\" class=\"login\">Login/Register</a>\n    </nav>\n\n    <h4 class=\"tips\"><a href=\"/Tips\" data-navigo>Tips & Techniques<a></h4>\n\n    <!-- Create Nav Modals -->\n    <div class=\"modalBg\">\n        <div class=\"modalContent\">\n\n        </div>\n        <span id=\"modal-close\">X</span>\n    </div>\n    <!-- About Modal -->\n    <template class=\"aboutTemplate\">\n        <div class=\"aboutModal\">\n            <section class=\"aboutContent\">\n                <h1 class=\"aboutHead\">About</h1>\n                <h4 class=\"aboutBody\">We here at the Fish Ninja are committed to providing in-depth, detailed and accurate information, about fishing areas, to anglers everywhere.  For far too long it has been far too difficult to find valuable details about where to fish and, just as important, what fish species may be present in any given lake to fish for.  We intend to change that.  Furthermore, it is our hope that allowing anglers to connect with one another will provide an even greater opportunity to share knowledge between individuals or with the entire fishing world.  In this ever changing landscape, we shall remain diligent in our approach to gathering, updating, and sharing everything we can find in order to help improve fishing experiences across America.</h4>\n            </section>\n        </div>\n    </template>\n    <!-- Contacts Modal -->\n    <template class=\"contactsTemplate\">\n        <div class=\"contactsModal\">\n            <section class=\"contactsContent\">\n                <h1>Contacts</h1>\n            </section>\n        </div>\n    </template>\n    <!-- Login Modal -->\n    <template class=\"loginTemplate\">\n        <div class=\"loginModal\">\n            <section class=\"loginContent\">\n                <form action=\"index.html\" method=\"POST\" id=\"login\">\n                    <label for=\"username\">Username:</label>\n                    <input type=\"text\" name=\"username\" id=\"username\">\n                    <br>\n                    <label for=\"user-pw\">Password:</label>\n                    <input id=\"user-pw\" type=\"password\" name=\"user-pw\">\n                    <h3>Not already a member?  <a href=\"/Register\" id=\"registerLink\" data-navigo>Register  </a></h3>\n                    <br>\n                    <input id=\"submit\" type=\"submit\" value=\"Submit\">\n                </form>\n            </section>\n        </div>\n    </template>\n</header>\n";
+  return "\n<header>\n    <h3 id=\"home\"><a id=\"home\" href=\"/Home\">Home</a></h3>\n\n    <nav>\n        <a href=\"#\" class=\"about\">About</a>\n        <a href=\"#\" class=\"contact\">Contact</a>\n        <a href=\"#\" class=\"login\">Login/Register</a>\n    </nav>\n\n    <h4 class=\"tips\"><a href=\"/Tips\" data-navigo>Tips & Techniques<a></h4>\n\n    <!-- Create Nav Modals -->\n    <div class=\"modalBg\">\n        <div class=\"modalContent\">\n\n        </div>\n        <span id=\"modal-close\">X</span>\n    </div>\n    <!-- About Modal -->\n    <template class=\"aboutTemplate\">\n        <div class=\"aboutModal\">\n            <section class=\"aboutContent\">\n                <h1 class=\"aboutHead\">About</h1>\n                <h4 class=\"aboutBody\">We here at the Fish Ninja are committed to providing in-depth, detailed and accurate information, about fishing areas, to anglers everywhere.  For far too long it has been far too difficult to find valuable details about where to fish and, just as important, what fish species may be present in any given lake to fish for.  We intend to change that.  Furthermore, it is our hope that allowing anglers to connect with one another will provide an even greater opportunity to share knowledge between individuals or with the entire fishing world.  In this ever changing landscape, we shall remain diligent in our approach to gathering, updating, and sharing everything we can find in order to help improve fishing experiences across America.</h4>\n            </section>\n        </div>\n    </template>\n    <!-- Contacts Modal -->\n    <template class=\"contactsTemplate\">\n        <div class=\"contactsModal\">\n            <section class=\"contactsContent\">\n                <h1>Contacts</h1>\n            </section>\n        </div>\n    </template>\n    <!-- Login Modal -->\n    <template class=\"loginTemplate\">\n        <div class=\"loginModal\">\n            <section class=\"loginContent\">\n                <form action=\"index.html\" method=\"POST\" id=\"login\">\n                    <label for=\"username\">Username:</label>\n                    <input type=\"text\" name=\"username\" id=\"username\">\n                    <br>\n                    <label for=\"user-pw\">Password:</label>\n                    <input id=\"user-pw\" type=\"password\" name=\"user-pw\">\n                    <h3>Not already a member?  <a href=\"/Register\" id=\"registerLink\" data-navigo>Register  </a></h3>\n                    <br>\n                    <input id=\"submit\" type=\"submit\" value=\"Submit\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- News Modal -->\n    <template class=\"newsTemplate\">\n        <div class=\"newsModal\">\n            <section class=\"newsContent\">\n                <img src=\"\" alt=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"storyImage>\n                <h2 id=\"title\">Title</h2>\n                <h4 id=\"author\">Author</h4>\n                <a href=\"\" id=\"storyLink\">Link to Page</a>\n                <br>\n                <p id=\"story\">Content</p>\n            </section>\n        </div>\n    </template>\n\n    <!-- Posts Modal -->\n    <template class=\"postsTemplate\">\n        <div class=\"postsModal\">\n            <section class=\"postsContent\">\n                <form class=\"postsForm\" action=\"./index.html\" method=\"POST\">\n                    <h2 id=\"createPostHead\">CreatePost</h2>\n                    <label for=\"createPostHead\" class=\"postLogin\">Must be <a href=\"/Register\" data-navigo class=\"login\" id=\"postLogin\">Logged In </a>to post.</label>\n                    <br>\n                    <label class=\"postsEls\" for=\"postLake\">Lake Name:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postLake\" name=\"postLake\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addImage\">Upload Image</label>\n                    <input class=\"postsEls\" type=\"file\" id=\"addImage\" name=\"addImage\" value=\"addImage\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addComment\">Add Comments</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"addComment\" name=\"addComment\" placeholder=\"Add Text Here\">\n                    <br>\n                    <input class=\"postsEls\" type=\"submit\" id=\"createPost\" name=\"createPost\" value=\"Create Post\">\n                </form>\n            </section>\n        </div>\n    </template>\n</header>\n";
 };
 
 exports.default = _default;
@@ -138,10 +251,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _default = function _default() {
-  return "\n<section class=\"homeMain\">\n    <h1 class=\"heading\">Keeping Lines Tight Across America!</h1>\n    <div id=\"map\"></div>\n    <h2>Lake Search:</h2>\n    <form id=\"searchForm\" action=\"./search.html\" method=\"POST\">\n        <section id=\"location\">\n            <label for=\"location\" id=\"location\">City, State:  </label>\n            <input type=\"text\" name=\"location\" id=\"location\" value=\"location\" placeholder=\"Login for location\">\n        </section>\n        <br>\n\n        <label for=\"distance\">Distance:</label>\n        <section id=\"distance\">\n            <input type=\"radio\" class=\"search\" id=\"any\" name=\"choice\" value=\"any\" checked>\n            <label for=\"any\">25 miles</label>\n                \n            <input type=\"radio\" class=\"search\" id=\"public\" name=\"choice\" value=\"public\">\n            <label for=\"public\">50 miles</label>\n                \n            <input type=\"radio\" class=\"search\" id=\"private\" name=\"choice\" value=\"private\">\n            <label for=\"private\">100 miles</label>\n        </section>\n\n        <section id=\"species\">\n            <label>Species:  </label>\n            <input type=\"text\" name=\"species\" value=\"species\" placeholder=\"Optional\">\n        </section>\n\n        <input type=\"submit\" value=\"Search\" id=\"search\">\n    </form>\n\n    <div class=\"news\">\n        <h3 id=\"newsHead\">Fishing News</h3>\n        <ul id=\"news\">\n            \n        </ul>\n    </div>\n\n    <div class=\"posts\">\n        <h3 id=\"posts\">Recent Posts</h3>\n        <ul>\n            <li>Goose Takeover in Benton Park!</li>\n            <li>Where's the fish?</li>\n        </ul>\n        <input type=\"submit\" value=\"AddComment/UploadImage\" class=\"post\" id=\"post\">\n    </div>\n</section>\n\n<!-- News Modal -->\n<template class=\"newsTemplate\">\n    <div class=\"newsModal\">\n        <section class=\"newsContent\">\n            <img src=\"\" alt=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"storyImage>\n            <h2 id=\"title\">Title</h2>\n            <h4 id=\"author\">Author</h4>\n            <a href=\"\" id=\"storyLink\">Link to Page</a>\n            <br>\n            <p id=\"story\">Content</p>\n        </section>\n    </div>\n</template>\n\n<!-- Posts Modal -->\n<template class=\"postsTemplate\">\n    <div class=\"postsModal\">\n        <section class=\"postsContent\">\n            <form class=\"postsForm\" action=\"./index.html\" method=\"POST\">\n                <h2 id=\"createPostHead\">CreatePost</h2>\n                <label for=\"createPostHead\" class=\"postLogin\">Must be <a href=\"/Register\" data-navigo class=\"login\" id=\"postLogin\">Logged In </a>to post.</label>\n                <br>\n                <label class=\"postsEls\" for=\"postLake\">Lake Name:</label>\n                <input class=\"postsEls\" type=\"text\" id=\"postLake\" name=\"postLake\" placeholder=\"Required for image upload.\">\n                <br>\n                <label class=\"postsEls\" for=\"addImage\">Upload Image</label>\n                <input class=\"postsEls\" type=\"file\" id=\"addImage\" name=\"addImage\" value=\"addImage\">\n                <br>\n                <label class=\"postsEls\" for=\"addComment\">Add Comments</label>\n                <input class=\"postsEls\" type=\"text\" id=\"addComment\" name=\"addComment\" placeholder=\"Add Text Here\">\n                <br>\n                <input class=\"postsEls\" type=\"submit\" id=\"createPost\" name=\"createPost\" value=\"Create Post\">\n            </form>\n        </section>\n    </div>\n</template>\n";
+var st = function st() {
+  return "\n<section class=\"homeMain\">\n    <h1 class=\"heading\">Keeping Lines Tight Across America!</h1>\n    <div id=\"map\"></div>\n    <h2>Lake Search:</h2>\n    <form id=\"searchForm\" action=\"./search.html\" method=\"POST\">\n        <section id=\"location\">\n            <label for=\"location\" id=\"location\">City, State:  </label>\n            <input type=\"text\" name=\"location\" id=\"location\" value=\"location\" placeholder=\"Login for location\">\n        </section>\n        <br>\n\n        <label for=\"distance\">Distance:</label>\n        <section id=\"distance\">\n            <input type=\"radio\" class=\"search\" id=\"any\" name=\"choice\" value=\"any\" checked>\n            <label for=\"any\">25 miles</label>\n                \n            <input type=\"radio\" class=\"search\" id=\"public\" name=\"choice\" value=\"public\">\n            <label for=\"public\">50 miles</label>\n                \n            <input type=\"radio\" class=\"search\" id=\"private\" name=\"choice\" value=\"private\">\n            <label for=\"private\">100 miles</label>\n        </section>\n\n        <section id=\"species\">\n            <label>Species:  </label>\n            <input type=\"text\" name=\"species\" value=\"species\" placeholder=\"Optional\">\n        </section>\n\n        <input type=\"submit\" value=\"Search\" id=\"search\">\n    </form>\n\n    <div class=\"news\">\n        <h3 id=\"newsHead\">Fishing News</h3>\n        <ul id=\"news\">\n            \n        </ul>\n    </div>\n\n    <div class=\"posts\">\n        <h3 id=\"posts\">Recent Posts</h3>\n        <ul>\n            <li>Goose Takeover in Benton Park!</li>\n            <li>Where's the fish?</li>\n        </ul>\n        <input type=\"submit\" value=\"AddComment/UploadImage\" class=\"post\" id=\"post\">\n    </div>\n</section>\n";
 };
 
+var _default = st;
 exports.default = _default;
 },{}],"components/views/Lake.js":[function(require,module,exports) {
 "use strict";
@@ -307,67 +421,279 @@ var _Main = _interopRequireDefault(require("./Main"));
 var _Footer = _interopRequireDefault(require("./Footer"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Header":"components/Header.js","./Main":"components/Main.js","./Footer":"components/Footer.js"}],"node_modules/navigo/lib/navigo.min.js":[function(require,module,exports) {
-var define;
-!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.Navigo=t()}(this,function(){"use strict";var e="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};function t(){return!("undefined"==typeof window||!window.history||!window.history.pushState)}function n(e,n,o){this.root=null,this._routes=[],this._useHash=n,this._hash=void 0===o?"#":o,this._paused=!1,this._destroyed=!1,this._lastRouteResolved=null,this._notFoundHandler=null,this._defaultHandler=null,this._usePushState=!n&&t(),this._onLocationChange=this._onLocationChange.bind(this),this._genericHooks=null,this._historyAPIUpdateMethod="pushState",e?this.root=n?e.replace(/\/$/,"/"+this._hash):e.replace(/\/$/,""):n&&(this.root=this._cLoc().split(this._hash)[0].replace(/\/$/,"/"+this._hash)),this._listen(),this.updatePageLinks()}function o(e){return e instanceof RegExp?e:e.replace(/\/+$/,"").replace(/^\/+/,"^/")}function i(e){return e.replace(/\/$/,"").split("/").length}function s(e,t){return i(t)-i(e)}function r(e,t){return function(e){return(arguments.length>1&&void 0!==arguments[1]?arguments[1]:[]).map(function(t){var i=function(e){var t=[];return{regexp:e instanceof RegExp?e:new RegExp(e.replace(n.PARAMETER_REGEXP,function(e,o,i){return t.push(i),n.REPLACE_VARIABLE_REGEXP}).replace(n.WILDCARD_REGEXP,n.REPLACE_WILDCARD)+n.FOLLOWED_BY_SLASH_REGEXP,n.MATCH_REGEXP_FLAGS),paramNames:t}}(o(t.route)),s=i.regexp,r=i.paramNames,a=e.replace(/^\/+/,"/").match(s),h=function(e,t){return 0===t.length?null:e?e.slice(1,e.length).reduce(function(e,n,o){return null===e&&(e={}),e[t[o]]=decodeURIComponent(n),e},null):null}(a,r);return!!a&&{match:a,route:t,params:h}}).filter(function(e){return e})}(e,t)[0]||!1}function a(e,t){var n=t.map(function(t){return""===t.route||"*"===t.route?e:e.split(new RegExp(t.route+"($|/)"))[0]}),i=o(e);return n.length>1?n.reduce(function(e,t){return e.length>t.length&&(e=t),e},n[0]):1===n.length?n[0]:i}function h(e,n,o){var i,s=function(e){return e.split(/\?(.*)?$/)[0]};return void 0===o&&(o="#"),t()&&!n?s(e).split(o)[0]:(i=e.split(o)).length>1?s(i[1]):s(i[0])}function u(t,n,o){if(n&&"object"===(void 0===n?"undefined":e(n))){if(n.before)return void n.before(function(){(!(arguments.length>0&&void 0!==arguments[0])||arguments[0])&&(t(),n.after&&n.after(o))},o);if(n.after)return t(),void(n.after&&n.after(o))}t()}return n.prototype={helpers:{match:r,root:a,clean:o,getOnlyURL:h},navigate:function(e,t){var n;return e=e||"",this._usePushState?(n=(n=(t?"":this._getRoot()+"/")+e.replace(/^\/+/,"/")).replace(/([^:])(\/{2,})/g,"$1/"),history[this._historyAPIUpdateMethod]({},"",n),this.resolve()):"undefined"!=typeof window&&(e=e.replace(new RegExp("^"+this._hash),""),window.location.href=window.location.href.replace(/#$/,"").replace(new RegExp(this._hash+".*$"),"")+this._hash+e),this},on:function(){for(var t=this,n=arguments.length,o=Array(n),i=0;i<n;i++)o[i]=arguments[i];if("function"==typeof o[0])this._defaultHandler={handler:o[0],hooks:o[1]};else if(o.length>=2)if("/"===o[0]){var r=o[1];"object"===e(o[1])&&(r=o[1].uses),this._defaultHandler={handler:r,hooks:o[2]}}else this._add(o[0],o[1],o[2]);else"object"===e(o[0])&&Object.keys(o[0]).sort(s).forEach(function(e){t.on(e,o[0][e])});return this},off:function(e){return null!==this._defaultHandler&&e===this._defaultHandler.handler?this._defaultHandler=null:null!==this._notFoundHandler&&e===this._notFoundHandler.handler&&(this._notFoundHandler=null),this._routes=this._routes.reduce(function(t,n){return n.handler!==e&&t.push(n),t},[]),this},notFound:function(e,t){return this._notFoundHandler={handler:e,hooks:t},this},resolve:function(e){var n,o,i=this,s=(e||this._cLoc()).replace(this._getRoot(),"");this._useHash&&(s=s.replace(new RegExp("^/"+this._hash),"/"));var a=function(e){return e.split(/\?(.*)?$/).slice(1).join("")}(e||this._cLoc()),l=h(s,this._useHash,this._hash);return!this._paused&&(this._lastRouteResolved&&l===this._lastRouteResolved.url&&a===this._lastRouteResolved.query?(this._lastRouteResolved.hooks&&this._lastRouteResolved.hooks.already&&this._lastRouteResolved.hooks.already(this._lastRouteResolved.params),!1):(o=r(l,this._routes))?(this._callLeave(),this._lastRouteResolved={url:l,query:a,hooks:o.route.hooks,params:o.params,name:o.route.name},n=o.route.handler,u(function(){u(function(){o.route.route instanceof RegExp?n.apply(void 0,o.match.slice(1,o.match.length)):n(o.params,a)},o.route.hooks,o.params,i._genericHooks)},this._genericHooks,o.params),o):this._defaultHandler&&(""===l||"/"===l||l===this._hash||function(e,n,o){if(t()&&!n)return!1;if(!e.match(o))return!1;var i=e.split(o);return i.length<2||""===i[1]}(l,this._useHash,this._hash))?(u(function(){u(function(){i._callLeave(),i._lastRouteResolved={url:l,query:a,hooks:i._defaultHandler.hooks},i._defaultHandler.handler(a)},i._defaultHandler.hooks)},this._genericHooks),!0):(this._notFoundHandler&&u(function(){u(function(){i._callLeave(),i._lastRouteResolved={url:l,query:a,hooks:i._notFoundHandler.hooks},i._notFoundHandler.handler(a)},i._notFoundHandler.hooks)},this._genericHooks),!1))},destroy:function(){this._routes=[],this._destroyed=!0,this._lastRouteResolved=null,this._genericHooks=null,clearTimeout(this._listeningInterval),"undefined"!=typeof window&&(window.removeEventListener("popstate",this._onLocationChange),window.removeEventListener("hashchange",this._onLocationChange))},updatePageLinks:function(){var e=this;"undefined"!=typeof document&&this._findLinks().forEach(function(t){t.hasListenerAttached||(t.addEventListener("click",function(n){if((n.ctrlKey||n.metaKey)&&"a"==n.target.tagName.toLowerCase())return!1;var o=e.getLinkPath(t);e._destroyed||(n.preventDefault(),e.navigate(o.replace(/\/+$/,"").replace(/^\/+/,"/")))}),t.hasListenerAttached=!0)})},generate:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=this._routes.reduce(function(n,o){var i;if(o.name===e)for(i in n=o.route,t)n=n.toString().replace(":"+i,t[i]);return n},"");return this._useHash?this._hash+n:n},link:function(e){return this._getRoot()+e},pause:function(){var e=!(arguments.length>0&&void 0!==arguments[0])||arguments[0];this._paused=e,this._historyAPIUpdateMethod=e?"replaceState":"pushState"},resume:function(){this.pause(!1)},historyAPIUpdateMethod:function(e){return void 0===e?this._historyAPIUpdateMethod:(this._historyAPIUpdateMethod=e,e)},disableIfAPINotAvailable:function(){t()||this.destroy()},lastRouteResolved:function(){return this._lastRouteResolved},getLinkPath:function(e){return e.getAttribute("href")},hooks:function(e){this._genericHooks=e},_add:function(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null;return"string"==typeof t&&(t=encodeURI(t)),this._routes.push("object"===(void 0===n?"undefined":e(n))?{route:t,handler:n.uses,name:n.as,hooks:o||n.hooks}:{route:t,handler:n,hooks:o}),this._add},_getRoot:function(){return null!==this.root?this.root:(this.root=a(this._cLoc().split("?")[0],this._routes),this.root)},_listen:function(){var e=this;if(this._usePushState)window.addEventListener("popstate",this._onLocationChange);else if("undefined"!=typeof window&&"onhashchange"in window)window.addEventListener("hashchange",this._onLocationChange);else{var t=this._cLoc(),n=void 0,o=void 0;(o=function(){n=e._cLoc(),t!==n&&(t=n,e.resolve()),e._listeningInterval=setTimeout(o,200)})()}},_cLoc:function(){return"undefined"!=typeof window?void 0!==window.__NAVIGO_WINDOW_LOCATION_MOCK__?window.__NAVIGO_WINDOW_LOCATION_MOCK__:o(window.location.href):""},_findLinks:function(){return[].slice.call(document.querySelectorAll("[data-navigo]"))},_onLocationChange:function(){this.resolve()},_callLeave:function(){var e=this._lastRouteResolved;e&&e.hooks&&e.hooks.leave&&e.hooks.leave(e.params)}},n.PARAMETER_REGEXP=/([:*])(\w+)/g,n.WILDCARD_REGEXP=/\*/g,n.REPLACE_VARIABLE_REGEXP="([^/]+)",n.REPLACE_WILDCARD="(?:.*)",n.FOLLOWED_BY_SLASH_REGEXP="(?:/$|$)",n.MATCH_REGEXP_FLAGS="",n});
-
-
-},{}],"store/Home.js":[function(require,module,exports) {
+},{"./Header":"components/Header.js","./Main":"components/Main.js","./Footer":"components/Footer.js"}],"lib/Map.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _default = {
-  view: "Home"
-};
-exports.default = _default;
-},{}],"store/Lake.js":[function(require,module,exports) {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var initMapTest = /*#__PURE__*/function () {
+  function initMapTest() {
+    _classCallCheck(this, initMapTest);
+
+    this.markers = [];
+    this.options = {
+      zoom: 4,
+      center: {
+        lat: 38.248175,
+        lng: -94.147841
+      }
+    };
+    this.map = new google.maps.Map(document.getElementById("map"), this.options);
+  }
+
+  _createClass(initMapTest, [{
+    key: "addMarker",
+    value: function addMarker(props, cb) {
+      var marker = new google.maps.Marker({
+        position: props,
+        state: props.name,
+        map: this.map
+      }); //    Create Info Window
+
+      var info = new google.maps.InfoWindow({
+        content: cb(marker.state)
+      });
+      marker.addListener("click", function () {
+        info.open(this.map, marker);
+      });
+      this.markers.push(marker);
+    }
+  }]);
+
+  return initMapTest;
+}();
+
+exports.default = initMapTest;
+},{}],"lib/ToggleModal.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = toggleModal;
+
+function toggleModal(content) {
+  document.querySelector(".modalContent").innerHTML = content;
+  document.querySelector(".modalBg").classList.add("bg-active");
+  document.querySelector("#map").classList.add("mapVisibility");
+} // //Close Modals
+// document.querySelector("#modal-close").addEventListener("click", e => {
+// e.preventDefault();
+// document.querySelector(".modalBg").classList.remove("bg-active");
+// document.querySelector("#map").classList.remove("mapVisibility");
+// });
+},{}],"lib/News.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = NewsFeed;
+
+var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function NewsFeed() {
+  var url = "https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=fishing&apiKey=b31fe28ec61944e786a43026ba67928c";
+  var req = new Request(url);
+  var stories = [];
+  fetch(req, {
+    headers: {
+      "Access-Control-Allow-Origin": window.location.origin
+    }
+  }).then(function (response) {
+    return response.json();
+  }).then(function (res) {
+    var target = document.querySelector("#news");
+    res.articles.forEach(function (story) {
+      var elem = document.createElement("li");
+      elem.innerHTML = "<a class=\"newsStory\" href=\"#\">".concat(story.title, "</a>");
+      stories.push(story);
+      elem.addEventListener("click", function (e) {
+        e.preventDefault();
+        console.log(story.author);
+        (0, _ToggleModal.default)(document.querySelector(".newsTemplate").innerHTML);
+        document.querySelector("#title").textContent = story.title;
+        document.querySelector("#").textContent = "by ".concat(story.author);
+        document.querySelector("#story").textContent = story.content;
+      });
+      target.appendChild(elem);
+    });
+  }).catch(function (e) {
+    console.log("Unable to Fetch News");
+  });
+  console.log(stories);
+} // console.log(stories);
+// export default { stories }
+//     {source: {…}, author: "Louryn Strampe", title: "22 Surprising Tips to Master 'Animal Crossing: New Horizons'", description: "From growing hybrid flowers to catching pesky wasps, these tricks will turn you into a pro.", url: "https://www.wired.com/story/animal-crossing-new-horizons-tips/", …}
+// author: "Louryn Strampe"
+// content: "I've been an Animal Crossing fan for 19 years, so you can say things are pretty serious. New Horizons for the Nintendo Switch is, in my opinion, the best version of the game yet.
+// ↵With my extensive (… [+2706 chars]"
+// description: "From growing hybrid flowers to catching pesky wasps, these tricks will turn you into a pro."
+// publishedAt: "2020-05-03T13:00:00Z"
+// source: {id: "wired", name: "Wired"}
+// title: "22 Surprising Tips to Master 'Animal Crossing: New Horizons'"
+// url: "https://www.wired.com/story/animal-crossing-new-horizons-tips/"
+// urlToImage: "https:/
+},{"./ToggleModal":"lib/ToggleModal.js"}],"components/controllers/Home.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _default = {
-  view: "Lake"
+
+var _Map = _interopRequireDefault(require("../../lib/Map"));
+
+var _News = _interopRequireDefault(require("../../lib/News"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(st) {
+  (0, _News.default)();
+  setTimeout(function () {
+    var map = new _Map.default();
+  }, 500);
 };
+
 exports.default = _default;
-},{}],"store/Register.js":[function(require,module,exports) {
+},{"../../lib/Map":"lib/Map.js","../../lib/News":"lib/News.js"}],"components/controllers/Lake.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _default = {
-  view: "Register"
-};
+
+var _default = function _default(st) {};
+
 exports.default = _default;
-},{}],"store/Search.js":[function(require,module,exports) {
+},{}],"components/controllers/Register.js":[function(require,module,exports) {
+
+},{}],"components/controllers/Search.js":[function(require,module,exports) {
+
+},{}],"lib/TipsObject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.techniques = void 0;
+var techniques = {
+  bluegill: {
+    winter: "Bluegill will migrate to deeper waters as the vegetation in shallower areas dies off.  Finding remaining plant life around points, bends, and flats near drop-offs will lead to greater numbers of fish.  Focus on the deeper end of the depth range during ice-over conditions.  Use ice jigs tipped with wax worms or other larvae and try either traditional jigging or placing it under a bobber.  Target the areas just above or outside of the weed beds.  When not finding sufficient action, try different combinations of colors and larvae, along with changing locations, until desired result is achieved.  Keeping the larvae fresh may also lead to greater success.",
+    spring: "Protected inlets or coves that contain warm/shallow water and suitable spawning habitats will become the primary areas to focus on.  Stick to shorelines where emerging weeds provide suitable hunting grounds, cover from sunlight, and protection from predators.  Bluegill are schooling fish, so in the event that activity is minimal, move to other areas that may consist of similar conditions.  Larger fish may congregate near areas with easy access to deeper water.  Small spinners, micro crank baits and hair jigs tipped with night crawler pieces are good options in addition to the larvae tipped ice jigs.  Small minnows could also lead to larger fish.  Slow retrieval is often the most effective approach.  If fly fishing is the preferred method, poppers and nymphs may also lead to success.",
+    summer: "While bluegill will begin to occupy the deeper waters of main lake body along with coves/bays, they will remain generally positioned along the shoreline and around available cover.  Locating weed lines and pockets of weed beds in these deeper water areas will become paramount.  Points, ledges, as well as flat areas adjacent to drop-offs that provide weed covered structure should be targeted.  Small spinners and curly-tailed/shad body tipped hair jigs may be productive options.  In addition, slip-bobber rigs tipped with worms, leeches, crickets, grasshoppers or small jigs can also prove effective.  Using the small spinners baited with small worms or leeches to troll or drift over and along points, ledges of drop-offs, and weed lines can help to locate larger concentrations of fish.  Vertical jigging, casting lures, and slip-bobber rigs are more effective approaches once these populations of fish have been found.  During low-light conditions, the disturbance of the water's surface created by poppers can lead to an increase in strikes.",
+    fall: "Areas that continue to provide healthy weed populations are a good place to start.  Fish may congregate inside bends or around points containing shoreline structure with sharp sloping floors.  Micro crank baits, small spinners, and small jigs may produce bites.  A slower retrieve is recommended.  Additionally, minnows, wax worms, meal worms or jigs placed under a bobber rigs can prove to be rewarding techniques."
+  },
+  crappie: {
+    winter: "Finding any healthy green vegetation or changes in the profile of the lake floor are key targets. Deep flats at the bases of drop-offs or withing steep inside bends, along with edges of deep points are good places to start.  Jigging spoons and ice jigs baited with a small minnow or wax worms are effective options.  Finicky as they may be, crappie can be found suspended almost anywhere in the water column depending on light conditions, water clarity and/or their mood.  Use of electronics to determine bottom composition and locate areas of healthy weeds may assist in finding these fish.",
+    spring: "Making long casts and remaining as quiet as possible are important practices as crappie are easily spooked.  Locations on the north side of the lake and shallow, dark-bottomed areas often house the most active fish in the early spring since they tend to warm up faster.  Coves, bays or inlets that provide warm shallow water and suitable spawning habitats become target areas.  Points, drop-offs, ledges and inside bends within these areas, or in the lake body just outside of the coves are good places to search.  Additionally, flats along the shoreline containing weeds, fallen trees, or other cover can be good hiding places for the fish.  Jigs tipped with curly tailed grubs, small spinners, jig spinner combos and micro crank baits are effective lures to try.  Also, crappie jigs tipped with a small minnow (with or without a float) may prove to be a rewarding technique.  Try keeping your casts in and around the above areas as crappie are mostly cover oriented.  They are also a schooling fish, so quickly move around if you are not getting bites.",
+    summer: "Deeper water becomes a priority during the summer months.  Search coves, bays and inlets, and suspend around ledges or drop-offs.  Weedy areas along the drop-offs and weedy flats adjacent to them, along with cuts or points in the drop-off itself are prime zones to target.  As they are a schooling fish, use of electronics and changing locations frequently may be important for finding groups of crappie.  If the lake has formed a thermocline, the fish will often suspend at or near its depth.  Trolling these areas with spinner rigs(with or without minnows) and micro crank baits can be effective ways of finding the fish.  Once located, crappie spinner baits, jigs tipped with curly tailed grubs, small spinners, jig spinner combos and micro crank baits are effective lures to try.  Also, crappie jigs tipped with a small minnow (with or without a float) may prove to be a rewarding technique.  Slowly moving along or over the target areas with a trolling motor or drifting while vertically jigging can also be effective.",
+    fall: "As vegetation begins to die off in the shallower areas, crappie will tend to gradually relocate to the deeper areas of of the main lake.  Points, inside turns, flats adjacent to base of drop-offs are good places to start.  The crappie will often concentrate around changes in the bottom structure(hard bottom meets mucky bottom) and deeper weed beds of the main lake areas.  Use of electronics, along with vertically jigging spoons and crappie jigs may help to locate these deep water schools.  Once found, try casting slip-float rigs or jigs baited with minnows."
+  },
+  perch: {
+    earlyWinter: "Perch may be found in the shallower flats that still contain some green healthy vegetation during the light ice periods.  Use of electronics while moving frequently and drilling multiple holes may help to locate fish, as perch are a schooling species.  Fish hooks or ice jigs tipped with a small minnow, minnow head, perch eye, or variety of maggots worked aggressively near the lake bottom may help to attract the fish.  Once drawn in, switch to a more subtle presentation.",
+    winter: "Perch tend to congregate near changes in the bottom composition, so focusing on the bases of drop-offs and their adjacent mid-depth to deep flats may prove effective.  Use of electronics while moving frequently and drilling multiple holes may help to locate fish, as perch are a schooling species.  Fish hooks or ice jigs tipped with a small minnow, minnow head, perch eye, or variety of maggots worked aggressively near the lake bottom may help to attract the fish.  Once drawn in, switch to a more subtle presentation.",
+    earlySpring: "Perch will move back into the shallower flats during the light ice periods.  Use of electronics while moving frequently and drilling multiple holes may help to locate fish, as perch are a schooling species.  Fish hooks or ice jigs tipped with a small minnow, minnow head, perch eye, or variety of maggots worked aggressively near the lake bottom may help to attract the fish.  Once drawn in, switch to a more subtle presentation.",
+    spring: "Shallow areas of coves, bays and inlets provide prime spawning habitats for perch.  Shoreline flats containing a good combination of weed/rock cover in these areas should be targeted.  When schooling, the perch tend to do so in groups of similar sized fish.  Try moving to around to find the larger fish if you are catching a lot of smaller ones.  Perch do have excellent vision and are spooked easily, especially in shallow water.  Long casts while remaining as quiet as possible are extremely important.  Slowly trolling or drifting may help to find the fish.  Once they are located, however, casting is the more effective method.  Perch tend to spend their time near the bottom, so start there.  Try micro crank baits, hairpin spinners, and in-line spinners.  Float rigs, spinner rigs, and small jigs tipped with minnows, curly tailed grubs, night crawlers or maggots can also be effective.",
+    summer: "Perch will migrate to deeper waters in the summer months.  Areas to target include points and pockets in the weed line, as well as the weedy flats near drop-offs.  The fish often will be found near the base of the weeds in these areas.  When there is a thermocline present in the lake, the larger perch will usually be attracted to where it meets any structure near the lake bottom.  Perch tend to spend their time near the bottom, so start there.  Try micro crank baits, hairpin spinners, and in-line spinners.  Float rigs, spinner rigs, and small jigs tipped with minnows, curly tailed grubs, night crawlers or maggots can also be effective.  Long casts while remaining as quiet as possible are extremely important.  Slowly trolling or drifting may help to find the fish.  Once they are located, however, casting is the more effective method.",
+    fall: "Perch will feed aggressively during the fall months in order to prepare for winter.  This time of year they will begin their migration into the shallower flats containing ample rock/weed cover.  Try slowly trolling or drifting over these areas may help in finding the fish.  Once they are located, however, casting is the more effective method.  Perch tend to spend their time near the bottom, so start there.  Try micro crank baits, hairpin spinners, and in-line spinners.  Float rigs, spinner rigs, and small jigs tipped with minnows, curly tailed grubs, night crawlers or maggots can also be effective."
+  },
+  smb: {
+    spring: "Spring time will lead to the smallmouth bass being found in shallower areas.  Search the bays, coves and areas of the main lake just outside of them; targeting the inside turns, ledges and points in and around the break line.  These fish tend to be startled easily making slow trolling or drifting with long casts an effective approach.  Jerk baits, spinner baits, in-line spinners, or jigs tipped with minnows or curly tail grubs can be effective.  Try hard-bottomed areas containing gravel or boulders as the smallmouth do tend to stick to the rocky cover.",
+    summer: "Summer leads to a migration to deeper waters for smallmouth bass, still maintaining their concentration around rocky hard-bottomed areas.  Target the ledges, points and inside bends around these areas containing gravel or boulders with scattered vegetation.  Jig-n-pigs, jigs with curly tailed grubs, tube baits, jerk baits, crank baits, and smaller Texas-rigged worms are all good approaches for artificial lures.  If live bait is preferred, try slip-bobber or slip-sinker rigs with minnows, night-crawlers, leeches or crayfish.  Try jerk baits, spinners or top water lures over rocky areas in low light conditions to attract attention.",
+    fall: "Deeper water will remain the place to find the majority of smallmouth in the fall.  Areas of the lake around the base of drop-offs with changing bottom composition(rocky to soft) and steep slopes should be points of emphasis.  Deep diving crank baits, drop-shot rigs with soft plastics, jigging spoons and larger jigs tipped with curly tailed grubs or shad type plastics and tube baits are all good methods.  If you seem to have found a concentration of fish, try a vertical jigging approach with either traditional jigs or jigging spoons while trolling or drifting to cover the target area."
+  },
+  lmb: {
+    earlyWinter: "The continued drop in temperature, vegetation die-off and migration of bait fish to deeper water leads to the largemouth moving back out into the main body of the lake.  As the fish prefer to be able to easily move up and down the water column based on weather conditions, channel ledges and points with steep slopes should be the primary areas to target.  Bottom structure, such as, rocks/boulders and timber help to retain heat and attract fish.  Electronics may prove useful in locating these structures.  Carolina-rigged plastics, deep diving crank baits and spinners with a slower retrieve may be effective.  When struggling to find action, dead sticking suspended jerk baits or soft plastics may entice a strike or two.",
+    winter: "The deep cold of winter will find the fish located in the deep areas of the main body of the lake.  Again, the points, inside bends, and bases of drop-offs around steep slopes, as well as deep river channels and the bottom of creeks.  Look for areas that contain bottom structure(rocks, stumps, standing timber, boulders).  This is where the bait fish are most likely to be, and the largemouth will follow.  Smaller lures with a slower retrieve may prove more effective as the fish will tend to be more sluggish during these winter months.  This slow retrieval of suspending jerk baits coupled with long pauses throughout the process can be rewarding.  Other options for slowly working over an area include: drop-shot rigs, spoons, lead head grubs, and jigs.",
+    earlySpring: "The fish will finally start coming out from their wintering areas in search of suitable spawning locations with the warmer temperatures and longer days.  Protected coves with shallow flat provide the shelter they are seeking and should be the primary areas of focus.  The migration does not happen overnight, and along the way, the largemouth may seek cover in rocky or wooded structure along shoreline breaks and river channels.  Shallow hard-bottomed flats at the base of a drop-off can be very active with fish.  More so, even, when there is some sort of cover present.  Good options for covering a lot of water fast include:  crank baits, spinners, and suspending jerk baits.  Boat docks, brush, and wooded structure are great places to try pitching jigs.  The fish will remain a little sluggish still, so a slow to moderate retrieval is preferred.",
+    spring: "Spawning season will lead to largemouth bass seeking shelter in protected coves/inlets.  Creek arms would be another area of focus.  Any type of cover(docks, wooden structure, weeds, underwater brush) that provides the bass with protection should be primary areas of emphasis.  Channels of creeks, along with humps, points or shallow structure in the lakes may also find fish hiding before they begin their migration out of the shallower waters.  Both Carolina and Texas-rigged plastics, may be productive.  Other effective options include:  spinners, shallow to medium diving crank baits, jerk baits and jigging.  A slower presentation is also recommended as these fish will remain lethargic throughout the early spring.  Then, as temperatures begin to rise, a faster presentation may prove more effective.  When not having success with lures, trying live bait(shiners, crayfish) may help entice the fish.",
+    summer: "Search bottom structure(humps, points, channel ledges) in the main body of the lake or in deeper parts of creek arms during the summer months.  Finding submerged timber, brush and weeds that provide cover for the fish will be important.  Deep water weed lines and flat at the base of drop-offs(especially any containing the above underwater structure) may also be productive areas.  Again, the Carolina or Texas-rigged plastics, medium to deep diving crank baits, and jigging are recommended methods.  Top water lures may help get the fishes attention in low-light conditions.",
+    earlyFall: "The largemouth will begin to feed aggressively on bait fish, in preparation for winter, as temperatures begin to drop.  Look for submerged structure/weeds in the shallow flats that have easy access to deeper waters.  Bait fish may also school  around  ledges, shallow shoreline points, and inside bends; and the largemouth will follow.  This also holds true where any creek arms meet the main lake.  Spinners, shallow diving or lipless crank baits, and jerk baits become the lures of choice this time of year.  Larger baits may be more effective now that the bait fish have gotten bigger.  Try casting to the edges of submerged cover or across the flats.",
+    fall: "Finding remaining healthy vegetation, along with any wooden cover/structure becomes important.  Search around points, humps, and channel ledges of the shallower creek arms and coves as the largemouth will begin to follow the bait fish in from the main body of the lake.  The bass that do remain in the main body will be feeding on the bait fish as they move in and out of these shallower areas.  So, focus on point directly adjacent to them.  Top-water, spinners, shallow diving or lipless crank baits, and jerk baits with a faster retrieve/presentation may be productive.  Larger baits may be more effective now that the bait fish have gotten bigger.  Try casting to the edges of submerged cover or across the flats."
+  },
+  walleye: {
+    winter: "Walleye may be found searching the flats around bases and ledges of drop-offs, or may stick to the structure of inside turns and points adjacent to these areas.  Any of these areas still containing healthy vegetation should be the primary focus.  Jigging spoons, or jigs tipped with minnows jigged vertically have proven effective.  Also, slip-bobbers and tip-ups baited with minnows can be effective around submerged structure and weed lines.  The fish will tend to gather around structure in the deeper parts of the main lake body during the heavy ice over period.  During the lighter ice over times, shallower flats and structure may be more productive areas.",
+    spring: "Structure found around points and ledges of the the shallower areas of inlets and shorelines will be the areas to target.  As well as any flats around the drop-offs to deeper waters.  The walleye will spook easily in these shallower waters, so use a slow approach while remaining as quiet as possible.  Changes in bottom composition, rock piles, and emerging weeds will be good places to start.  Try slip-bobbers baited with minnows, jigging with plastics(curly tail, shad), minnow-tipped jigs, and minnow-like crank baits using long casts to keep from scaring the fish off.  Long-line trolling along shallow flats, underwater structure, and submerged weeds with a minnow-tipped slip-sinker rig, live-bait rig, or spinner-rig, along with the above listed lures under a planer board is a good way to cover a large area quickly.",
+    summer: "The walleye will be found in the deeper water of the main lake body or adjacent to inlets during the summer months.  If a thermocline has developed, try to stay at or above it.  Ledges of drop-offs, flats adjacent to them and weed lines or other submerged structure will be primary areas to focus on.  Night-crawlers and leeches will become effective baits.  Try them with slip-bobber rigs or jigs around these areas.  Trolling these or spinner rigs with leeches or night-crawlers, or minnow-like crank baits may help entice the fish in low light conditions.",
+    fall: "Finding the walleye may prove difficult during the fall months as the fish can be found at a variety of depths.  Ledges and bases of drop-offs, the flats surrounding them, inside bends, and sloped points are good places to start.  As the temperatures begin to drop, a slower presentation becomes more effective.  Larger lures and baits(4-6 inches) will also become more important as the bait fish have gotten bigger.  Casting large plastic swim baits, minnow-like crank baits, or minnow tipped rigs over and around weed beds may be effective.  For a vertical presentation, try jigging spoons, slip-bobber or jigs tipped with minnows, or jigging spoons around these weed beds or along ledges and bases of drop-offs.  Slow trolling these baits is a good option for covering a lot of water quickly.  Flats adjacent to drop-offs become prime target areas during low-light conditions.  Try drifting/trolling or fan casting over these areas to cover a large area quickly."
+  },
+  pike: {
+    winter: "As ambush predators, shallow weeds or the inside of weed lines will find the pike patrolling for bait fish this time of year.  Search the drop-offs or flats adjacent to them still containing these weedy structures.  As the weeds in these shallower areas begin to die off, the pike will begin to search out this cover in the deeper areas.  Set your tip-ups with 4-6 inch minnows, suckers, or shiners along the weed lines or just above them.  Jigs or jigging spoons with minnows may also be productive strategies.",
+    spring: "Shallow coves/bays or the main lake body just outside of them become primary target areas.  Search for inside turns, points or flats with developing weeds.  The fish will spook easily in these shallow waters, so try to remain a silent as possible.  Try casting in-line spinners, spinner baits, soft plastics, spoons, or jigs tipped with small to medium sized minnows over and around Rock piles, weedy flats, and clumps of emerging weeds.  A slower presentation is recommended this time of year.  To cover a large area of water quickly, try long-line trolling spoons, or minnow-tipped jigs or slip-sinker rigs along submerged structure or over flats.  Jigs and slip-bobber rigs tipped with minnows are a good option when targeting specific areas.",
+    summer: "During the summer months, the larger pike will move out to the sharply sloped points of deeper, cooler waters while the smaller pike('snakes') will remain in the shallower areas containing weedy cover.  Target the main lake body where these characteristics are present.  If a thermocline has developed, try to stay at or above it while targeting the deeper fish.  The pike may be attracted to larger lures or baits this time of year.  Larger buck tails, spoons, jerk baits, and spinners worked over and along weed lines/beds are effective approaches.  Casting with deep-diving crank baits, weighted swim baits, and minnow-tipped jigs can also be productive.  Trolling these baits is a good way to cover a large area.  A quicker presentation is preferred during these warmer months, and in low-light conditions top-water lures are a good way to attract attention.",
+    fall: "This is the time of year for the largest lures, as the bait fish have gotten bigger.  Target areas still containing healthy weed populations.  Work the flats around drop-offs by positioning over the deeper water surrounding them and casting jerk baits spinners, and buck tails over and around them.  For more sharply sloped terrain or over inside bends, try diving crank baits, or large minnow or curly-tailed tipped jigs.  Trolling these baits is a good way to cover a large area.  In low-light conditions top-water lures are a good way to attract attention."
+  },
+  muskie: {
+    spring: "Shallow coves/bays and the areas of the main lake body just outside of them or around inlets containing developing weeds and points should be targeted.  Muskie will be easily scared off in these shallower waters, so remain a silent as possible while slowly approaching these areas.  Small to medium lures with a slower presentation will be preferred this time of year.  Try minnow or plastic-tipped jigs, spoons, shallow diving crank/swim baits, and jerk baits casting across flats containing emerging weeds, or over and around shallow structure(rock piles, weeds).",
+    summer: "Ledges of drop-offs, weedy flats adjacent to them, rocky/weedy points, and weed lines will be the primary target areas.  Try to stay at or above the thermocline if one has developed on the lake.  This time of year, larger lures with a faster retrieve will be more effective as the bait fish have gotten bigger and the muskie more active.  Try crank baits, jerk baits, spinners, and large buck tails.  Once again, in low-light conditions, top-water lures are a good way to attract attention.  Diving style jerk baits can be especially effective while working around weedy flats due to the ability to drive them down into openings and steer them around clumps.  For heavy weed areas, weedless spoons and spinners are a good way to avoid getting hung up.",
+    fall: "Search out mid-depth flats containing vegetation adjacent to drop-offs, inside bends,  deeper/steeper points in the main body of the lake, and drop-offs.  The sharp inside bends can be worked vertically  with quick-strike rigs baited with large minnows, or jigging large soft plastics.  Cast around structure and clumps of vegetation with crank baits, plastic swim baits, spinner baits, jigs, buck tails, and large weighted jerk baits.  Work the flats around drop-offs by positioning over the deeper water surrounding them and casting jerk baits spinners, and buck tails over and around them."
+  }
+};
+exports.techniques = techniques;
+},{}],"lib/Tips.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = getTips;
+
+var _TipsObject = _interopRequireDefault(require("./TipsObject"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getTips() {
+  var species = document.getElementById("species");
+  var seasons = document.getElementById("season");
+  var par = document.querySelector("p");
+  var background = document.querySelector(".tipsMain");
+  var bluegill = "https://i.imgur.com/4i6DkKG.jpg";
+  var tipsImages = [bluegill];
+  console.log(state.view);
+
+  if (state.view === "Tips") {
+    document.querySelector("#tipsForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      var choice1 = _TipsObject.default[species.value];
+      par.textContent = choice1[seasons.value]; // tipsImages.forEach(el => {
+      //     if (species.value === el) {
+      //         background.style.background-image = `url("${el}")`;
+      //     }
+      // })
+    });
+  }
+}
+},{"./TipsObject":"lib/TipsObject.js"}],"components/controllers/Tips.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _default = {
-  view: "Search"
-};
-exports.default = _default;
-},{}],"store/Tips.js":[function(require,module,exports) {
-"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  view: "Tips"
+var _Tips = _interopRequireDefault(require("../../lib/Tips"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(st) {
+  (0, _Tips.default)();
 };
+
 exports.default = _default;
-},{}],"store/index.js":[function(require,module,exports) {
+},{"../../lib/Tips":"lib/Tips.js"}],"components/controllers/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -415,7 +741,134 @@ var _Search = _interopRequireDefault(require("./Search"));
 var _Tips = _interopRequireDefault(require("./Tips"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Home":"store/Home.js","./Lake":"store/Lake.js","./Register":"store/Register.js","./Search":"store/Search.js","./Tips":"store/Tips.js"}],"node_modules/base64-js/index.js":[function(require,module,exports) {
+},{"./Home":"components/controllers/Home.js","./Lake":"components/controllers/Lake.js","./Register":"components/controllers/Register.js","./Search":"components/controllers/Search.js","./Tips":"components/controllers/Tips.js"}],"components/Controller.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var Controllers = _interopRequireWildcard(require("./controllers"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var _default = function _default(st) {
+  Controllers[st.controller](st);
+};
+
+exports.default = _default;
+},{"./controllers":"components/controllers/index.js"}],"lib/ModalClose.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ModalClose;
+
+function ModalClose() {
+  //Close Modals
+  document.querySelector("#modal-close").addEventListener("click", function (e) {
+    e.preventDefault();
+    document.querySelector(".modalBg").classList.remove("bg-active");
+    document.querySelector("#map").classList.remove("mapVisibility");
+  });
+}
+},{}],"lib/ModalListeners.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = modalListeners;
+
+var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function modalListeners() {
+  // Modals' Elements
+  var activeModal = document.querySelector(".activeModal");
+  var aboutBtn = document.querySelector(".about");
+  var aboutModal = document.querySelector(".aboutTemplate").innerHTML;
+  var contactsBtn = document.querySelector(".contact");
+  var contactsModal = document.querySelector(".contactsTemplate").innerHTML;
+  var loginBtn = document.querySelector(".login");
+  var postLoginBtn = document.querySelector("#postLogin");
+  var loginModal = document.querySelector(".loginTemplate").innerHTML;
+  var newsBtn = document.querySelector(".newsStory");
+  var newsModal = document.querySelector(".newsTemplate").innerHTML;
+  var postsBtn = document.querySelector("#post");
+  var postsModal = document.querySelector(".postsTemplate").innerHTML;
+  var map = document.querySelector("#map");
+  var modal = document.querySelector(".modalBg");
+  var modalContent = document.querySelector(".modalContent"); //About Modal Content
+
+  aboutBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    (0, _ToggleModal.default)(aboutModal);
+  }); //Contacts Modal Content
+
+  contactsBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    (0, _ToggleModal.default)(contactsModal);
+  }); //Login Modal Content
+
+  loginBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    (0, _ToggleModal.default)(loginModal);
+    document.querySelector("#registerLink").addEventListener("click", function (e) {
+      e.preventDefault();
+      render(state[Register]);
+    });
+  }); //Posts Modal Content
+
+  postsBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    (0, _ToggleModal.default)(postsModal);
+    postLoginBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+      (0, _ToggleModal.default)(loginModal); // document.querySelector("#registerLink").addEventListener("click", e => {
+      //     e.preventDefault();
+      //     render(state["Register"]);
+      // })
+    });
+  });
+}
+},{"./ToggleModal":"lib/ToggleModal.js"}],"lib/Render.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.render = render;
+
+var state = _interopRequireWildcard(require("../store"));
+
+var _components = require("../components");
+
+var _Controller = _interopRequireDefault(require("../components/Controller"));
+
+var _ModalClose = _interopRequireDefault(require("./ModalClose"));
+
+var _ModalListeners = _interopRequireDefault(require("./ModalListeners"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function render() {
+  var st = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : state.Home;
+  document.querySelector("#root").innerHTML = "\n    ".concat((0, _components.Header)(st), "\n    ").concat((0, _components.Main)(st), "\n    ").concat((0, _components.Footer)(), "\n    ");
+  (0, _Controller.default)(st);
+  (0, _ModalListeners.default)();
+  (0, _ModalClose.default)();
+}
+},{"../store":"store/index.js","../components":"components/index.js","../components/Controller":"components/Controller.js","./ModalClose":"lib/ModalClose.js","./ModalListeners":"lib/ModalListeners.js"}],"node_modules/base64-js/index.js":[function(require,module,exports) {
 'use strict'
 
 exports.byteLength = byteLength
@@ -19584,7 +20037,7 @@ var _navigo = _interopRequireDefault(require("navigo"));
 
 var state = _interopRequireWildcard(require("/store"));
 
-var _index = require("../index");
+var _Render = require("./Render");
 
 var _lodash = require("lodash");
 
@@ -19597,364 +20050,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var router = new _navigo.default(window.location.origin);
 router.on({
   "/": function _() {
-    return (0, _index.render)(state.Home);
+    return (0, _Render.render)(state.Home);
   },
   ":page": function page(params) {
     var page = (0, _lodash.capitalize)(params.page);
-    (0, _index.render)(state[page]);
+    (0, _Render.render)(state[page]);
   }
-});
+}).resolve();
 var _default = {
   router: router
 };
 exports.default = _default;
-},{"navigo":"node_modules/navigo/lib/navigo.min.js","/store":"store/index.js","../index":"index.js","lodash":"node_modules/lodash/lodash.js"}],"lib/ToggleModal.js":[function(require,module,exports) {
+},{"navigo":"node_modules/navigo/lib/navigo.min.js","/store":"store/index.js","./Render":"lib/Render.js","lodash":"node_modules/lodash/lodash.js"}],"index.js":[function(require,module,exports) {
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = toggleModal;
-
-function toggleModal(content) {
-  document.querySelector(".modalContent").innerHTML = content;
-  document.querySelector(".modalBg").classList.add("bg-active");
-  document.querySelector("#map").classList.add("mapVisibility");
-} // //Close Modals
-// document.querySelector("#modal-close").addEventListener("click", e => {
-// e.preventDefault();
-// document.querySelector(".modalBg").classList.remove("bg-active");
-// document.querySelector("#map").classList.remove("mapVisibility");
-// });
-},{}],"lib/ModalClose.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = ModalClose;
-
-function ModalClose() {
-  //Close Modals
-  document.querySelector("#modal-close").addEventListener("click", function (e) {
-    e.preventDefault();
-    document.querySelector(".modalBg").classList.remove("bg-active");
-    document.querySelector("#map").classList.remove("mapVisibility");
-  });
-}
-},{}],"lib/News.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = NewsFeed;
-
-var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function NewsFeed() {
-  var url = "https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=fishing&apiKey=b31fe28ec61944e786a43026ba67928c";
-  var req = new Request(url);
-  var stories = [];
-  fetch(req, {
-    headers: {
-      "Access-Control-Allow-Origin": window.location.origin
-    }
-  }).then(function (response) {
-    return response.json();
-  }).then(function (res) {
-    var target = document.querySelector("#news");
-    res.articles.forEach(function (story) {
-      var elem = document.createElement("li");
-      elem.innerHTML = "<a class=\"newsStory\" href=\"#\">".concat(story.title, "</a>");
-      stories.push(story);
-      elem.addEventListener("click", function (e) {
-        e.preventDefault();
-        console.log(story.author);
-        (0, _ToggleModal.default)(document.querySelector(".newsTemplate").innerHTML);
-        document.querySelector("#title").textContent = story.title;
-        document.querySelector("#").textContent = "by ".concat(story.author);
-        document.querySelector("#story").textContent = story.content;
-      });
-      target.appendChild(elem);
-    });
-  }).catch(function (e) {
-    console.log("Unable to Fetch News");
-  });
-  console.log(stories);
-} // console.log(stories);
-// export default { stories }
-//     {source: {…}, author: "Louryn Strampe", title: "22 Surprising Tips to Master 'Animal Crossing: New Horizons'", description: "From growing hybrid flowers to catching pesky wasps, these tricks will turn you into a pro.", url: "https://www.wired.com/story/animal-crossing-new-horizons-tips/", …}
-// author: "Louryn Strampe"
-// content: "I've been an Animal Crossing fan for 19 years, so you can say things are pretty serious. New Horizons for the Nintendo Switch is, in my opinion, the best version of the game yet.
-// ↵With my extensive (… [+2706 chars]"
-// description: "From growing hybrid flowers to catching pesky wasps, these tricks will turn you into a pro."
-// publishedAt: "2020-05-03T13:00:00Z"
-// source: {id: "wired", name: "Wired"}
-// title: "22 Surprising Tips to Master 'Animal Crossing: New Horizons'"
-// url: "https://www.wired.com/story/animal-crossing-new-horizons-tips/"
-// urlToImage: "https:/
-},{"./ToggleModal":"lib/ToggleModal.js"}],"lib/Post.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = createPost;
-exports.posts = exports.Post = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Post = function Post(lake, img, comment) {
-  _classCallCheck(this, Post);
-
-  this.lake = lake, this.img = img, this.comment = comment;
-};
-
-exports.Post = Post;
-var posts = [];
-exports.posts = posts;
-
-function createPost() {
-  var lake = document.querySelector("#postLake").textContent;
-  var img = document.querySelector("#addImage");
-  var comment = document.querySelector("#addComment");
-  var newPost = new Post(lake, img, comment);
-  posts.unshift(newPost);
-  var post = new Post(lake, img, comment);
-  posts.unshift(post);
-  console.log(posts);
-}
-},{}],"lib/ModalVars.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = ModalVars;
-
-var _index = require("../index");
-
-function ModalVars() {
-  var activeModal = document.querySelector(".activeModal");
-  var aboutBtn = document.querySelector(".about");
-  var aboutModal = document.querySelector(".aboutTemplate").innerHTML;
-  var contactsBtn = document.querySelector(".contact");
-  var contactsModal = document.querySelector(".contactsTemplate").innerHTML;
-  var loginBtn = document.querySelector(".login");
-  var loginModal = document.querySelector(".loginTemplate").innerHTML;
-  var newsBtn = document.querySelector(".newsStory");
-  var newsModal = document.querySelector(".newsTemplate").innerHTML;
-  var postsBtn = document.querySelector("#post");
-  var postsModal = document.querySelector(".postsTemplate").innerHTML;
-  var map = document.querySelector("#map");
-  var modal = document.querySelector(".modalBg");
-  var modalContent = document.querySelector(".modalContent"); //Close Modals
-
-  document.querySelector("#modal-close").addEventListener("click", function (e) {
-    e.preventDefault();
-    modal.classList.remove("bg-active");
-    map.classList.remove("mapVisibility");
-  }); //Open/close Modals
-
-  var toggleModal = function toggleModal(content) {
-    modalContent.innerHTML = content;
-    modal.classList.add("bg-active");
-    map.classList.add("mapVisibility");
-  }; //About Modal
-
-
-  aboutBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    toggleModal(aboutModal);
-  }); //Contacts Modal
-
-  contactsBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    toggleModal(contactsModal);
-  }); //Login Modal
-
-  loginBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    toggleModal(loginModal);
-    document.querySelector("#registerLink").addEventListener("click", function (e) {
-      e.preventDefault();
-      (0, _index.render)(state.Register);
-    });
-  }); //Posts Modal
-
-  postsBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    toggleModal(postsModal);
-    loginBtn.addEventListener("click", function (event) {
-      event.preventDefault();
-      modal.classList.remove("bg-active");
-      toggleModal(loginModal); // document.querySelector("#registerLink").addEventListener("click", e => {
-      //     e.preventDefault();
-      //     render(state["Register"]);
-      // })
-    });
-  }); //News Modal
-}
-},{"../index":"index.js"}],"lib/Tips.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Tips;
-
-var state = _interopRequireWildcard(require("/store"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-console.log();
-
-function Tips() {
-  var techniques = {
-    bluegill: {
-      winter: "Bluegill will migrate to deeper waters as the vegetation in shallower areas dies off.  Finding remaining plant life around points, bends, and flats near drop-offs will lead to greater numbers of fish.  Focus on the deeper end of the depth range during ice-over conditions.  Use ice jigs tipped with wax worms or other larvae and try either traditional jigging or placing it under a bobber.  Target the areas just above or outside of the weed beds.  When not finding sufficient action, try different combinations of colors and larvae, along with changing locations, until desired result is achieved.  Keeping the larvae fresh may also lead to greater success.",
-      spring: "Protected inlets or coves that contain warm/shallow water and suitable spawning habitats will become the primary areas to focus on.  Stick to shorelines where emerging weeds provide suitable hunting grounds, cover from sunlight, and protection from predators.  Bluegill are schooling fish, so in the event that activity is minimal, move to other areas that may consist of similar conditions.  Larger fish may congregate near areas with easy access to deeper water.  Small spinners, micro crank baits and hair jigs tipped with night crawler pieces are good options in addition to the larvae tipped ice jigs.  Small minnows could also lead to larger fish.  Slow retrieval is often the most effective approach.  If fly fishing is the preferred method, poppers and nymphs may also lead to success.",
-      summer: "While bluegill will begin to occupy the deeper waters of main lake body along with coves/bays, they will remain generally positioned along the shoreline and around available cover.  Locating weed lines and pockets of weed beds in these deeper water areas will become paramount.  Points, ledges, as well as flat areas adjacent to drop-offs that provide weed covered structure should be targeted.  Small spinners and curly-tailed/shad body tipped hair jigs may be productive options.  In addition, slip-bobber rigs tipped with worms, leeches, crickets, grasshoppers or small jigs can also prove effective.  Using the small spinners baited with small worms or leeches to troll or drift over and along points, ledges of drop-offs, and weed lines can help to locate larger concentrations of fish.  Vertical jigging, casting lures, and slip-bobber rigs are more effective approaches once these populations of fish have been found.  During low-light conditions, the disturbance of the water's surface created by poppers can lead to an increase in strikes.",
-      fall: "Areas that continue to provide healthy weed populations are a good place to start.  Fish may congregate inside bends or around points containing shoreline structure with sharp sloping floors.  Micro crank baits, small spinners, and small jigs may produce bites.  A slower retrieve is recommended.  Additionally, minnows, wax worms, meal worms or jigs placed under a bobber rigs can prove to be rewarding techniques."
-    },
-    crappie: {
-      winter: "Finding any healthy green vegetation or changes in the profile of the lake floor are key targets. Deep flats at the bases of drop-offs or withing steep inside bends, along with edges of deep points are good places to start.  Jigging spoons and ice jigs baited with a small minnow or wax worms are effective options.  Finicky as they may be, crappie can be found suspended almost anywhere in the water column depending on light conditions, water clarity and/or their mood.  Use of electronics to determine bottom composition and locate areas of healthy weeds may assist in finding these fish.",
-      spring: "Making long casts and remaining as quiet as possible are important practices as crappie are easily spooked.  Locations on the north side of the lake and shallow, dark-bottomed areas often house the most active fish in the early spring since they tend to warm up faster.  Coves, bays or inlets that provide warm shallow water and suitable spawning habitats become target areas.  Points, drop-offs, ledges and inside bends within these areas, or in the lake body just outside of the coves are good places to search.  Additionally, flats along the shoreline containing weeds, fallen trees, or other cover can be good hiding places for the fish.  Jigs tipped with curly tailed grubs, small spinners, jig spinner combos and micro crank baits are effective lures to try.  Also, crappie jigs tipped with a small minnow (with or without a float) may prove to be a rewarding technique.  Try keeping your casts in and around the above areas as crappie are mostly cover oriented.  They are also a schooling fish, so quickly move around if you are not getting bites.",
-      summer: "Deeper water becomes a priority during the summer months.  Search coves, bays and inlets, and suspend around ledges or drop-offs.  Weedy areas along the drop-offs and weedy flats adjacent to them, along with cuts or points in the drop-off itself are prime zones to target.  As they are a schooling fish, use of electronics and changing locations frequently may be important for finding groups of crappie.  If the lake has formed a thermocline, the fish will often suspend at or near its depth.  Trolling these areas with spinner rigs(with or without minnows) and micro crank baits can be effective ways of finding the fish.  Once located, crappie spinner baits, jigs tipped with curly tailed grubs, small spinners, jig spinner combos and micro crank baits are effective lures to try.  Also, crappie jigs tipped with a small minnow (with or without a float) may prove to be a rewarding technique.  Slowly moving along or over the target areas with a trolling motor or drifting while vertically jigging can also be effective.",
-      fall: "As vegetation begins to die off in the shallower areas, crappie will tend to gradually relocate to the deeper areas of of the main lake.  Points, inside turns, flats adjacent to base of drop-offs are good places to start.  The crappie will often concentrate around changes in the bottom structure(hard bottom meets mucky bottom) and deeper weed beds of the main lake areas.  Use of electronics, along with vertically jigging spoons and crappie jigs may help to locate these deep water schools.  Once found, try casting slip-float rigs or jigs baited with minnows."
-    },
-    perch: {
-      earlyWinter: "Perch may be found in the shallower flats that still contain some green healthy vegetation during the light ice periods.  Use of electronics while moving frequently and drilling multiple holes may help to locate fish, as perch are a schooling species.  Fish hooks or ice jigs tipped with a small minnow, minnow head, perch eye, or variety of maggots worked aggressively near the lake bottom may help to attract the fish.  Once drawn in, switch to a more subtle presentation.",
-      winter: "Perch tend to congregate near changes in the bottom composition, so focusing on the bases of drop-offs and their adjacent mid-depth to deep flats may prove effective.  Use of electronics while moving frequently and drilling multiple holes may help to locate fish, as perch are a schooling species.  Fish hooks or ice jigs tipped with a small minnow, minnow head, perch eye, or variety of maggots worked aggressively near the lake bottom may help to attract the fish.  Once drawn in, switch to a more subtle presentation.",
-      earlySpring: "Perch will move back into the shallower flats during the light ice periods.  Use of electronics while moving frequently and drilling multiple holes may help to locate fish, as perch are a schooling species.  Fish hooks or ice jigs tipped with a small minnow, minnow head, perch eye, or variety of maggots worked aggressively near the lake bottom may help to attract the fish.  Once drawn in, switch to a more subtle presentation.",
-      spring: "Shallow areas of coves, bays and inlets provide prime spawning habitats for perch.  Shoreline flats containing a good combination of weed/rock cover in these areas should be targeted.  When schooling, the perch tend to do so in groups of similar sized fish.  Try moving to around to find the larger fish if you are catching a lot of smaller ones.  Perch do have excellent vision and are spooked easily, especially in shallow water.  Long casts while remaining as quiet as possible are extremely important.  Slowly trolling or drifting may help to find the fish.  Once they are located, however, casting is the more effective method.  Perch tend to spend their time near the bottom, so start there.  Try micro crank baits, hairpin spinners, and in-line spinners.  Float rigs, spinner rigs, and small jigs tipped with minnows, curly tailed grubs, night crawlers or maggots can also be effective.",
-      summer: "Perch will migrate to deeper waters in the summer months.  Areas to target include points and pockets in the weed line, as well as the weedy flats near drop-offs.  The fish often will be found near the base of the weeds in these areas.  When there is a thermocline present in the lake, the larger perch will usually be attracted to where it meets any structure near the lake bottom.  Perch tend to spend their time near the bottom, so start there.  Try micro crank baits, hairpin spinners, and in-line spinners.  Float rigs, spinner rigs, and small jigs tipped with minnows, curly tailed grubs, night crawlers or maggots can also be effective.  Long casts while remaining as quiet as possible are extremely important.  Slowly trolling or drifting may help to find the fish.  Once they are located, however, casting is the more effective method.",
-      fall: "Perch will feed aggressively during the fall months in order to prepare for winter.  This time of year they will begin their migration into the shallower flats containing ample rock/weed cover.  Try slowly trolling or drifting over these areas may help in finding the fish.  Once they are located, however, casting is the more effective method.  Perch tend to spend their time near the bottom, so start there.  Try micro crank baits, hairpin spinners, and in-line spinners.  Float rigs, spinner rigs, and small jigs tipped with minnows, curly tailed grubs, night crawlers or maggots can also be effective."
-    },
-    smb: {
-      spring: "Spring time will lead to the smallmouth bass being found in shallower areas.  Search the bays, coves and areas of the main lake just outside of them; targeting the inside turns, ledges and points in and around the break line.  These fish tend to be startled easily making slow trolling or drifting with long casts an effective approach.  Jerk baits, spinner baits, in-line spinners, or jigs tipped with minnows or curly tail grubs can be effective.  Try hard-bottomed areas containing gravel or boulders as the smallmouth do tend to stick to the rocky cover.",
-      summer: "Summer leads to a migration to deeper waters for smallmouth bass, still maintaining their concentration around rocky hard-bottomed areas.  Target the ledges, points and inside bends around these areas containing gravel or boulders with scattered vegetation.  Jig-n-pigs, jigs with curly tailed grubs, tube baits, jerk baits, crank baits, and smaller Texas-rigged worms are all good approaches for artificial lures.  If live bait is preferred, try slip-bobber or slip-sinker rigs with minnows, night-crawlers, leeches or crayfish.  Try jerk baits, spinners or top water lures over rocky areas in low light conditions to attract attention.",
-      fall: "Deeper water will remain the place to find the majority of smallmouth in the fall.  Areas of the lake around the base of drop-offs with changing bottom composition(rocky to soft) and steep slopes should be points of emphasis.  Deep diving crank baits, drop-shot rigs with soft plastics, jigging spoons and larger jigs tipped with curly tailed grubs or shad type plastics and tube baits are all good methods.  If you seem to have found a concentration of fish, try a vertical jigging approach with either traditional jigs or jigging spoons while trolling or drifting to cover the target area."
-    },
-    lmb: {
-      earlyWinter: "The continued drop in temperature, vegetation die-off and migration of bait fish to deeper water leads to the largemouth moving back out into the main body of the lake.  As the fish prefer to be able to easily move up and down the water column based on weather conditions, channel ledges and points with steep slopes should be the primary areas to target.  Bottom structure, such as, rocks/boulders and timber help to retain heat and attract fish.  Electronics may prove useful in locating these structures.  Carolina-rigged plastics, deep diving crank baits and spinners with a slower retrieve may be effective.  When struggling to find action, dead sticking suspended jerk baits or soft plastics may entice a strike or two.",
-      winter: "The deep cold of winter will find the fish located in the deep areas of the main body of the lake.  Again, the points, inside bends, and bases of drop-offs around steep slopes, as well as deep river channels and the bottom of creeks.  Look for areas that contain bottom structure(rocks, stumps, standing timber, boulders).  This is where the bait fish are most likely to be, and the largemouth will follow.  Smaller lures with a slower retrieve may prove more effective as the fish will tend to be more sluggish during these winter months.  This slow retrieval of suspending jerk baits coupled with long pauses throughout the process can be rewarding.  Other options for slowly working over an area include: drop-shot rigs, spoons, lead head grubs, and jigs.",
-      earlySpring: "The fish will finally start coming out from their wintering areas in search of suitable spawning locations with the warmer temperatures and longer days.  Protected coves with shallow flat provide the shelter they are seeking and should be the primary areas of focus.  The migration does not happen overnight, and along the way, the largemouth may seek cover in rocky or wooded structure along shoreline breaks and river channels.  Shallow hard-bottomed flats at the base of a drop-off can be very active with fish.  More so, even, when there is some sort of cover present.  Good options for covering a lot of water fast include:  crank baits, spinners, and suspending jerk baits.  Boat docks, brush, and wooded structure are great places to try pitching jigs.  The fish will remain a little sluggish still, so a slow to moderate retrieval is preferred.",
-      spring: "Spawning season will lead to largemouth bass seeking shelter in protected coves/inlets.  Creek arms would be another area of focus.  Any type of cover(docks, wooden structure, weeds, underwater brush) that provides the bass with protection should be primary areas of emphasis.  Channels of creeks, along with humps, points or shallow structure in the lakes may also find fish hiding before they begin their migration out of the shallower waters.  Both Carolina and Texas-rigged plastics, may be productive.  Other effective options include:  spinners, shallow to medium diving crank baits, jerk baits and jigging.  A slower presentation is also recommended as these fish will remain lethargic throughout the early spring.  Then, as temperatures begin to rise, a faster presentation may prove more effective.  When not having success with lures, trying live bait(shiners, crayfish) may help entice the fish.",
-      summer: "Search bottom structure(humps, points, channel ledges) in the main body of the lake or in deeper parts of creek arms during the summer months.  Finding submerged timber, brush and weeds that provide cover for the fish will be important.  Deep water weed lines and flat at the base of drop-offs(especially any containing the above underwater structure) may also be productive areas.  Again, the Carolina or Texas-rigged plastics, medium to deep diving crank baits, and jigging are recommended methods.  Top water lures may help get the fishes attention in low-light conditions.",
-      earlyFall: "The largemouth will begin to feed aggressively on bait fish, in preparation for winter, as temperatures begin to drop.  Look for submerged structure/weeds in the shallow flats that have easy access to deeper waters.  Bait fish may also school  around  ledges, shallow shoreline points, and inside bends; and the largemouth will follow.  This also holds true where any creek arms meet the main lake.  Spinners, shallow diving or lipless crank baits, and jerk baits become the lures of choice this time of year.  Larger baits may be more effective now that the bait fish have gotten bigger.  Try casting to the edges of submerged cover or across the flats.",
-      fall: "Finding remaining healthy vegetation, along with any wooden cover/structure becomes important.  Search around points, humps, and channel ledges of the shallower creek arms and coves as the largemouth will begin to follow the bait fish in from the main body of the lake.  The bass that do remain in the main body will be feeding on the bait fish as they move in and out of these shallower areas.  So, focus on point directly adjacent to them.  Top-water, spinners, shallow diving or lipless crank baits, and jerk baits with a faster retrieve/presentation may be productive.  Larger baits may be more effective now that the bait fish have gotten bigger.  Try casting to the edges of submerged cover or across the flats."
-    },
-    walleye: {
-      winter: "Walleye may be found searching the flats around bases and ledges of drop-offs, or may stick to the structure of inside turns and points adjacent to these areas.  Any of these areas still containing healthy vegetation should be the primary focus.  Jigging spoons, or jigs tipped with minnows jigged vertically have proven effective.  Also, slip-bobbers and tip-ups baited with minnows can be effective around submerged structure and weed lines.  The fish will tend to gather around structure in the deeper parts of the main lake body during the heavy ice over period.  During the lighter ice over times, shallower flats and structure may be more productive areas.",
-      spring: "Structure found around points and ledges of the the shallower areas of inlets and shorelines will be the areas to target.  As well as any flats around the drop-offs to deeper waters.  The walleye will spook easily in these shallower waters, so use a slow approach while remaining as quiet as possible.  Changes in bottom composition, rock piles, and emerging weeds will be good places to start.  Try slip-bobbers baited with minnows, jigging with plastics(curly tail, shad), minnow-tipped jigs, and minnow-like crank baits using long casts to keep from scaring the fish off.  Long-line trolling along shallow flats, underwater structure, and submerged weeds with a minnow-tipped slip-sinker rig, live-bait rig, or spinner-rig, along with the above listed lures under a planer board is a good way to cover a large area quickly.",
-      summer: "The walleye will be found in the deeper water of the main lake body or adjacent to inlets during the summer months.  If a thermocline has developed, try to stay at or above it.  Ledges of drop-offs, flats adjacent to them and weed lines or other submerged structure will be primary areas to focus on.  Night-crawlers and leeches will become effective baits.  Try them with slip-bobber rigs or jigs around these areas.  Trolling these or spinner rigs with leeches or night-crawlers, or minnow-like crank baits may help entice the fish in low light conditions.",
-      fall: "Finding the walleye may prove difficult during the fall months as the fish can be found at a variety of depths.  Ledges and bases of drop-offs, the flats surrounding them, inside bends, and sloped points are good places to start.  As the temperatures begin to drop, a slower presentation becomes more effective.  Larger lures and baits(4-6 inches) will also become more important as the bait fish have gotten bigger.  Casting large plastic swim baits, minnow-like crank baits, or minnow tipped rigs over and around weed beds may be effective.  For a vertical presentation, try jigging spoons, slip-bobber or jigs tipped with minnows, or jigging spoons around these weed beds or along ledges and bases of drop-offs.  Slow trolling these baits is a good option for covering a lot of water quickly.  Flats adjacent to drop-offs become prime target areas during low-light conditions.  Try drifting/trolling or fan casting over these areas to cover a large area quickly."
-    },
-    pike: {
-      winter: "As ambush predators, shallow weeds or the inside of weed lines will find the pike patrolling for bait fish this time of year.  Search the drop-offs or flats adjacent to them still containing these weedy structures.  As the weeds in these shallower areas begin to die off, the pike will begin to search out this cover in the deeper areas.  Set your tip-ups with 4-6 inch minnows, suckers, or shiners along the weed lines or just above them.  Jigs or jigging spoons with minnows may also be productive strategies.",
-      spring: "Shallow coves/bays or the main lake body just outside of them become primary target areas.  Search for inside turns, points or flats with developing weeds.  The fish will spook easily in these shallow waters, so try to remain a silent as possible.  Try casting in-line spinners, spinner baits, soft plastics, spoons, or jigs tipped with small to medium sized minnows over and around Rock piles, weedy flats, and clumps of emerging weeds.  A slower presentation is recommended this time of year.  To cover a large area of water quickly, try long-line trolling spoons, or minnow-tipped jigs or slip-sinker rigs along submerged structure or over flats.  Jigs and slip-bobber rigs tipped with minnows are a good option when targeting specific areas.",
-      summer: "During the summer months, the larger pike will move out to the sharply sloped points of deeper, cooler waters while the smaller pike('snakes') will remain in the shallower areas containing weedy cover.  Target the main lake body where these characteristics are present.  If a thermocline has developed, try to stay at or above it while targeting the deeper fish.  The pike may be attracted to larger lures or baits this time of year.  Larger buck tails, spoons, jerk baits, and spinners worked over and along weed lines/beds are effective approaches.  Casting with deep-diving crank baits, weighted swim baits, and minnow-tipped jigs can also be productive.  Trolling these baits is a good way to cover a large area.  A quicker presentation is preferred during these warmer months, and in low-light conditions top-water lures are a good way to attract attention.",
-      fall: "This is the time of year for the largest lures, as the bait fish have gotten bigger.  Target areas still containing healthy weed populations.  Work the flats around drop-offs by positioning over the deeper water surrounding them and casting jerk baits spinners, and buck tails over and around them.  For more sharply sloped terrain or over inside bends, try diving crank baits, or large minnow or curly-tailed tipped jigs.  Trolling these baits is a good way to cover a large area.  In low-light conditions top-water lures are a good way to attract attention."
-    },
-    muskie: {
-      spring: "Shallow coves/bays and the areas of the main lake body just outside of them or around inlets containing developing weeds and points should be targeted.  Muskie will be easily scared off in these shallower waters, so remain a silent as possible while slowly approaching these areas.  Small to medium lures with a slower presentation will be preferred this time of year.  Try minnow or plastic-tipped jigs, spoons, shallow diving crank/swim baits, and jerk baits casting across flats containing emerging weeds, or over and around shallow structure(rock piles, weeds).",
-      summer: "Ledges of drop-offs, weedy flats adjacent to them, rocky/weedy points, and weed lines will be the primary target areas.  Try to stay at or above the thermocline if one has developed on the lake.  This time of year, larger lures with a faster retrieve will be more effective as the bait fish have gotten bigger and the muskie more active.  Try crank baits, jerk baits, spinners, and large buck tails.  Once again, in low-light conditions, top-water lures are a good way to attract attention.  Diving style jerk baits can be especially effective while working around weedy flats due to the ability to drive them down into openings and steer them around clumps.  For heavy weed areas, weedless spoons and spinners are a good way to avoid getting hung up.",
-      fall: "Search out mid-depth flats containing vegetation adjacent to drop-offs, inside bends,  deeper/steeper points in the main body of the lake, and drop-offs.  The sharp inside bends can be worked vertically  with quick-strike rigs baited with large minnows, or jigging large soft plastics.  Cast around structure and clumps of vegetation with crank baits, plastic swim baits, spinner baits, jigs, buck tails, and large weighted jerk baits.  Work the flats around drop-offs by positioning over the deeper water surrounding them and casting jerk baits spinners, and buck tails over and around them."
-    }
-  };
-
-  function getTips() {
-    var species = document.getElementById("species");
-    var seasons = document.getElementById("season");
-    var par = document.querySelector("p");
-    var background = document.querySelector(".tipsMain");
-    var bluegill = "https://i.imgur.com/4i6DkKG.jpg";
-    var tipsImages = [bluegill];
-    console.log(state.view);
-
-    if (state.view === "Tips") {
-      document.querySelector("#tipsForm").addEventListener("submit", function (event) {
-        event.preventDefault();
-        var choice1 = techniques[species.value];
-        par.textContent = choice1[seasons.value]; // tipsImages.forEach(el => {
-        //     if (species.value === el) {
-        //         background.style.background-image = `url("${el}")`;
-        //     }
-        // })
-      });
-    }
-  }
-
-  getTips();
-}
-},{"/store":"store/index.js"}],"index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.render = render;
-
-var _components = require("./components");
 
 var _Router = _interopRequireDefault(require("./lib/Router"));
 
-var _ToggleModal = _interopRequireDefault(require("./lib/ToggleModal"));
-
-var _ModalClose = _interopRequireDefault(require("./lib/ModalClose"));
-
-var _News = _interopRequireDefault(require("./lib/News"));
-
-var _Post = _interopRequireDefault(require("./lib/Post"));
-
-var _ModalVars = _interopRequireDefault(require("./lib/ModalVars"));
-
-var _Tips = _interopRequireDefault(require("./lib/Tips"));
-
-var state = _interopRequireWildcard(require("./store"));
-
-var _navigo = _interopRequireDefault(require("navigo"));
-
-var _lodash = require("lodash");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import { default as AddModalListers } from "./lib/AddModalListeners";
-// import { default as AddListeners } from "./lib/AddListeners";
-// import { default as ModalListeners } from "./lib/ModalListeners";
-// import Stories from "./news.js";
-// import { initialMap } from "./lib/CreateMap";
-function render() {
-  var st = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : state.Home;
-  document.querySelector("#root").innerHTML = "\n    ".concat((0, _components.Header)(), "\n    ").concat((0, _components.Main)(st), "\n    ").concat((0, _components.Footer)(), "\n    "); // ModalListeners();
-  // toggleModal();
-
-  (0, _ModalClose.default)();
-  AddListeners(); // AddModalListers();
-  // NewsFeed();
-
-  (0, _Tips.default)();
-}
-
-render();
-
-// const router = new Navigo(window.location.origin);
-// router.on({
-//     "/": () => render(state.Home), 
-//     ":page": params => {
-//       let page = capitalize(params.page);
-//       render(state[page]);
-//     }});
 function AddListeners() {
   //Home Listeners
   if (state.view === home) {
@@ -19962,7 +20075,7 @@ function AddListeners() {
     if (document.querySelector(".modalContent").innerHTML === document.querySelector(".postsTemplate").innerHTML) {
       document.querySelector("#createPost").addEventListener("click", function (e) {
         e.preventDefault();
-        (0, _Post.default)();
+        CreatePost();
       });
     } //Search Button
 
@@ -19992,17 +20105,17 @@ var modalContent = document.querySelector(".modalContent"); //About Modal
 
 aboutBtn.addEventListener("click", function (event) {
   event.preventDefault();
-  (0, _ToggleModal.default)(aboutModal);
+  toggleModal(aboutModal);
 }); //Contacts Modal
 
 contactsBtn.addEventListener("click", function (event) {
   event.preventDefault();
-  (0, _ToggleModal.default)(contactsModal);
+  toggleModal(contactsModal);
 }); //Login Modal
 
 loginBtn.addEventListener("click", function (event) {
   event.preventDefault();
-  (0, _ToggleModal.default)(loginModal);
+  toggleModal(loginModal);
   document.querySelector("#registerLink").addEventListener("click", function (e) {
     e.preventDefault();
     render(state.Register);
@@ -20011,11 +20124,11 @@ loginBtn.addEventListener("click", function (event) {
 
 postsBtn.addEventListener("click", function (event) {
   event.preventDefault();
-  (0, _ToggleModal.default)(postsModal);
+  toggleModal(postsModal);
   loginBtn.addEventListener("click", function (event) {
     event.preventDefault();
     modal.classList.remove("bg-active");
-    (0, _ToggleModal.default)(loginModal);
+    toggleModal(loginModal);
   });
 }); // //Home Modals
 // if ( state.view === "Home") {
@@ -20031,7 +20144,7 @@ postsBtn.addEventListener("click", function (event) {
 //     });
 //     //News Modal
 // }
-},{"./components":"components/index.js","./lib/Router":"lib/Router.js","./lib/ToggleModal":"lib/ToggleModal.js","./lib/ModalClose":"lib/ModalClose.js","./lib/News":"lib/News.js","./lib/Post":"lib/Post.js","./lib/ModalVars":"lib/ModalVars.js","./lib/Tips":"lib/Tips.js","./store":"store/index.js","navigo":"node_modules/navigo/lib/navigo.min.js","lodash":"node_modules/lodash/lodash.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./lib/Router":"lib/Router.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -20059,7 +20172,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51023" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54707" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
