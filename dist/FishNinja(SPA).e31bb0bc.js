@@ -239,7 +239,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _default = function _default() {
-  return "\n<header>\n    <h3 id=\"home\"><a id=\"home\" href=\"/Home\">Home</a></h3>\n\n    <nav>\n        <a href=\"#\" class=\"about\">About</a>\n        <a href=\"#\" class=\"contact\">Contact</a>\n        <a href=\"#\" class=\"login\">Login/Register</a>\n    </nav>\n\n    <h4 class=\"tips\"><a href=\"/Tips\" data-navigo>Tips & Techniques</a></h4>\n\n    <!-- About Modal -->\n    <template class=\"aboutTemplate\">\n        <div class=\"aboutModal\">\n            <section class=\"aboutContent\">\n                <h1 class=\"aboutHead\">About</h1>\n                <h4 class=\"aboutBody\">We here at the Fish Ninja are committed to providing in-depth, detailed and accurate information, about fishing areas, to anglers everywhere.  For far too long it has been far too difficult to find valuable details about where to fish and, just as important, what fish species may be present in any given lake to fish for.  We intend to change that.  Furthermore, it is our hope that allowing anglers to connect with one another will provide an even greater opportunity to share knowledge between individuals or with the entire fishing world.  In this ever changing landscape, we shall remain diligent in our approach to gathering, updating, and sharing everything we can find in order to help improve fishing experiences across America.</h4>\n            </section>\n        </div>\n    </template>\n    <!-- Contacts Modal -->\n    <template class=\"contactsTemplate\">\n        <div class=\"contactsModal\">\n            <section class=\"contactsContent\">\n                <h1>Contacts</h1>\n            </section>\n        </div>\n    </template>\n    <!-- Login Modal -->\n    <template class=\"loginTemplate\">\n        <div class=\"loginModal\">\n            <section class=\"loginContent\">\n                <form action=\"index.html\" method=\"POST\" id=\"login\">\n                    <label for=\"username\">Username:</label>\n                    <input type=\"text\" name=\"username\" id=\"username\">\n                    <br>\n                    <label for=\"user-pw\">Password:</label>\n                    <input id=\"user-pw\" type=\"password\" name=\"user-pw\">\n                    <h3>Not already a member?  <a href=\"/Register\" id=\"registerLink\" data-navigo>Register  </a></h3>\n                    <br>\n                    <input id=\"submit\" type=\"submit\" value=\"Submit\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- News Modal -->\n    <template class=\"newsTemplate\">\n        <div class=\"newsModal\">\n            <section class=\"newsContent\">\n                <img src=\"\" alt=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"storyImage>\n                <h2 id=\"title\">Title</h2>\n                <h4 id=\"author\">Author</h4>\n                <a href=\"\" id=\"storyLink\">Link to Page</a>\n                <br>\n                <p id=\"story\">Content</p>\n            </section>\n        </div>\n    </template>\n\n    <!-- Posts Modal -->\n    <template class=\"postsTemplate\">\n        <div class=\"postsModal\">\n            <section class=\"postsContent\">\n                <form class=\"postsForm\" action=\"#\" method=\"POST\">\n                    <h2 id=\"createPostHead\">CreatePost</h2>\n                    <label for=\"createPostHead\" class=\"postLogin\">Must be <a href=\"/Register\" data-navigo class=\"login\" id=\"postLogin\">Logged In </a>to post.</label>\n                    <br>\n                    <label class=\"postsEls\" for=\"postLake\">Lake Name:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postLake\" name=\"postLake\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addImage\">Upload Image</label>\n                    <input class=\"postsEls\" type=\"file\" id=\"addImage\" name=\"addImage\" value=\"addImage\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addComment\">Add Comments</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"addComment\" name=\"addComment\" placeholder=\"Add Text Here\">\n                    <br>\n                    <input class=\"postsEls\" type=\"submit\" id=\"createPost\" name=\"createPost\" value=\"Create Post\">\n                </form>\n            </section>\n        </div>\n    </template>\n</header>\n";
+  return "\n<header>\n    <h3 id=\"home\"><a id=\"home\" href=\"/Home\">Home</a></h3>\n\n    <nav>\n        <a href=\"#\" class=\"about\">About</a>\n        <a href=\"#\" class=\"contact\">Contact</a>\n        <a href=\"#\" class=\"login\">Login/Register</a>\n    </nav>\n\n    <h4 class=\"tips\"><a href=\"/Tips\" data-navigo>Tips & Techniques</a></h4>\n\n    <!-- About Modal -->\n    <template class=\"aboutTemplate\">\n        <div class=\"aboutModal\">\n            <section class=\"aboutContent\">\n                <h1 class=\"aboutHead\">About</h1>\n                <h4 class=\"aboutBody\">We here at the Fish Ninja are committed to providing in-depth, detailed and accurate information, about fishing areas, to anglers everywhere.  For far too long it has been far too difficult to find valuable details about where to fish and, just as important, what fish species may be present in any given lake to fish for.  We intend to change that.  Furthermore, it is our hope that allowing anglers to connect with one another will provide an even greater opportunity to share knowledge between individuals or with the entire fishing world.  In this ever changing landscape, we shall remain diligent in our approach to gathering, updating, and sharing everything we can find in order to help improve fishing experiences across America.</h4>\n            </section>\n        </div>\n    </template>\n    <!-- Contacts Modal -->\n    <template class=\"contactsTemplate\">\n        <div class=\"contactsModal\">\n            <section class=\"contactsContent\">\n                <h1>Contacts</h1>\n            </section>\n        </div>\n    </template>\n    <!-- Login Modal -->\n    <template class=\"loginTemplate\">\n        <div class=\"loginModal\">\n            <section class=\"loginContent\">\n                <form action=\"index.html\" method=\"POST\" id=\"login\">\n                    <label for=\"username\">Username:</label>\n                    <input type=\"text\" name=\"username\" id=\"username\">\n                    <br>\n                    <label for=\"user-pw\">Password:</label>\n                    <input id=\"user-pw\" type=\"password\" name=\"user-pw\">\n                    <h3>Not already a member?  <a href=\"/Register\" id=\"registerLink\" data-navigo>Register  </a></h3>\n                    <br>\n                    <input id=\"submit\" type=\"submit\" value=\"Submit\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- News Modal -->\n    <template class=\"newsTemplate\">\n        <div class=\"newsModal\">\n            <section class=\"newsContent\">\n                <img src=\"\" alt=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"storyImage>\n                <h2 id=\"title\">Title</h2>\n                <h4 id=\"author\">Author</h4>\n                <a href=\"\" id=\"storyLink\">Link to Page</a>\n                <br>\n                <p id=\"story\">Content</p>\n            </section>\n        </div>\n    </template>\n\n    <!-- Posts Modal -->\n    <template class=\"postsTemplate\">\n        <div class=\"postsModal\">\n            <section class=\"postsContent\">\n                <form class=\"postsForm\" action=\"https://formspree.io/xbjzoonz\" method=\"POST\">\n                    <h2 id=\"createPostHead\">CreatePost</h2>\n                    <label for=\"createPostHead\" class=\"postLogin\">Must be <a href=\"/Register\" data-navigo class=\"login\" id=\"postLogin\">Logged In </a>to post.</label>\n                    <br>\n                    <label class=\"postsEls\" for=\"postLake\">Lake Name:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postLake\" name=\"postLake\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addImage\">Upload Image</label>\n                    <input class=\"postsEls\" type=\"file\" id=\"addImage\" name=\"addImage\" value=\"addImage\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addComment\">Add Comments</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"addComment\" name=\"addComment\" placeholder=\"Add Text Here\">\n                    <br>\n                    <input class=\"postsEls\" type=\"submit\" id=\"createPost\" name=\"createPost\" value=\"Create Post\">\n                </form>\n            </section>\n        </div>\n    </template>\n</header>\n";
 };
 
 exports.default = _default;
@@ -421,95 +421,7 @@ var _Main = _interopRequireDefault(require("./Main"));
 var _Footer = _interopRequireDefault(require("./Footer"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Header":"components/Header.js","./Main":"components/Main.js","./Footer":"components/Footer.js"}],"lib/Map.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var initMapTest = /*#__PURE__*/function () {
-  function initMapTest() {
-    _classCallCheck(this, initMapTest);
-
-    this.markers = [];
-    this.options = {
-      zoom: 4,
-      center: {
-        lat: 38.248175,
-        lng: -94.147841
-      }
-    };
-    var mapContainer = document.getElementById("map");
-    this.map = new google.maps.Map(mapContainer, this.options);
-  }
-
-  _createClass(initMapTest, [{
-    key: "addMarker",
-    value: function addMarker(props, cb) {
-      var marker = new google.maps.Marker({
-        position: props,
-        state: props.name,
-        map: this.map
-      }); //    Create Info Window
-
-      var info = new google.maps.InfoWindow({
-        content: cb(marker.state)
-      });
-      marker.addListener("click", function () {
-        info.open(this.map, marker);
-      });
-      this.markers.push(marker);
-    }
-  }]);
-
-  return initMapTest;
-}();
-
-exports.default = initMapTest;
-},{}],"lib/InfoWindow.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var InfoWindow = /*#__PURE__*/function () {
-  function InfoWindow() {
-    _classCallCheck(this, InfoWindow);
-  }
-
-  _createClass(InfoWindow, [{
-    key: "attachButton",
-    value: function attachButton(passInObj, name, cb) {
-      var button = document.createElement("button");
-      button.innerText = name;
-      button.addEventListener("click", function () {
-        cb(passInObj);
-      });
-      return button;
-    }
-  }]);
-
-  return InfoWindow;
-}();
-
-exports.default = InfoWindow;
-},{}],"lib/ToggleModal.js":[function(require,module,exports) {
+},{"./Header":"components/Header.js","./Main":"components/Main.js","./Footer":"components/Footer.js"}],"lib/ToggleModal.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -624,7 +536,38 @@ function modalListeners() {
     (0, _ToggleModal.default)(loginModal);
   });
 }
-},{"./ToggleModal":"lib/ToggleModal.js"}],"lib/HomeListeners.js":[function(require,module,exports) {
+},{"./ToggleModal":"lib/ToggleModal.js"}],"lib/Post.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createPost = createPost;
+exports.posts = exports.Post = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Post = function Post(lake, img, comment) {
+  _classCallCheck(this, Post);
+
+  this.lake = lake, this.img = img, this.comment = comment;
+};
+
+exports.Post = Post;
+var posts = [];
+exports.posts = posts;
+
+function createPost() {
+  var lake = document.querySelector("#postLake").value;
+  var img = document.querySelector("#addImage").value;
+  var comment = document.querySelector("#addComment").value;
+  var newPost = new Post(lake, img, comment);
+  posts.unshift(newPost);
+  var post = new Post(lake, img, comment);
+  posts.unshift(post);
+  console.log(posts);
+}
+},{}],"lib/HomeListeners.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -635,6 +578,10 @@ exports.default = HomeListeners;
 var _ModalListeners = _interopRequireDefault(require("./ModalListeners"));
 
 var _Router = _interopRequireDefault(require("./Router"));
+
+var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
+
+var _Post = require("./Post");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -651,18 +598,19 @@ function HomeListeners() {
 
   document.querySelector("#post").addEventListener("click", function (event) {
     event.preventDefault();
-    toggleModal(postsModal);
-    postLoginBtn.addEventListener("click", function (event) {
-      event.preventDefault();
-      toggleModal(loginModal);
-    });
+    (0, _ToggleModal.default)(postsModal);
     document.querySelector(".postsForm").addEventListener("submit", function (e) {
       e.preventDefault();
-      CreatePost();
-    });
+      console.log(_Post.posts);
+      (0, _Post.createPost)();
+      document.querySelector(".modalBg").classList.remove("bg-active");
+    }); // postLoginBtn.addEventListener("click", (event) => {
+    //     event.preventDefault();
+    //     toggleModal(loginModal);
+    // });
   });
 }
-},{"./ModalListeners":"lib/ModalListeners.js","./Router":"lib/Router.js"}],"components/controllers/Home.js":[function(require,module,exports) {
+},{"./ModalListeners":"lib/ModalListeners.js","./Router":"lib/Router.js","./ToggleModal":"lib/ToggleModal.js","./Post":"lib/Post.js"}],"lib/InfoWindow.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -670,89 +618,192 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _Map = _interopRequireDefault(require("../../lib/Map"));
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _InfoWindow = _interopRequireDefault(require("../../lib/InfoWindow"));
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var InfoWindow = /*#__PURE__*/function () {
+  function InfoWindow() {
+    _classCallCheck(this, InfoWindow);
+  }
+
+  _createClass(InfoWindow, [{
+    key: "attachButton",
+    value: function attachButton(passInObj, name, cb) {
+      var button = document.createElement("button");
+      button.innerText = name;
+      button.addEventListener("click", function () {
+        cb(passInObj);
+      });
+      return button;
+    }
+  }]);
+
+  return InfoWindow;
+}();
+
+exports.default = InfoWindow;
+},{}],"lib/Map.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var initMapTest = /*#__PURE__*/function () {
+  function initMapTest() {
+    _classCallCheck(this, initMapTest);
+
+    this.markers = [];
+    this.options = {
+      zoom: 4,
+      center: {
+        lat: 38.248175,
+        lng: -94.147841
+      }
+    };
+    var mapContainer = document.getElementById("map");
+    this.map = new google.maps.Map(mapContainer, this.options);
+  }
+
+  _createClass(initMapTest, [{
+    key: "addMarker",
+    value: function addMarker(props, cb) {
+      var marker = new google.maps.Marker({
+        position: props,
+        state: props.name,
+        map: this.map
+      }); //    Create Info Window
+
+      var info = new google.maps.InfoWindow({
+        content: cb(marker.state)
+      });
+      marker.addListener("click", function () {
+        info.open(this.map, marker);
+      });
+      this.markers.push(marker);
+    }
+  }]);
+
+  return initMapTest;
+}();
+
+exports.default = initMapTest;
+},{}],"lib/CreateMap.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = CreateMap;
+
+var _Map = _interopRequireDefault(require("./Map"));
+
+var _InfoWindow = _interopRequireDefault(require("./InfoWindow"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function CreateMap() {
+  var mainMap = new _Map.default();
+  var InfoWindows = new _InfoWindow.default();
+  var initialMarkers = [{
+    "lat": 41.634915,
+    "lng": -99.885121,
+    "name": "Nebraska"
+  }, {
+    "lat": 42.418086,
+    "lng": -93.589918,
+    "name": "Iowa"
+  }, {
+    "lat": 43.201730,
+    "lng": -75.532868,
+    "name": "NewYork"
+  }, {
+    "lat": 43.994966,
+    "lng": -72.666294,
+    "name": "Vermont"
+  }]; // function initialMap() {
+  // //Pull Marker info from JSON
+  // fetch("../JSONFiles/states.json")
+  //     .then(res => res.json())
+  //     .then(data => {
+  //         data.forEach(state => {
+  //             initialMarkers.push(state);
+  //         })
+  //         setMarkers();
+  //     });
+  // }
+  //Set Markers Function
+
+  var setMarkers = function setMarkers() {
+    initialMarkers.forEach(function (marker) {
+      mainMap.addMarker(marker, function (state) {
+        return InfoWindows.attachButton(marker, marker.name, zoomToState);
+      });
+    });
+  };
+
+  setMarkers(); // Marker info for individual lakes
+
+  var stateMarkers = {
+    Iowa: [],
+    Nebraska: [],
+    NewYork: [],
+    Tennessee: [],
+    Vermont: []
+  };
+  var lakes = [];
+
+  function zoomToState(marker) {
+    // remove old marker,
+    // place new markers
+    stateMarkers[marker.name].forEach(function (newMarker) {
+      mainMap.addMarker(newMarker, function (state) {
+        return InfoWindows.attachButton(newMarker, newMarker.name, goToLake);
+      });
+    }); // zoom & center
+
+    mainMap.map.setZoom(7);
+    mainMap.map.setCenter(marker);
+  }
+}
+},{"./Map":"lib/Map.js","./InfoWindow":"lib/InfoWindow.js"}],"components/controllers/Home.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
 var _News = _interopRequireDefault(require("../../lib/News"));
 
 var _HomeListeners = _interopRequireDefault(require("../../lib/HomeListeners"));
 
+var _InfoWindow = _interopRequireDefault(require("../../lib/InfoWindow"));
+
+var _CreateMap = _interopRequireDefault(require("../../lib/CreateMap"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import CreateMap from "../../lib/CreateMap";
 var _default = function _default(st) {
   // NewsFeed();
   (0, _HomeListeners.default)();
-  _Map.default;
-  _InfoWindow.default;
   setTimeout(function () {
-    var mainMap = new _Map.default();
-    var InfoWindows = new _InfoWindow.default();
-    var initialMarkers = [{
-      "lat": 41.634915,
-      "lng": -99.885121,
-      "name": "Nebraska"
-    }, {
-      "lat": 42.418086,
-      "lng": -93.589918,
-      "name": "Iowa"
-    }, {
-      "lat": 43.201730,
-      "lng": -75.532868,
-      "name": "NewYork"
-    }, {
-      "lat": 43.994966,
-      "lng": -72.666294,
-      "name": "Vermont"
-    }]; // //Pull Marker info from JSON
-    // fetch("../JSONFiles/states.json")
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         data.forEach(state => {
-    //             initialMarkers.push(state);
-    //         })
-    //         setMarkers();
-    //     });
-    //Set Markers Function
-
-    var setMarkers = function setMarkers() {
-      initialMarkers.forEach(function (marker) {
-        mainMap.addMarker(marker, function (state) {
-          return InfoWindows.attachButton(marker, marker.name, zoomToState);
-        });
-      });
-    };
-
-    setMarkers(); // Marker info for individual lakes
-
-    var stateMarkers = {
-      Iowa: [],
-      Nebraska: [],
-      NewYork: [],
-      Tennessee: [],
-      Vermont: []
-    };
-    var lakes = [];
-
-    function zoomToState(marker) {
-      console.log(mainMap.map); // remove old marker,
-      // place new markers
-
-      stateMarkers[marker.name].forEach(function (newMarker) {
-        mainMap.addMarker(newMarker, function (state) {
-          return InfoWindows.attachButton(newMarker, newMarker.name, goToLake);
-        });
-      }); // zoom & center
-
-      mainMap.map.setZoom(7);
-      mainMap.map.setCenter(marker);
-    }
+    (0, _CreateMap.default)();
   }, 500);
 };
 
 exports.default = _default;
-},{"../../lib/Map":"lib/Map.js","../../lib/InfoWindow":"lib/InfoWindow.js","../../lib/News":"lib/News.js","../../lib/HomeListeners":"lib/HomeListeners.js"}],"components/controllers/Lake.js":[function(require,module,exports) {
+},{"../../lib/News":"lib/News.js","../../lib/HomeListeners":"lib/HomeListeners.js","../../lib/InfoWindow":"lib/InfoWindow.js","../../lib/CreateMap":"lib/CreateMap.js"}],"components/controllers/Lake.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -807,7 +858,7 @@ var techniques = {
     winter: "Bluegill will migrate to deeper waters as the vegetation in shallower areas dies off.  Finding remaining plant life around points, bends, and flats near drop-offs will lead to greater numbers of fish.  Focus on the deeper end of the depth range during ice-over conditions.  Use ice jigs tipped with wax worms or other larvae and try either traditional jigging or placing it under a bobber.  Target the areas just above or outside of the weed beds.  When not finding sufficient action, try different combinations of colors and larvae, along with changing locations, until desired result is achieved.  Keeping the larvae fresh may also lead to greater success.",
     spring: "Protected inlets or coves that contain warm/shallow water and suitable spawning habitats will become the primary areas to focus on.  Stick to shorelines where emerging weeds provide suitable hunting grounds, cover from sunlight, and protection from predators.  Bluegill are schooling fish, so in the event that activity is minimal, move to other areas that may consist of similar conditions.  Larger fish may congregate near areas with easy access to deeper water.  Small spinners, micro crank baits and hair jigs tipped with night crawler pieces are good options in addition to the larvae tipped ice jigs.  Small minnows could also lead to larger fish.  Slow retrieval is often the most effective approach.  If fly fishing is the preferred method, poppers and nymphs may also lead to success.",
     summer: "While bluegill will begin to occupy the deeper waters of main lake body along with coves/bays, they will remain generally positioned along the shoreline and around available cover.  Locating weed lines and pockets of weed beds in these deeper water areas will become paramount.  Points, ledges, as well as flat areas adjacent to drop-offs that provide weed covered structure should be targeted.  Small spinners and curly-tailed/shad body tipped hair jigs may be productive options.  In addition, slip-bobber rigs tipped with worms, leeches, crickets, grasshoppers or small jigs can also prove effective.  Using the small spinners baited with small worms or leeches to troll or drift over and along points, ledges of drop-offs, and weed lines can help to locate larger concentrations of fish.  Vertical jigging, casting lures, and slip-bobber rigs are more effective approaches once these populations of fish have been found.  During low-light conditions, the disturbance of the water's surface created by poppers can lead to an increase in strikes.",
-    fall: "Areas that continue to provide healthy weed populations are a good place to start.  Fish may congregate inside bends or around points containing shoreline structure with sharp sloping floors.  Micro crank baits, small spinners, and small jigs may produce bites.  A slower retrieve is recommended.  Additionally, minnows, wax worms, meal worms or jigs placed under a bobber rigs can prove to be rewarding techniques."
+    fall: "Areas that continue to provide healthy weed populations are a good place to start.  Fish may congregate inside bends or around points containing shoreline structure with sharp sloping floors.  Micro crank baits, small spinners, and small jigs may produce bites.  A slower retrieve is recommended.  Additionally, minnows, wax worms, meal worms or jigs placed under bobber rigs can prove to be rewarding techniques."
   },
   crappie: {
     winter: "Finding any healthy green vegetation or changes in the profile of the lake floor are key targets. Deep flats at the bases of drop-offs or withing steep inside bends, along with edges of deep points are good places to start.  Jigging spoons and ice jigs baited with a small minnow or wax worms are effective options.  Finicky as they may be, crappie can be found suspended almost anywhere in the water column depending on light conditions, water clarity and/or their mood.  Use of electronics to determine bottom composition and locate areas of healthy weeds may assist in finding these fish.",
@@ -878,12 +929,16 @@ function getTips() {
   var tipsImages = [bluegill];
   document.querySelector("#tipsForm").addEventListener("submit", function (event) {
     event.preventDefault();
+    console.log(tipsImages);
     var choice1 = _TipsObject.default[species.value];
-    par.textContent = choice1[seasons.value]; // tipsImages.forEach(el => {
+    par.textContent = choice1[seasons.value];
+    console.log(species.value);
+    background.style.backgroundImage = "url(\"".concat(species.value, "\")"); // tipsImages.forEach(el => {
+    //     console.log(el);
     //     if (species.value === el) {
-    //         background.style.background-image = `url("${el}")`;
+    //         background.style.backgroundImage = `url("${el}")`;
     //     }
-    // })
+    // });
   });
 }
 },{"./TipsObject.js":"lib/TipsObject.js"}],"components/controllers/Tips.js":[function(require,module,exports) {
@@ -20225,7 +20280,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51392" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49656" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

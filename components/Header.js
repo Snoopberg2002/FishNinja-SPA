@@ -63,7 +63,7 @@ export default () => `
     <template class="postsTemplate">
         <div class="postsModal">
             <section class="postsContent">
-                <form class="postsForm" action="#" method="POST">
+                <form class="postsForm" action="https://formspree.io/xbjzoonz" method="POST">
                     <h2 id="createPostHead">CreatePost</h2>
                     <label for="createPostHead" class="postLogin">Must be <a href="/Register" data-navigo class="login" id="postLogin">Logged In </a>to post.</label>
                     <br>
