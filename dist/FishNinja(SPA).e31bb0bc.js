@@ -536,7 +536,2308 @@ function modalListeners() {
     (0, _ToggleModal.default)(loginModal);
   });
 }
-},{"./ToggleModal":"lib/ToggleModal.js"}],"node_modules/base64-js/index.js":[function(require,module,exports) {
+},{"./ToggleModal":"lib/ToggleModal.js"}],"lib/Post.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createPost = createPost;
+exports.posts = exports.Post = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Post = function Post(lake, img, comment) {
+  _classCallCheck(this, Post);
+
+  this.lake = lake, this.img = img, this.comment = comment;
+};
+
+exports.Post = Post;
+var posts = [];
+exports.posts = posts;
+
+function createPost() {
+  var lake = document.querySelector("#postLake").value;
+  var img = document.querySelector("#addImage").value;
+  var comment = document.querySelector("#addComment").value;
+  var newPost = new Post(lake, img, comment);
+  posts.unshift(newPost);
+  var post = new Post(lake, img, comment);
+  posts.unshift(post);
+  console.log(posts);
+}
+},{}],"lib/HomeListeners.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = HomeListeners;
+
+var _ModalListeners = _interopRequireDefault(require("./ModalListeners"));
+
+var _Router = _interopRequireDefault(require("./Router"));
+
+var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
+
+var _Post = require("./Post");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function HomeListeners() {
+  var postsBtn = document.querySelector("#post");
+  var postsModal = document.querySelector(".postsTemplate").innerHTML;
+  var postLoginBtn = document.querySelector("#postLogin"); //Search Button
+
+  document.querySelector("#search").addEventListener("click", function (e) {
+    e.preventDefault();
+
+    _Router.default.navigate("/Lake");
+  }); //Posts Modal Content
+
+  document.querySelector("#post").addEventListener("click", function (event) {
+    event.preventDefault();
+    (0, _ToggleModal.default)(postsModal);
+    document.querySelector(".postsForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      console.log(_Post.posts);
+      (0, _Post.createPost)();
+      document.querySelector(".modalBg").classList.remove("bg-active");
+    }); // postLoginBtn.addEventListener("click", (event) => {
+    //     event.preventDefault();
+    //     toggleModal(loginModal);
+    // });
+  });
+}
+},{"./ModalListeners":"lib/ModalListeners.js","./Router":"lib/Router.js","./ToggleModal":"lib/ToggleModal.js","./Post":"lib/Post.js"}],"lib/InfoWindow.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var InfoWindow = /*#__PURE__*/function () {
+  function InfoWindow() {
+    _classCallCheck(this, InfoWindow);
+  }
+
+  _createClass(InfoWindow, [{
+    key: "attachButton",
+    value: function attachButton(passInObj, name, cb) {
+      var button = document.createElement("button");
+      button.innerText = name;
+      button.addEventListener("click", function () {
+        cb(passInObj);
+      });
+      return button;
+    }
+  }]);
+
+  return InfoWindow;
+}();
+
+exports.default = InfoWindow;
+},{}],"lib/Map.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var initMapTest = /*#__PURE__*/function () {
+  function initMapTest() {
+    _classCallCheck(this, initMapTest);
+
+    this.markers = [];
+    this.options = {
+      zoom: 4,
+      center: {
+        lat: 38.248175,
+        lng: -94.147841
+      }
+    };
+    var mapContainer = document.getElementById("map");
+    this.map = new google.maps.Map(mapContainer, this.options);
+  }
+
+  _createClass(initMapTest, [{
+    key: "addMarker",
+    value: function addMarker(props, cb) {
+      var marker = new google.maps.Marker({
+        position: props,
+        state: props.name,
+        map: this.map
+      }); //    Create Info Window
+
+      var info = new google.maps.InfoWindow({
+        content: cb(marker.state)
+      });
+      marker.addListener("click", function () {
+        info.open(this.map, marker);
+      });
+      this.markers.push(marker);
+    }
+  }]);
+
+  return initMapTest;
+}();
+
+exports.default = initMapTest;
+},{}],"node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
+'use strict';
+
+module.exports = function bind(fn, thisArg) {
+  return function wrap() {
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+    return fn.apply(thisArg, args);
+  };
+};
+
+},{}],"node_modules/axios/lib/utils.js":[function(require,module,exports) {
+'use strict';
+
+var bind = require('./helpers/bind');
+
+/*global toString:true*/
+
+// utils is a library of generic helper functions non-specific to axios
+
+var toString = Object.prototype.toString;
+
+/**
+ * Determine if a value is an Array
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Array, otherwise false
+ */
+function isArray(val) {
+  return toString.call(val) === '[object Array]';
+}
+
+/**
+ * Determine if a value is undefined
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if the value is undefined, otherwise false
+ */
+function isUndefined(val) {
+  return typeof val === 'undefined';
+}
+
+/**
+ * Determine if a value is a Buffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Buffer, otherwise false
+ */
+function isBuffer(val) {
+  return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor)
+    && typeof val.constructor.isBuffer === 'function' && val.constructor.isBuffer(val);
+}
+
+/**
+ * Determine if a value is an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+ */
+function isArrayBuffer(val) {
+  return toString.call(val) === '[object ArrayBuffer]';
+}
+
+/**
+ * Determine if a value is a FormData
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an FormData, otherwise false
+ */
+function isFormData(val) {
+  return (typeof FormData !== 'undefined') && (val instanceof FormData);
+}
+
+/**
+ * Determine if a value is a view on an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+ */
+function isArrayBufferView(val) {
+  var result;
+  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+    result = ArrayBuffer.isView(val);
+  } else {
+    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
+  }
+  return result;
+}
+
+/**
+ * Determine if a value is a String
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a String, otherwise false
+ */
+function isString(val) {
+  return typeof val === 'string';
+}
+
+/**
+ * Determine if a value is a Number
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Number, otherwise false
+ */
+function isNumber(val) {
+  return typeof val === 'number';
+}
+
+/**
+ * Determine if a value is an Object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Object, otherwise false
+ */
+function isObject(val) {
+  return val !== null && typeof val === 'object';
+}
+
+/**
+ * Determine if a value is a Date
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Date, otherwise false
+ */
+function isDate(val) {
+  return toString.call(val) === '[object Date]';
+}
+
+/**
+ * Determine if a value is a File
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a File, otherwise false
+ */
+function isFile(val) {
+  return toString.call(val) === '[object File]';
+}
+
+/**
+ * Determine if a value is a Blob
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Blob, otherwise false
+ */
+function isBlob(val) {
+  return toString.call(val) === '[object Blob]';
+}
+
+/**
+ * Determine if a value is a Function
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Function, otherwise false
+ */
+function isFunction(val) {
+  return toString.call(val) === '[object Function]';
+}
+
+/**
+ * Determine if a value is a Stream
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Stream, otherwise false
+ */
+function isStream(val) {
+  return isObject(val) && isFunction(val.pipe);
+}
+
+/**
+ * Determine if a value is a URLSearchParams object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+ */
+function isURLSearchParams(val) {
+  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+}
+
+/**
+ * Trim excess whitespace off the beginning and end of a string
+ *
+ * @param {String} str The String to trim
+ * @returns {String} The String freed of excess whitespace
+ */
+function trim(str) {
+  return str.replace(/^\s*/, '').replace(/\s*$/, '');
+}
+
+/**
+ * Determine if we're running in a standard browser environment
+ *
+ * This allows axios to run in a web worker, and react-native.
+ * Both environments support XMLHttpRequest, but not fully standard globals.
+ *
+ * web workers:
+ *  typeof window -> undefined
+ *  typeof document -> undefined
+ *
+ * react-native:
+ *  navigator.product -> 'ReactNative'
+ * nativescript
+ *  navigator.product -> 'NativeScript' or 'NS'
+ */
+function isStandardBrowserEnv() {
+  if (typeof navigator !== 'undefined' && (navigator.product === 'ReactNative' ||
+                                           navigator.product === 'NativeScript' ||
+                                           navigator.product === 'NS')) {
+    return false;
+  }
+  return (
+    typeof window !== 'undefined' &&
+    typeof document !== 'undefined'
+  );
+}
+
+/**
+ * Iterate over an Array or an Object invoking a function for each item.
+ *
+ * If `obj` is an Array callback will be called passing
+ * the value, index, and complete array for each item.
+ *
+ * If 'obj' is an Object callback will be called passing
+ * the value, key, and complete object for each property.
+ *
+ * @param {Object|Array} obj The object to iterate
+ * @param {Function} fn The callback to invoke for each item
+ */
+function forEach(obj, fn) {
+  // Don't bother if no value provided
+  if (obj === null || typeof obj === 'undefined') {
+    return;
+  }
+
+  // Force an array if not already something iterable
+  if (typeof obj !== 'object') {
+    /*eslint no-param-reassign:0*/
+    obj = [obj];
+  }
+
+  if (isArray(obj)) {
+    // Iterate over array values
+    for (var i = 0, l = obj.length; i < l; i++) {
+      fn.call(null, obj[i], i, obj);
+    }
+  } else {
+    // Iterate over object keys
+    for (var key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        fn.call(null, obj[key], key, obj);
+      }
+    }
+  }
+}
+
+/**
+ * Accepts varargs expecting each argument to be an object, then
+ * immutably merges the properties of each object and returns result.
+ *
+ * When multiple objects contain the same key the later object in
+ * the arguments list will take precedence.
+ *
+ * Example:
+ *
+ * ```js
+ * var result = merge({foo: 123}, {foo: 456});
+ * console.log(result.foo); // outputs 456
+ * ```
+ *
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+function merge(/* obj1, obj2, obj3, ... */) {
+  var result = {};
+  function assignValue(val, key) {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
+      result[key] = merge(result[key], val);
+    } else {
+      result[key] = val;
+    }
+  }
+
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
+ * Function equal to merge with the difference being that no reference
+ * to original objects is kept.
+ *
+ * @see merge
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+function deepMerge(/* obj1, obj2, obj3, ... */) {
+  var result = {};
+  function assignValue(val, key) {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
+      result[key] = deepMerge(result[key], val);
+    } else if (typeof val === 'object') {
+      result[key] = deepMerge({}, val);
+    } else {
+      result[key] = val;
+    }
+  }
+
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
+ * Extends object a by mutably adding to it the properties of object b.
+ *
+ * @param {Object} a The object to be extended
+ * @param {Object} b The object to copy properties from
+ * @param {Object} thisArg The object to bind function to
+ * @return {Object} The resulting value of object a
+ */
+function extend(a, b, thisArg) {
+  forEach(b, function assignValue(val, key) {
+    if (thisArg && typeof val === 'function') {
+      a[key] = bind(val, thisArg);
+    } else {
+      a[key] = val;
+    }
+  });
+  return a;
+}
+
+module.exports = {
+  isArray: isArray,
+  isArrayBuffer: isArrayBuffer,
+  isBuffer: isBuffer,
+  isFormData: isFormData,
+  isArrayBufferView: isArrayBufferView,
+  isString: isString,
+  isNumber: isNumber,
+  isObject: isObject,
+  isUndefined: isUndefined,
+  isDate: isDate,
+  isFile: isFile,
+  isBlob: isBlob,
+  isFunction: isFunction,
+  isStream: isStream,
+  isURLSearchParams: isURLSearchParams,
+  isStandardBrowserEnv: isStandardBrowserEnv,
+  forEach: forEach,
+  merge: merge,
+  deepMerge: deepMerge,
+  extend: extend,
+  trim: trim
+};
+
+},{"./helpers/bind":"node_modules/axios/lib/helpers/bind.js"}],"node_modules/axios/lib/helpers/buildURL.js":[function(require,module,exports) {
+'use strict';
+
+var utils = require('./../utils');
+
+function encode(val) {
+  return encodeURIComponent(val).
+    replace(/%40/gi, '@').
+    replace(/%3A/gi, ':').
+    replace(/%24/g, '$').
+    replace(/%2C/gi, ',').
+    replace(/%20/g, '+').
+    replace(/%5B/gi, '[').
+    replace(/%5D/gi, ']');
+}
+
+/**
+ * Build a URL by appending params to the end
+ *
+ * @param {string} url The base of the url (e.g., http://www.google.com)
+ * @param {object} [params] The params to be appended
+ * @returns {string} The formatted url
+ */
+module.exports = function buildURL(url, params, paramsSerializer) {
+  /*eslint no-param-reassign:0*/
+  if (!params) {
+    return url;
+  }
+
+  var serializedParams;
+  if (paramsSerializer) {
+    serializedParams = paramsSerializer(params);
+  } else if (utils.isURLSearchParams(params)) {
+    serializedParams = params.toString();
+  } else {
+    var parts = [];
+
+    utils.forEach(params, function serialize(val, key) {
+      if (val === null || typeof val === 'undefined') {
+        return;
+      }
+
+      if (utils.isArray(val)) {
+        key = key + '[]';
+      } else {
+        val = [val];
+      }
+
+      utils.forEach(val, function parseValue(v) {
+        if (utils.isDate(v)) {
+          v = v.toISOString();
+        } else if (utils.isObject(v)) {
+          v = JSON.stringify(v);
+        }
+        parts.push(encode(key) + '=' + encode(v));
+      });
+    });
+
+    serializedParams = parts.join('&');
+  }
+
+  if (serializedParams) {
+    var hashmarkIndex = url.indexOf('#');
+    if (hashmarkIndex !== -1) {
+      url = url.slice(0, hashmarkIndex);
+    }
+
+    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+  }
+
+  return url;
+};
+
+},{"./../utils":"node_modules/axios/lib/utils.js"}],"node_modules/axios/lib/core/InterceptorManager.js":[function(require,module,exports) {
+'use strict';
+
+var utils = require('./../utils');
+
+function InterceptorManager() {
+  this.handlers = [];
+}
+
+/**
+ * Add a new interceptor to the stack
+ *
+ * @param {Function} fulfilled The function to handle `then` for a `Promise`
+ * @param {Function} rejected The function to handle `reject` for a `Promise`
+ *
+ * @return {Number} An ID used to remove interceptor later
+ */
+InterceptorManager.prototype.use = function use(fulfilled, rejected) {
+  this.handlers.push({
+    fulfilled: fulfilled,
+    rejected: rejected
+  });
+  return this.handlers.length - 1;
+};
+
+/**
+ * Remove an interceptor from the stack
+ *
+ * @param {Number} id The ID that was returned by `use`
+ */
+InterceptorManager.prototype.eject = function eject(id) {
+  if (this.handlers[id]) {
+    this.handlers[id] = null;
+  }
+};
+
+/**
+ * Iterate over all the registered interceptors
+ *
+ * This method is particularly useful for skipping over any
+ * interceptors that may have become `null` calling `eject`.
+ *
+ * @param {Function} fn The function to call for each interceptor
+ */
+InterceptorManager.prototype.forEach = function forEach(fn) {
+  utils.forEach(this.handlers, function forEachHandler(h) {
+    if (h !== null) {
+      fn(h);
+    }
+  });
+};
+
+module.exports = InterceptorManager;
+
+},{"./../utils":"node_modules/axios/lib/utils.js"}],"node_modules/axios/lib/core/transformData.js":[function(require,module,exports) {
+'use strict';
+
+var utils = require('./../utils');
+
+/**
+ * Transform the data for a request or a response
+ *
+ * @param {Object|String} data The data to be transformed
+ * @param {Array} headers The headers for the request or response
+ * @param {Array|Function} fns A single function or Array of functions
+ * @returns {*} The resulting transformed data
+ */
+module.exports = function transformData(data, headers, fns) {
+  /*eslint no-param-reassign:0*/
+  utils.forEach(fns, function transform(fn) {
+    data = fn(data, headers);
+  });
+
+  return data;
+};
+
+},{"./../utils":"node_modules/axios/lib/utils.js"}],"node_modules/axios/lib/cancel/isCancel.js":[function(require,module,exports) {
+'use strict';
+
+module.exports = function isCancel(value) {
+  return !!(value && value.__CANCEL__);
+};
+
+},{}],"node_modules/axios/lib/helpers/normalizeHeaderName.js":[function(require,module,exports) {
+'use strict';
+
+var utils = require('../utils');
+
+module.exports = function normalizeHeaderName(headers, normalizedName) {
+  utils.forEach(headers, function processHeader(value, name) {
+    if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
+      headers[normalizedName] = value;
+      delete headers[name];
+    }
+  });
+};
+
+},{"../utils":"node_modules/axios/lib/utils.js"}],"node_modules/axios/lib/core/enhanceError.js":[function(require,module,exports) {
+'use strict';
+
+/**
+ * Update an Error with the specified config, error code, and response.
+ *
+ * @param {Error} error The error to update.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The error.
+ */
+module.exports = function enhanceError(error, config, code, request, response) {
+  error.config = config;
+  if (code) {
+    error.code = code;
+  }
+
+  error.request = request;
+  error.response = response;
+  error.isAxiosError = true;
+
+  error.toJSON = function() {
+    return {
+      // Standard
+      message: this.message,
+      name: this.name,
+      // Microsoft
+      description: this.description,
+      number: this.number,
+      // Mozilla
+      fileName: this.fileName,
+      lineNumber: this.lineNumber,
+      columnNumber: this.columnNumber,
+      stack: this.stack,
+      // Axios
+      config: this.config,
+      code: this.code
+    };
+  };
+  return error;
+};
+
+},{}],"node_modules/axios/lib/core/createError.js":[function(require,module,exports) {
+'use strict';
+
+var enhanceError = require('./enhanceError');
+
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The created error.
+ */
+module.exports = function createError(message, config, code, request, response) {
+  var error = new Error(message);
+  return enhanceError(error, config, code, request, response);
+};
+
+},{"./enhanceError":"node_modules/axios/lib/core/enhanceError.js"}],"node_modules/axios/lib/core/settle.js":[function(require,module,exports) {
+'use strict';
+
+var createError = require('./createError');
+
+/**
+ * Resolve or reject a Promise based on response status.
+ *
+ * @param {Function} resolve A function that resolves the promise.
+ * @param {Function} reject A function that rejects the promise.
+ * @param {object} response The response.
+ */
+module.exports = function settle(resolve, reject, response) {
+  var validateStatus = response.config.validateStatus;
+  if (!validateStatus || validateStatus(response.status)) {
+    resolve(response);
+  } else {
+    reject(createError(
+      'Request failed with status code ' + response.status,
+      response.config,
+      null,
+      response.request,
+      response
+    ));
+  }
+};
+
+},{"./createError":"node_modules/axios/lib/core/createError.js"}],"node_modules/axios/lib/helpers/isAbsoluteURL.js":[function(require,module,exports) {
+'use strict';
+
+/**
+ * Determines whether the specified URL is absolute
+ *
+ * @param {string} url The URL to test
+ * @returns {boolean} True if the specified URL is absolute, otherwise false
+ */
+module.exports = function isAbsoluteURL(url) {
+  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+  // by any combination of letters, digits, plus, period, or hyphen.
+  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+};
+
+},{}],"node_modules/axios/lib/helpers/combineURLs.js":[function(require,module,exports) {
+'use strict';
+
+/**
+ * Creates a new URL by combining the specified URLs
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} relativeURL The relative URL
+ * @returns {string} The combined URL
+ */
+module.exports = function combineURLs(baseURL, relativeURL) {
+  return relativeURL
+    ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
+    : baseURL;
+};
+
+},{}],"node_modules/axios/lib/core/buildFullPath.js":[function(require,module,exports) {
+'use strict';
+
+var isAbsoluteURL = require('../helpers/isAbsoluteURL');
+var combineURLs = require('../helpers/combineURLs');
+
+/**
+ * Creates a new URL by combining the baseURL with the requestedURL,
+ * only when the requestedURL is not already an absolute URL.
+ * If the requestURL is absolute, this function returns the requestedURL untouched.
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} requestedURL Absolute or relative URL to combine
+ * @returns {string} The combined full path
+ */
+module.exports = function buildFullPath(baseURL, requestedURL) {
+  if (baseURL && !isAbsoluteURL(requestedURL)) {
+    return combineURLs(baseURL, requestedURL);
+  }
+  return requestedURL;
+};
+
+},{"../helpers/isAbsoluteURL":"node_modules/axios/lib/helpers/isAbsoluteURL.js","../helpers/combineURLs":"node_modules/axios/lib/helpers/combineURLs.js"}],"node_modules/axios/lib/helpers/parseHeaders.js":[function(require,module,exports) {
+'use strict';
+
+var utils = require('./../utils');
+
+// Headers whose duplicates are ignored by node
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+var ignoreDuplicateOf = [
+  'age', 'authorization', 'content-length', 'content-type', 'etag',
+  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
+  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
+  'referer', 'retry-after', 'user-agent'
+];
+
+/**
+ * Parse headers into an object
+ *
+ * ```
+ * Date: Wed, 27 Aug 2014 08:58:49 GMT
+ * Content-Type: application/json
+ * Connection: keep-alive
+ * Transfer-Encoding: chunked
+ * ```
+ *
+ * @param {String} headers Headers needing to be parsed
+ * @returns {Object} Headers parsed into an object
+ */
+module.exports = function parseHeaders(headers) {
+  var parsed = {};
+  var key;
+  var val;
+  var i;
+
+  if (!headers) { return parsed; }
+
+  utils.forEach(headers.split('\n'), function parser(line) {
+    i = line.indexOf(':');
+    key = utils.trim(line.substr(0, i)).toLowerCase();
+    val = utils.trim(line.substr(i + 1));
+
+    if (key) {
+      if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
+        return;
+      }
+      if (key === 'set-cookie') {
+        parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
+      } else {
+        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+      }
+    }
+  });
+
+  return parsed;
+};
+
+},{"./../utils":"node_modules/axios/lib/utils.js"}],"node_modules/axios/lib/helpers/isURLSameOrigin.js":[function(require,module,exports) {
+'use strict';
+
+var utils = require('./../utils');
+
+module.exports = (
+  utils.isStandardBrowserEnv() ?
+
+  // Standard browser envs have full support of the APIs needed to test
+  // whether the request URL is of the same origin as current location.
+    (function standardBrowserEnv() {
+      var msie = /(msie|trident)/i.test(navigator.userAgent);
+      var urlParsingNode = document.createElement('a');
+      var originURL;
+
+      /**
+    * Parse a URL to discover it's components
+    *
+    * @param {String} url The URL to be parsed
+    * @returns {Object}
+    */
+      function resolveURL(url) {
+        var href = url;
+
+        if (msie) {
+        // IE needs attribute set twice to normalize properties
+          urlParsingNode.setAttribute('href', href);
+          href = urlParsingNode.href;
+        }
+
+        urlParsingNode.setAttribute('href', href);
+
+        // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+        return {
+          href: urlParsingNode.href,
+          protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+          host: urlParsingNode.host,
+          search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+          hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+          hostname: urlParsingNode.hostname,
+          port: urlParsingNode.port,
+          pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+            urlParsingNode.pathname :
+            '/' + urlParsingNode.pathname
+        };
+      }
+
+      originURL = resolveURL(window.location.href);
+
+      /**
+    * Determine if a URL shares the same origin as the current location
+    *
+    * @param {String} requestURL The URL to test
+    * @returns {boolean} True if URL shares the same origin, otherwise false
+    */
+      return function isURLSameOrigin(requestURL) {
+        var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+        return (parsed.protocol === originURL.protocol &&
+            parsed.host === originURL.host);
+      };
+    })() :
+
+  // Non standard browser envs (web workers, react-native) lack needed support.
+    (function nonStandardBrowserEnv() {
+      return function isURLSameOrigin() {
+        return true;
+      };
+    })()
+);
+
+},{"./../utils":"node_modules/axios/lib/utils.js"}],"node_modules/axios/lib/helpers/cookies.js":[function(require,module,exports) {
+'use strict';
+
+var utils = require('./../utils');
+
+module.exports = (
+  utils.isStandardBrowserEnv() ?
+
+  // Standard browser envs support document.cookie
+    (function standardBrowserEnv() {
+      return {
+        write: function write(name, value, expires, path, domain, secure) {
+          var cookie = [];
+          cookie.push(name + '=' + encodeURIComponent(value));
+
+          if (utils.isNumber(expires)) {
+            cookie.push('expires=' + new Date(expires).toGMTString());
+          }
+
+          if (utils.isString(path)) {
+            cookie.push('path=' + path);
+          }
+
+          if (utils.isString(domain)) {
+            cookie.push('domain=' + domain);
+          }
+
+          if (secure === true) {
+            cookie.push('secure');
+          }
+
+          document.cookie = cookie.join('; ');
+        },
+
+        read: function read(name) {
+          var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+          return (match ? decodeURIComponent(match[3]) : null);
+        },
+
+        remove: function remove(name) {
+          this.write(name, '', Date.now() - 86400000);
+        }
+      };
+    })() :
+
+  // Non standard browser env (web workers, react-native) lack needed support.
+    (function nonStandardBrowserEnv() {
+      return {
+        write: function write() {},
+        read: function read() { return null; },
+        remove: function remove() {}
+      };
+    })()
+);
+
+},{"./../utils":"node_modules/axios/lib/utils.js"}],"node_modules/axios/lib/adapters/xhr.js":[function(require,module,exports) {
+'use strict';
+
+var utils = require('./../utils');
+var settle = require('./../core/settle');
+var buildURL = require('./../helpers/buildURL');
+var buildFullPath = require('../core/buildFullPath');
+var parseHeaders = require('./../helpers/parseHeaders');
+var isURLSameOrigin = require('./../helpers/isURLSameOrigin');
+var createError = require('../core/createError');
+
+module.exports = function xhrAdapter(config) {
+  return new Promise(function dispatchXhrRequest(resolve, reject) {
+    var requestData = config.data;
+    var requestHeaders = config.headers;
+
+    if (utils.isFormData(requestData)) {
+      delete requestHeaders['Content-Type']; // Let the browser set it
+    }
+
+    var request = new XMLHttpRequest();
+
+    // HTTP basic authentication
+    if (config.auth) {
+      var username = config.auth.username || '';
+      var password = config.auth.password || '';
+      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+    }
+
+    var fullPath = buildFullPath(config.baseURL, config.url);
+    request.open(config.method.toUpperCase(), buildURL(fullPath, config.params, config.paramsSerializer), true);
+
+    // Set the request timeout in MS
+    request.timeout = config.timeout;
+
+    // Listen for ready state
+    request.onreadystatechange = function handleLoad() {
+      if (!request || request.readyState !== 4) {
+        return;
+      }
+
+      // The request errored out and we didn't get a response, this will be
+      // handled by onerror instead
+      // With one exception: request that using file: protocol, most browsers
+      // will return status as 0 even though it's a successful request
+      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+        return;
+      }
+
+      // Prepare the response
+      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+      var response = {
+        data: responseData,
+        status: request.status,
+        statusText: request.statusText,
+        headers: responseHeaders,
+        config: config,
+        request: request
+      };
+
+      settle(resolve, reject, response);
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle browser request cancellation (as opposed to a manual cancellation)
+    request.onabort = function handleAbort() {
+      if (!request) {
+        return;
+      }
+
+      reject(createError('Request aborted', config, 'ECONNABORTED', request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle low level network errors
+    request.onerror = function handleError() {
+      // Real errors are hidden from us by the browser
+      // onerror should only fire if it's a network error
+      reject(createError('Network Error', config, null, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle timeout
+    request.ontimeout = function handleTimeout() {
+      var timeoutErrorMessage = 'timeout of ' + config.timeout + 'ms exceeded';
+      if (config.timeoutErrorMessage) {
+        timeoutErrorMessage = config.timeoutErrorMessage;
+      }
+      reject(createError(timeoutErrorMessage, config, 'ECONNABORTED',
+        request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Add xsrf header
+    // This is only done if running in a standard browser environment.
+    // Specifically not if we're in a web worker, or react-native.
+    if (utils.isStandardBrowserEnv()) {
+      var cookies = require('./../helpers/cookies');
+
+      // Add xsrf header
+      var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ?
+        cookies.read(config.xsrfCookieName) :
+        undefined;
+
+      if (xsrfValue) {
+        requestHeaders[config.xsrfHeaderName] = xsrfValue;
+      }
+    }
+
+    // Add headers to the request
+    if ('setRequestHeader' in request) {
+      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+          // Remove Content-Type if data is undefined
+          delete requestHeaders[key];
+        } else {
+          // Otherwise add header to the request
+          request.setRequestHeader(key, val);
+        }
+      });
+    }
+
+    // Add withCredentials to request if needed
+    if (!utils.isUndefined(config.withCredentials)) {
+      request.withCredentials = !!config.withCredentials;
+    }
+
+    // Add responseType to request if needed
+    if (config.responseType) {
+      try {
+        request.responseType = config.responseType;
+      } catch (e) {
+        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
+        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
+        if (config.responseType !== 'json') {
+          throw e;
+        }
+      }
+    }
+
+    // Handle progress if needed
+    if (typeof config.onDownloadProgress === 'function') {
+      request.addEventListener('progress', config.onDownloadProgress);
+    }
+
+    // Not all browsers support upload events
+    if (typeof config.onUploadProgress === 'function' && request.upload) {
+      request.upload.addEventListener('progress', config.onUploadProgress);
+    }
+
+    if (config.cancelToken) {
+      // Handle cancellation
+      config.cancelToken.promise.then(function onCanceled(cancel) {
+        if (!request) {
+          return;
+        }
+
+        request.abort();
+        reject(cancel);
+        // Clean up request
+        request = null;
+      });
+    }
+
+    if (requestData === undefined) {
+      requestData = null;
+    }
+
+    // Send the request
+    request.send(requestData);
+  });
+};
+
+},{"./../utils":"node_modules/axios/lib/utils.js","./../core/settle":"node_modules/axios/lib/core/settle.js","./../helpers/buildURL":"node_modules/axios/lib/helpers/buildURL.js","../core/buildFullPath":"node_modules/axios/lib/core/buildFullPath.js","./../helpers/parseHeaders":"node_modules/axios/lib/helpers/parseHeaders.js","./../helpers/isURLSameOrigin":"node_modules/axios/lib/helpers/isURLSameOrigin.js","../core/createError":"node_modules/axios/lib/core/createError.js","./../helpers/cookies":"node_modules/axios/lib/helpers/cookies.js"}],"node_modules/process/browser.js":[function(require,module,exports) {
+
+// shim for using process in browser
+var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+  throw new Error('setTimeout has not been defined');
+}
+
+function defaultClearTimeout() {
+  throw new Error('clearTimeout has not been defined');
+}
+
+(function () {
+  try {
+    if (typeof setTimeout === 'function') {
+      cachedSetTimeout = setTimeout;
+    } else {
+      cachedSetTimeout = defaultSetTimout;
+    }
+  } catch (e) {
+    cachedSetTimeout = defaultSetTimout;
+  }
+
+  try {
+    if (typeof clearTimeout === 'function') {
+      cachedClearTimeout = clearTimeout;
+    } else {
+      cachedClearTimeout = defaultClearTimeout;
+    }
+  } catch (e) {
+    cachedClearTimeout = defaultClearTimeout;
+  }
+})();
+
+function runTimeout(fun) {
+  if (cachedSetTimeout === setTimeout) {
+    //normal enviroments in sane situations
+    return setTimeout(fun, 0);
+  } // if setTimeout wasn't available but was latter defined
+
+
+  if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+    cachedSetTimeout = setTimeout;
+    return setTimeout(fun, 0);
+  }
+
+  try {
+    // when when somebody has screwed with setTimeout but no I.E. maddness
+    return cachedSetTimeout(fun, 0);
+  } catch (e) {
+    try {
+      // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+      return cachedSetTimeout.call(null, fun, 0);
+    } catch (e) {
+      // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+      return cachedSetTimeout.call(this, fun, 0);
+    }
+  }
+}
+
+function runClearTimeout(marker) {
+  if (cachedClearTimeout === clearTimeout) {
+    //normal enviroments in sane situations
+    return clearTimeout(marker);
+  } // if clearTimeout wasn't available but was latter defined
+
+
+  if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+    cachedClearTimeout = clearTimeout;
+    return clearTimeout(marker);
+  }
+
+  try {
+    // when when somebody has screwed with setTimeout but no I.E. maddness
+    return cachedClearTimeout(marker);
+  } catch (e) {
+    try {
+      // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+      return cachedClearTimeout.call(null, marker);
+    } catch (e) {
+      // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+      // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+      return cachedClearTimeout.call(this, marker);
+    }
+  }
+}
+
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+  if (!draining || !currentQueue) {
+    return;
+  }
+
+  draining = false;
+
+  if (currentQueue.length) {
+    queue = currentQueue.concat(queue);
+  } else {
+    queueIndex = -1;
+  }
+
+  if (queue.length) {
+    drainQueue();
+  }
+}
+
+function drainQueue() {
+  if (draining) {
+    return;
+  }
+
+  var timeout = runTimeout(cleanUpNextTick);
+  draining = true;
+  var len = queue.length;
+
+  while (len) {
+    currentQueue = queue;
+    queue = [];
+
+    while (++queueIndex < len) {
+      if (currentQueue) {
+        currentQueue[queueIndex].run();
+      }
+    }
+
+    queueIndex = -1;
+    len = queue.length;
+  }
+
+  currentQueue = null;
+  draining = false;
+  runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+  var args = new Array(arguments.length - 1);
+
+  if (arguments.length > 1) {
+    for (var i = 1; i < arguments.length; i++) {
+      args[i - 1] = arguments[i];
+    }
+  }
+
+  queue.push(new Item(fun, args));
+
+  if (queue.length === 1 && !draining) {
+    runTimeout(drainQueue);
+  }
+}; // v8 likes predictible objects
+
+
+function Item(fun, array) {
+  this.fun = fun;
+  this.array = array;
+}
+
+Item.prototype.run = function () {
+  this.fun.apply(null, this.array);
+};
+
+process.title = 'browser';
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) {
+  return [];
+};
+
+process.binding = function (name) {
+  throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () {
+  return '/';
+};
+
+process.chdir = function (dir) {
+  throw new Error('process.chdir is not supported');
+};
+
+process.umask = function () {
+  return 0;
+};
+},{}],"node_modules/axios/lib/defaults.js":[function(require,module,exports) {
+var process = require("process");
+'use strict';
+
+var utils = require('./utils');
+var normalizeHeaderName = require('./helpers/normalizeHeaderName');
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = require('./adapters/xhr');
+  } else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
+    // For node use HTTP adapter
+    adapter = require('./adapters/http');
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Accept');
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+},{"./utils":"node_modules/axios/lib/utils.js","./helpers/normalizeHeaderName":"node_modules/axios/lib/helpers/normalizeHeaderName.js","./adapters/xhr":"node_modules/axios/lib/adapters/xhr.js","./adapters/http":"node_modules/axios/lib/adapters/xhr.js","process":"node_modules/process/browser.js"}],"node_modules/axios/lib/core/dispatchRequest.js":[function(require,module,exports) {
+'use strict';
+
+var utils = require('./../utils');
+var transformData = require('./transformData');
+var isCancel = require('../cancel/isCancel');
+var defaults = require('../defaults');
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+function throwIfCancellationRequested(config) {
+  if (config.cancelToken) {
+    config.cancelToken.throwIfRequested();
+  }
+}
+
+/**
+ * Dispatch a request to the server using the configured adapter.
+ *
+ * @param {object} config The config that is to be used for the request
+ * @returns {Promise} The Promise to be fulfilled
+ */
+module.exports = function dispatchRequest(config) {
+  throwIfCancellationRequested(config);
+
+  // Ensure headers exist
+  config.headers = config.headers || {};
+
+  // Transform request data
+  config.data = transformData(
+    config.data,
+    config.headers,
+    config.transformRequest
+  );
+
+  // Flatten headers
+  config.headers = utils.merge(
+    config.headers.common || {},
+    config.headers[config.method] || {},
+    config.headers
+  );
+
+  utils.forEach(
+    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+    function cleanHeaderConfig(method) {
+      delete config.headers[method];
+    }
+  );
+
+  var adapter = config.adapter || defaults.adapter;
+
+  return adapter(config).then(function onAdapterResolution(response) {
+    throwIfCancellationRequested(config);
+
+    // Transform response data
+    response.data = transformData(
+      response.data,
+      response.headers,
+      config.transformResponse
+    );
+
+    return response;
+  }, function onAdapterRejection(reason) {
+    if (!isCancel(reason)) {
+      throwIfCancellationRequested(config);
+
+      // Transform response data
+      if (reason && reason.response) {
+        reason.response.data = transformData(
+          reason.response.data,
+          reason.response.headers,
+          config.transformResponse
+        );
+      }
+    }
+
+    return Promise.reject(reason);
+  });
+};
+
+},{"./../utils":"node_modules/axios/lib/utils.js","./transformData":"node_modules/axios/lib/core/transformData.js","../cancel/isCancel":"node_modules/axios/lib/cancel/isCancel.js","../defaults":"node_modules/axios/lib/defaults.js"}],"node_modules/axios/lib/core/mergeConfig.js":[function(require,module,exports) {
+'use strict';
+
+var utils = require('../utils');
+
+/**
+ * Config-specific merge-function which creates a new config-object
+ * by merging two configuration objects together.
+ *
+ * @param {Object} config1
+ * @param {Object} config2
+ * @returns {Object} New object resulting from merging config2 to config1
+ */
+module.exports = function mergeConfig(config1, config2) {
+  // eslint-disable-next-line no-param-reassign
+  config2 = config2 || {};
+  var config = {};
+
+  var valueFromConfig2Keys = ['url', 'method', 'params', 'data'];
+  var mergeDeepPropertiesKeys = ['headers', 'auth', 'proxy'];
+  var defaultToConfig2Keys = [
+    'baseURL', 'url', 'transformRequest', 'transformResponse', 'paramsSerializer',
+    'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
+    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress',
+    'maxContentLength', 'validateStatus', 'maxRedirects', 'httpAgent',
+    'httpsAgent', 'cancelToken', 'socketPath'
+  ];
+
+  utils.forEach(valueFromConfig2Keys, function valueFromConfig2(prop) {
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    }
+  });
+
+  utils.forEach(mergeDeepPropertiesKeys, function mergeDeepProperties(prop) {
+    if (utils.isObject(config2[prop])) {
+      config[prop] = utils.deepMerge(config1[prop], config2[prop]);
+    } else if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (utils.isObject(config1[prop])) {
+      config[prop] = utils.deepMerge(config1[prop]);
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
+
+  utils.forEach(defaultToConfig2Keys, function defaultToConfig2(prop) {
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
+
+  var axiosKeys = valueFromConfig2Keys
+    .concat(mergeDeepPropertiesKeys)
+    .concat(defaultToConfig2Keys);
+
+  var otherKeys = Object
+    .keys(config2)
+    .filter(function filterAxiosKeys(key) {
+      return axiosKeys.indexOf(key) === -1;
+    });
+
+  utils.forEach(otherKeys, function otherKeysDefaultToConfig2(prop) {
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
+
+  return config;
+};
+
+},{"../utils":"node_modules/axios/lib/utils.js"}],"node_modules/axios/lib/core/Axios.js":[function(require,module,exports) {
+'use strict';
+
+var utils = require('./../utils');
+var buildURL = require('../helpers/buildURL');
+var InterceptorManager = require('./InterceptorManager');
+var dispatchRequest = require('./dispatchRequest');
+var mergeConfig = require('./mergeConfig');
+
+/**
+ * Create a new instance of Axios
+ *
+ * @param {Object} instanceConfig The default config for the instance
+ */
+function Axios(instanceConfig) {
+  this.defaults = instanceConfig;
+  this.interceptors = {
+    request: new InterceptorManager(),
+    response: new InterceptorManager()
+  };
+}
+
+/**
+ * Dispatch a request
+ *
+ * @param {Object} config The config specific for this request (merged with this.defaults)
+ */
+Axios.prototype.request = function request(config) {
+  /*eslint no-param-reassign:0*/
+  // Allow for axios('example/url'[, config]) a la fetch API
+  if (typeof config === 'string') {
+    config = arguments[1] || {};
+    config.url = arguments[0];
+  } else {
+    config = config || {};
+  }
+
+  config = mergeConfig(this.defaults, config);
+
+  // Set config.method
+  if (config.method) {
+    config.method = config.method.toLowerCase();
+  } else if (this.defaults.method) {
+    config.method = this.defaults.method.toLowerCase();
+  } else {
+    config.method = 'get';
+  }
+
+  // Hook up interceptors middleware
+  var chain = [dispatchRequest, undefined];
+  var promise = Promise.resolve(config);
+
+  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+    chain.unshift(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+    chain.push(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  while (chain.length) {
+    promise = promise.then(chain.shift(), chain.shift());
+  }
+
+  return promise;
+};
+
+Axios.prototype.getUri = function getUri(config) {
+  config = mergeConfig(this.defaults, config);
+  return buildURL(config.url, config.params, config.paramsSerializer).replace(/^\?/, '');
+};
+
+// Provide aliases for supported request methods
+utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, config) {
+    return this.request(utils.merge(config || {}, {
+      method: method,
+      url: url
+    }));
+  };
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, data, config) {
+    return this.request(utils.merge(config || {}, {
+      method: method,
+      url: url,
+      data: data
+    }));
+  };
+});
+
+module.exports = Axios;
+
+},{"./../utils":"node_modules/axios/lib/utils.js","../helpers/buildURL":"node_modules/axios/lib/helpers/buildURL.js","./InterceptorManager":"node_modules/axios/lib/core/InterceptorManager.js","./dispatchRequest":"node_modules/axios/lib/core/dispatchRequest.js","./mergeConfig":"node_modules/axios/lib/core/mergeConfig.js"}],"node_modules/axios/lib/cancel/Cancel.js":[function(require,module,exports) {
+'use strict';
+
+/**
+ * A `Cancel` is an object that is thrown when an operation is canceled.
+ *
+ * @class
+ * @param {string=} message The message.
+ */
+function Cancel(message) {
+  this.message = message;
+}
+
+Cancel.prototype.toString = function toString() {
+  return 'Cancel' + (this.message ? ': ' + this.message : '');
+};
+
+Cancel.prototype.__CANCEL__ = true;
+
+module.exports = Cancel;
+
+},{}],"node_modules/axios/lib/cancel/CancelToken.js":[function(require,module,exports) {
+'use strict';
+
+var Cancel = require('./Cancel');
+
+/**
+ * A `CancelToken` is an object that can be used to request cancellation of an operation.
+ *
+ * @class
+ * @param {Function} executor The executor function.
+ */
+function CancelToken(executor) {
+  if (typeof executor !== 'function') {
+    throw new TypeError('executor must be a function.');
+  }
+
+  var resolvePromise;
+  this.promise = new Promise(function promiseExecutor(resolve) {
+    resolvePromise = resolve;
+  });
+
+  var token = this;
+  executor(function cancel(message) {
+    if (token.reason) {
+      // Cancellation has already been requested
+      return;
+    }
+
+    token.reason = new Cancel(message);
+    resolvePromise(token.reason);
+  });
+}
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+CancelToken.prototype.throwIfRequested = function throwIfRequested() {
+  if (this.reason) {
+    throw this.reason;
+  }
+};
+
+/**
+ * Returns an object that contains a new `CancelToken` and a function that, when called,
+ * cancels the `CancelToken`.
+ */
+CancelToken.source = function source() {
+  var cancel;
+  var token = new CancelToken(function executor(c) {
+    cancel = c;
+  });
+  return {
+    token: token,
+    cancel: cancel
+  };
+};
+
+module.exports = CancelToken;
+
+},{"./Cancel":"node_modules/axios/lib/cancel/Cancel.js"}],"node_modules/axios/lib/helpers/spread.js":[function(require,module,exports) {
+'use strict';
+
+/**
+ * Syntactic sugar for invoking a function and expanding an array for arguments.
+ *
+ * Common use case would be to use `Function.prototype.apply`.
+ *
+ *  ```js
+ *  function f(x, y, z) {}
+ *  var args = [1, 2, 3];
+ *  f.apply(null, args);
+ *  ```
+ *
+ * With `spread` this example can be re-written.
+ *
+ *  ```js
+ *  spread(function(x, y, z) {})([1, 2, 3]);
+ *  ```
+ *
+ * @param {Function} callback
+ * @returns {Function}
+ */
+module.exports = function spread(callback) {
+  return function wrap(arr) {
+    return callback.apply(null, arr);
+  };
+};
+
+},{}],"node_modules/axios/lib/axios.js":[function(require,module,exports) {
+'use strict';
+
+var utils = require('./utils');
+var bind = require('./helpers/bind');
+var Axios = require('./core/Axios');
+var mergeConfig = require('./core/mergeConfig');
+var defaults = require('./defaults');
+
+/**
+ * Create an instance of Axios
+ *
+ * @param {Object} defaultConfig The default config for the instance
+ * @return {Axios} A new instance of Axios
+ */
+function createInstance(defaultConfig) {
+  var context = new Axios(defaultConfig);
+  var instance = bind(Axios.prototype.request, context);
+
+  // Copy axios.prototype to instance
+  utils.extend(instance, Axios.prototype, context);
+
+  // Copy context to instance
+  utils.extend(instance, context);
+
+  return instance;
+}
+
+// Create the default instance to be exported
+var axios = createInstance(defaults);
+
+// Expose Axios class to allow class inheritance
+axios.Axios = Axios;
+
+// Factory for creating new instances
+axios.create = function create(instanceConfig) {
+  return createInstance(mergeConfig(axios.defaults, instanceConfig));
+};
+
+// Expose Cancel & CancelToken
+axios.Cancel = require('./cancel/Cancel');
+axios.CancelToken = require('./cancel/CancelToken');
+axios.isCancel = require('./cancel/isCancel');
+
+// Expose all/spread
+axios.all = function all(promises) {
+  return Promise.all(promises);
+};
+axios.spread = require('./helpers/spread');
+
+module.exports = axios;
+
+// Allow use of default import syntax in TypeScript
+module.exports.default = axios;
+
+},{"./utils":"node_modules/axios/lib/utils.js","./helpers/bind":"node_modules/axios/lib/helpers/bind.js","./core/Axios":"node_modules/axios/lib/core/Axios.js","./core/mergeConfig":"node_modules/axios/lib/core/mergeConfig.js","./defaults":"node_modules/axios/lib/defaults.js","./cancel/Cancel":"node_modules/axios/lib/cancel/Cancel.js","./cancel/CancelToken":"node_modules/axios/lib/cancel/CancelToken.js","./cancel/isCancel":"node_modules/axios/lib/cancel/isCancel.js","./helpers/spread":"node_modules/axios/lib/helpers/spread.js"}],"node_modules/axios/index.js":[function(require,module,exports) {
+module.exports = require('./lib/axios');
+},{"./lib/axios":"node_modules/axios/lib/axios.js"}],"lib/CreateMap.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = CreateMap;
+
+var _Map = _interopRequireDefault(require("./Map"));
+
+var _InfoWindow = _interopRequireDefault(require("./InfoWindow"));
+
+var _axios = _interopRequireDefault(require("axios"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function CreateMap() {
+  var mainMap = new _Map.default();
+  var InfoWindows = new _InfoWindow.default();
+  var initialMarkers = [{
+    "lat": 41.634915,
+    "lng": -99.885121,
+    "name": "Nebraska"
+  }, {
+    "lat": 42.418086,
+    "lng": -93.589918,
+    "name": "Iowa"
+  }, {
+    "lat": 43.201730,
+    "lng": -75.532868,
+    "name": "NewYork"
+  }, {
+    "lat": 43.994966,
+    "lng": -72.666294,
+    "name": "Vermont"
+  }];
+
+  _axios.default.get("./JSONFiles/Iowa.json").then(function (response) {
+    console.log(response.data);
+  }); // //Pull Marker info from JSON
+  // fetch("./JSONFiles/states.json")
+  //     .then(res => res.json())
+  //     .then(data => {
+  //         data.forEach(state => {
+  //             initialMarkers.push(state);
+  //         })
+  //         setMarkers();
+  //     });
+  //Set Markers Function
+
+
+  var setMarkers = function setMarkers() {
+    initialMarkers.forEach(function (marker) {
+      mainMap.addMarker(marker, function (state) {
+        return InfoWindows.attachButton(marker, marker.name, zoomToState);
+      });
+    });
+  };
+
+  setMarkers(); // Marker info for individual lakes
+
+  var stateMarkers = {
+    Iowa: [],
+    Nebraska: [],
+    NewYork: [],
+    Tennessee: [],
+    Vermont: []
+  }; // //Get Lake Markers
+  // axios.get("./JSONFiles/Iowa")
+  // .then(response => {
+  //     console.log(response.data);
+  // })
+
+  var lakes = [];
+
+  function zoomToState(marker) {
+    // remove old marker,
+    // place new markers
+    stateMarkers[marker.name].forEach(function (newMarker) {
+      mainMap.addMarker(newMarker, function (state) {
+        return InfoWindows.attachButton(newMarker, newMarker.name, goToLake);
+      });
+    }); // zoom & center
+
+    mainMap.map.setZoom(7);
+    mainMap.map.setCenter(marker);
+  }
+}
+},{"./Map":"lib/Map.js","./InfoWindow":"lib/InfoWindow.js","axios":"node_modules/axios/index.js"}],"components/controllers/Home.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _News = _interopRequireDefault(require("../../lib/News"));
+
+var _HomeListeners = _interopRequireDefault(require("../../lib/HomeListeners"));
+
+var _InfoWindow = _interopRequireDefault(require("../../lib/InfoWindow"));
+
+var _CreateMap = _interopRequireDefault(require("../../lib/CreateMap"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(st) {
+  // NewsFeed();
+  (0, _HomeListeners.default)();
+  setTimeout(function () {
+    (0, _CreateMap.default)();
+  }, 500);
+};
+
+exports.default = _default;
+},{"../../lib/News":"lib/News.js","../../lib/HomeListeners":"lib/HomeListeners.js","../../lib/InfoWindow":"lib/InfoWindow.js","../../lib/CreateMap":"lib/CreateMap.js"}],"components/controllers/Lake.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(st) {};
+
+exports.default = _default;
+},{}],"lib/Register.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Register;
+
+var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Register() {}
+},{"./ToggleModal":"lib/ToggleModal.js"}],"components/controllers/Register.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Register = _interopRequireDefault(require("../../lib/Register"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(st) {
+  (0, _Register.default)();
+};
+
+exports.default = _default;
+},{"../../lib/Register":"lib/Register.js"}],"components/controllers/Search.js":[function(require,module,exports) {
+
+},{}],"lib/TipsObject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var techniques = {
+  bluegill: {
+    winter: "Bluegill will migrate to deeper waters as the vegetation in shallower areas dies off.  Finding remaining plant life around points, bends, and flats near drop-offs will lead to greater numbers of fish.  Focus on the deeper end of the depth range during ice-over conditions.  Use ice jigs tipped with wax worms or other larvae and try either traditional jigging or placing it under a bobber.  Target the areas just above or outside of the weed beds.  When not finding sufficient action, try different combinations of colors and larvae, along with changing locations, until desired result is achieved.  Keeping the larvae fresh may also lead to greater success.",
+    spring: "Protected inlets or coves that contain warm/shallow water and suitable spawning habitats will become the primary areas to focus on.  Stick to shorelines where emerging weeds provide suitable hunting grounds, cover from sunlight, and protection from predators.  Bluegill are schooling fish, so in the event that activity is minimal, move to other areas that may consist of similar conditions.  Larger fish may congregate near areas with easy access to deeper water.  Small spinners, micro crank baits and hair jigs tipped with night crawler pieces are good options in addition to the larvae tipped ice jigs.  Small minnows could also lead to larger fish.  Slow retrieval is often the most effective approach.  If fly fishing is the preferred method, poppers and nymphs may also lead to success.",
+    summer: "While bluegill will begin to occupy the deeper waters of main lake body along with coves/bays, they will remain generally positioned along the shoreline and around available cover.  Locating weed lines and pockets of weed beds in these deeper water areas will become paramount.  Points, ledges, as well as flat areas adjacent to drop-offs that provide weed covered structure should be targeted.  Small spinners and curly-tailed/shad body tipped hair jigs may be productive options.  In addition, slip-bobber rigs tipped with worms, leeches, crickets, grasshoppers or small jigs can also prove effective.  Using the small spinners baited with small worms or leeches to troll or drift over and along points, ledges of drop-offs, and weed lines can help to locate larger concentrations of fish.  Vertical jigging, casting lures, and slip-bobber rigs are more effective approaches once these populations of fish have been found.  During low-light conditions, the disturbance of the water's surface created by poppers can lead to an increase in strikes.",
+    fall: "Areas that continue to provide healthy weed populations are a good place to start.  Fish may congregate inside bends or around points containing shoreline structure with sharp sloping floors.  Micro crank baits, small spinners, and small jigs may produce bites.  A slower retrieve is recommended.  Additionally, minnows, wax worms, meal worms or jigs placed under bobber rigs can prove to be rewarding techniques."
+  },
+  crappie: {
+    winter: "Finding any healthy green vegetation or changes in the profile of the lake floor are key targets. Deep flats at the bases of drop-offs or withing steep inside bends, along with edges of deep points are good places to start.  Jigging spoons and ice jigs baited with a small minnow or wax worms are effective options.  Finicky as they may be, crappie can be found suspended almost anywhere in the water column depending on light conditions, water clarity and/or their mood.  Use of electronics to determine bottom composition and locate areas of healthy weeds may assist in finding these fish.",
+    spring: "Making long casts and remaining as quiet as possible are important practices as crappie are easily spooked.  Locations on the north side of the lake and shallow, dark-bottomed areas often house the most active fish in the early spring since they tend to warm up faster.  Coves, bays or inlets that provide warm shallow water and suitable spawning habitats become target areas.  Points, drop-offs, ledges and inside bends within these areas, or in the lake body just outside of the coves are good places to search.  Additionally, flats along the shoreline containing weeds, fallen trees, or other cover can be good hiding places for the fish.  Jigs tipped with curly tailed grubs, small spinners, jig spinner combos and micro crank baits are effective lures to try.  Also, crappie jigs tipped with a small minnow (with or without a float) may prove to be a rewarding technique.  Try keeping your casts in and around the above areas as crappie are mostly cover oriented.  They are also a schooling fish, so quickly move around if you are not getting bites.",
+    summer: "Deeper water becomes a priority during the summer months.  Search coves, bays and inlets, and suspend around ledges or drop-offs.  Weedy areas along the drop-offs and weedy flats adjacent to them, along with cuts or points in the drop-off itself are prime zones to target.  As they are a schooling fish, use of electronics and changing locations frequently may be important for finding groups of crappie.  If the lake has formed a thermocline, the fish will often suspend at or near its depth.  Trolling these areas with spinner rigs(with or without minnows) and micro crank baits can be effective ways of finding the fish.  Once located, crappie spinner baits, jigs tipped with curly tailed grubs, small spinners, jig spinner combos and micro crank baits are effective lures to try.  Also, crappie jigs tipped with a small minnow (with or without a float) may prove to be a rewarding technique.  Slowly moving along or over the target areas with a trolling motor or drifting while vertically jigging can also be effective.",
+    fall: "As vegetation begins to die off in the shallower areas, crappie will tend to gradually relocate to the deeper areas of of the main lake.  Points, inside turns, flats adjacent to base of drop-offs are good places to start.  The crappie will often concentrate around changes in the bottom structure(hard bottom meets mucky bottom) and deeper weed beds of the main lake areas.  Use of electronics, along with vertically jigging spoons and crappie jigs may help to locate these deep water schools.  Once found, try casting slip-float rigs or jigs baited with minnows."
+  },
+  perch: {
+    earlyWinter: "Perch may be found in the shallower flats that still contain some green healthy vegetation during the light ice periods.  Use of electronics while moving frequently and drilling multiple holes may help to locate fish, as perch are a schooling species.  Fish hooks or ice jigs tipped with a small minnow, minnow head, perch eye, or variety of maggots worked aggressively near the lake bottom may help to attract the fish.  Once drawn in, switch to a more subtle presentation.",
+    winter: "Perch tend to congregate near changes in the bottom composition, so focusing on the bases of drop-offs and their adjacent mid-depth to deep flats may prove effective.  Use of electronics while moving frequently and drilling multiple holes may help to locate fish, as perch are a schooling species.  Fish hooks or ice jigs tipped with a small minnow, minnow head, perch eye, or variety of maggots worked aggressively near the lake bottom may help to attract the fish.  Once drawn in, switch to a more subtle presentation.",
+    earlySpring: "Perch will move back into the shallower flats during the light ice periods.  Use of electronics while moving frequently and drilling multiple holes may help to locate fish, as perch are a schooling species.  Fish hooks or ice jigs tipped with a small minnow, minnow head, perch eye, or variety of maggots worked aggressively near the lake bottom may help to attract the fish.  Once drawn in, switch to a more subtle presentation.",
+    spring: "Shallow areas of coves, bays and inlets provide prime spawning habitats for perch.  Shoreline flats containing a good combination of weed/rock cover in these areas should be targeted.  When schooling, the perch tend to do so in groups of similar sized fish.  Try moving to around to find the larger fish if you are catching a lot of smaller ones.  Perch do have excellent vision and are spooked easily, especially in shallow water.  Long casts while remaining as quiet as possible are extremely important.  Slowly trolling or drifting may help to find the fish.  Once they are located, however, casting is the more effective method.  Perch tend to spend their time near the bottom, so start there.  Try micro crank baits, hairpin spinners, and in-line spinners.  Float rigs, spinner rigs, and small jigs tipped with minnows, curly tailed grubs, night crawlers or maggots can also be effective.",
+    summer: "Perch will migrate to deeper waters in the summer months.  Areas to target include points and pockets in the weed line, as well as the weedy flats near drop-offs.  The fish often will be found near the base of the weeds in these areas.  When there is a thermocline present in the lake, the larger perch will usually be attracted to where it meets any structure near the lake bottom.  Perch tend to spend their time near the bottom, so start there.  Try micro crank baits, hairpin spinners, and in-line spinners.  Float rigs, spinner rigs, and small jigs tipped with minnows, curly tailed grubs, night crawlers or maggots can also be effective.  Long casts while remaining as quiet as possible are extremely important.  Slowly trolling or drifting may help to find the fish.  Once they are located, however, casting is the more effective method.",
+    fall: "Perch will feed aggressively during the fall months in order to prepare for winter.  This time of year they will begin their migration into the shallower flats containing ample rock/weed cover.  Try slowly trolling or drifting over these areas may help in finding the fish.  Once they are located, however, casting is the more effective method.  Perch tend to spend their time near the bottom, so start there.  Try micro crank baits, hairpin spinners, and in-line spinners.  Float rigs, spinner rigs, and small jigs tipped with minnows, curly tailed grubs, night crawlers or maggots can also be effective."
+  },
+  smb: {
+    spring: "Spring time will lead to the smallmouth bass being found in shallower areas.  Search the bays, coves and areas of the main lake just outside of them; targeting the inside turns, ledges and points in and around the break line.  These fish tend to be startled easily making slow trolling or drifting with long casts an effective approach.  Jerk baits, spinner baits, in-line spinners, or jigs tipped with minnows or curly tail grubs can be effective.  Try hard-bottomed areas containing gravel or boulders as the smallmouth do tend to stick to the rocky cover.",
+    summer: "Summer leads to a migration to deeper waters for smallmouth bass, still maintaining their concentration around rocky hard-bottomed areas.  Target the ledges, points and inside bends around these areas containing gravel or boulders with scattered vegetation.  Jig-n-pigs, jigs with curly tailed grubs, tube baits, jerk baits, crank baits, and smaller Texas-rigged worms are all good approaches for artificial lures.  If live bait is preferred, try slip-bobber or slip-sinker rigs with minnows, night-crawlers, leeches or crayfish.  Try jerk baits, spinners or top water lures over rocky areas in low light conditions to attract attention.",
+    fall: "Deeper water will remain the place to find the majority of smallmouth in the fall.  Areas of the lake around the base of drop-offs with changing bottom composition(rocky to soft) and steep slopes should be points of emphasis.  Deep diving crank baits, drop-shot rigs with soft plastics, jigging spoons and larger jigs tipped with curly tailed grubs or shad type plastics and tube baits are all good methods.  If you seem to have found a concentration of fish, try a vertical jigging approach with either traditional jigs or jigging spoons while trolling or drifting to cover the target area."
+  },
+  lmb: {
+    earlyWinter: "The continued drop in temperature, vegetation die-off and migration of bait fish to deeper water leads to the largemouth moving back out into the main body of the lake.  As the fish prefer to be able to easily move up and down the water column based on weather conditions, channel ledges and points with steep slopes should be the primary areas to target.  Bottom structure, such as, rocks/boulders and timber help to retain heat and attract fish.  Electronics may prove useful in locating these structures.  Carolina-rigged plastics, deep diving crank baits and spinners with a slower retrieve may be effective.  When struggling to find action, dead sticking suspended jerk baits or soft plastics may entice a strike or two.",
+    winter: "The deep cold of winter will find the fish located in the deep areas of the main body of the lake.  Again, the points, inside bends, and bases of drop-offs around steep slopes, as well as deep river channels and the bottom of creeks.  Look for areas that contain bottom structure(rocks, stumps, standing timber, boulders).  This is where the bait fish are most likely to be, and the largemouth will follow.  Smaller lures with a slower retrieve may prove more effective as the fish will tend to be more sluggish during these winter months.  This slow retrieval of suspending jerk baits coupled with long pauses throughout the process can be rewarding.  Other options for slowly working over an area include: drop-shot rigs, spoons, lead head grubs, and jigs.",
+    earlySpring: "The fish will finally start coming out from their wintering areas in search of suitable spawning locations with the warmer temperatures and longer days.  Protected coves with shallow flat provide the shelter they are seeking and should be the primary areas of focus.  The migration does not happen overnight, and along the way, the largemouth may seek cover in rocky or wooded structure along shoreline breaks and river channels.  Shallow hard-bottomed flats at the base of a drop-off can be very active with fish.  More so, even, when there is some sort of cover present.  Good options for covering a lot of water fast include:  crank baits, spinners, and suspending jerk baits.  Boat docks, brush, and wooded structure are great places to try pitching jigs.  The fish will remain a little sluggish still, so a slow to moderate retrieval is preferred.",
+    spring: "Spawning season will lead to largemouth bass seeking shelter in protected coves/inlets.  Creek arms would be another area of focus.  Any type of cover(docks, wooden structure, weeds, underwater brush) that provides the bass with protection should be primary areas of emphasis.  Channels of creeks, along with humps, points or shallow structure in the lakes may also find fish hiding before they begin their migration out of the shallower waters.  Both Carolina and Texas-rigged plastics, may be productive.  Other effective options include:  spinners, shallow to medium diving crank baits, jerk baits and jigging.  A slower presentation is also recommended as these fish will remain lethargic throughout the early spring.  Then, as temperatures begin to rise, a faster presentation may prove more effective.  When not having success with lures, trying live bait(shiners, crayfish) may help entice the fish.",
+    summer: "Search bottom structure(humps, points, channel ledges) in the main body of the lake or in deeper parts of creek arms during the summer months.  Finding submerged timber, brush and weeds that provide cover for the fish will be important.  Deep water weed lines and flat at the base of drop-offs(especially any containing the above underwater structure) may also be productive areas.  Again, the Carolina or Texas-rigged plastics, medium to deep diving crank baits, and jigging are recommended methods.  Top water lures may help get the fishes attention in low-light conditions.",
+    earlyFall: "The largemouth will begin to feed aggressively on bait fish, in preparation for winter, as temperatures begin to drop.  Look for submerged structure/weeds in the shallow flats that have easy access to deeper waters.  Bait fish may also school  around  ledges, shallow shoreline points, and inside bends; and the largemouth will follow.  This also holds true where any creek arms meet the main lake.  Spinners, shallow diving or lipless crank baits, and jerk baits become the lures of choice this time of year.  Larger baits may be more effective now that the bait fish have gotten bigger.  Try casting to the edges of submerged cover or across the flats.",
+    fall: "Finding remaining healthy vegetation, along with any wooden cover/structure becomes important.  Search around points, humps, and channel ledges of the shallower creek arms and coves as the largemouth will begin to follow the bait fish in from the main body of the lake.  The bass that do remain in the main body will be feeding on the bait fish as they move in and out of these shallower areas.  So, focus on point directly adjacent to them.  Top-water, spinners, shallow diving or lipless crank baits, and jerk baits with a faster retrieve/presentation may be productive.  Larger baits may be more effective now that the bait fish have gotten bigger.  Try casting to the edges of submerged cover or across the flats."
+  },
+  walleye: {
+    winter: "Walleye may be found searching the flats around bases and ledges of drop-offs, or may stick to the structure of inside turns and points adjacent to these areas.  Any of these areas still containing healthy vegetation should be the primary focus.  Jigging spoons, or jigs tipped with minnows jigged vertically have proven effective.  Also, slip-bobbers and tip-ups baited with minnows can be effective around submerged structure and weed lines.  The fish will tend to gather around structure in the deeper parts of the main lake body during the heavy ice over period.  During the lighter ice over times, shallower flats and structure may be more productive areas.",
+    spring: "Structure found around points and ledges of the the shallower areas of inlets and shorelines will be the areas to target.  As well as any flats around the drop-offs to deeper waters.  The walleye will spook easily in these shallower waters, so use a slow approach while remaining as quiet as possible.  Changes in bottom composition, rock piles, and emerging weeds will be good places to start.  Try slip-bobbers baited with minnows, jigging with plastics(curly tail, shad), minnow-tipped jigs, and minnow-like crank baits using long casts to keep from scaring the fish off.  Long-line trolling along shallow flats, underwater structure, and submerged weeds with a minnow-tipped slip-sinker rig, live-bait rig, or spinner-rig, along with the above listed lures under a planer board is a good way to cover a large area quickly.",
+    summer: "The walleye will be found in the deeper water of the main lake body or adjacent to inlets during the summer months.  If a thermocline has developed, try to stay at or above it.  Ledges of drop-offs, flats adjacent to them and weed lines or other submerged structure will be primary areas to focus on.  Night-crawlers and leeches will become effective baits.  Try them with slip-bobber rigs or jigs around these areas.  Trolling these or spinner rigs with leeches or night-crawlers, or minnow-like crank baits may help entice the fish in low light conditions.",
+    fall: "Finding the walleye may prove difficult during the fall months as the fish can be found at a variety of depths.  Ledges and bases of drop-offs, the flats surrounding them, inside bends, and sloped points are good places to start.  As the temperatures begin to drop, a slower presentation becomes more effective.  Larger lures and baits(4-6 inches) will also become more important as the bait fish have gotten bigger.  Casting large plastic swim baits, minnow-like crank baits, or minnow tipped rigs over and around weed beds may be effective.  For a vertical presentation, try jigging spoons, slip-bobber or jigs tipped with minnows, or jigging spoons around these weed beds or along ledges and bases of drop-offs.  Slow trolling these baits is a good option for covering a lot of water quickly.  Flats adjacent to drop-offs become prime target areas during low-light conditions.  Try drifting/trolling or fan casting over these areas to cover a large area quickly."
+  },
+  pike: {
+    winter: "As ambush predators, shallow weeds or the inside of weed lines will find the pike patrolling for bait fish this time of year.  Search the drop-offs or flats adjacent to them still containing these weedy structures.  As the weeds in these shallower areas begin to die off, the pike will begin to search out this cover in the deeper areas.  Set your tip-ups with 4-6 inch minnows, suckers, or shiners along the weed lines or just above them.  Jigs or jigging spoons with minnows may also be productive strategies.",
+    spring: "Shallow coves/bays or the main lake body just outside of them become primary target areas.  Search for inside turns, points or flats with developing weeds.  The fish will spook easily in these shallow waters, so try to remain a silent as possible.  Try casting in-line spinners, spinner baits, soft plastics, spoons, or jigs tipped with small to medium sized minnows over and around Rock piles, weedy flats, and clumps of emerging weeds.  A slower presentation is recommended this time of year.  To cover a large area of water quickly, try long-line trolling spoons, or minnow-tipped jigs or slip-sinker rigs along submerged structure or over flats.  Jigs and slip-bobber rigs tipped with minnows are a good option when targeting specific areas.",
+    summer: "During the summer months, the larger pike will move out to the sharply sloped points of deeper, cooler waters while the smaller pike('snakes') will remain in the shallower areas containing weedy cover.  Target the main lake body where these characteristics are present.  If a thermocline has developed, try to stay at or above it while targeting the deeper fish.  The pike may be attracted to larger lures or baits this time of year.  Larger buck tails, spoons, jerk baits, and spinners worked over and along weed lines/beds are effective approaches.  Casting with deep-diving crank baits, weighted swim baits, and minnow-tipped jigs can also be productive.  Trolling these baits is a good way to cover a large area.  A quicker presentation is preferred during these warmer months, and in low-light conditions top-water lures are a good way to attract attention.",
+    fall: "This is the time of year for the largest lures, as the bait fish have gotten bigger.  Target areas still containing healthy weed populations.  Work the flats around drop-offs by positioning over the deeper water surrounding them and casting jerk baits spinners, and buck tails over and around them.  For more sharply sloped terrain or over inside bends, try diving crank baits, or large minnow or curly-tailed tipped jigs.  Trolling these baits is a good way to cover a large area.  In low-light conditions top-water lures are a good way to attract attention."
+  },
+  muskie: {
+    spring: "Shallow coves/bays and the areas of the main lake body just outside of them or around inlets containing developing weeds and points should be targeted.  Muskie will be easily scared off in these shallower waters, so remain a silent as possible while slowly approaching these areas.  Small to medium lures with a slower presentation will be preferred this time of year.  Try minnow or plastic-tipped jigs, spoons, shallow diving crank/swim baits, and jerk baits casting across flats containing emerging weeds, or over and around shallow structure(rock piles, weeds).",
+    summer: "Ledges of drop-offs, weedy flats adjacent to them, rocky/weedy points, and weed lines will be the primary target areas.  Try to stay at or above the thermocline if one has developed on the lake.  This time of year, larger lures with a faster retrieve will be more effective as the bait fish have gotten bigger and the muskie more active.  Try crank baits, jerk baits, spinners, and large buck tails.  Once again, in low-light conditions, top-water lures are a good way to attract attention.  Diving style jerk baits can be especially effective while working around weedy flats due to the ability to drive them down into openings and steer them around clumps.  For heavy weed areas, weedless spoons and spinners are a good way to avoid getting hung up.",
+    fall: "Search out mid-depth flats containing vegetation adjacent to drop-offs, inside bends,  deeper/steeper points in the main body of the lake, and drop-offs.  The sharp inside bends can be worked vertically  with quick-strike rigs baited with large minnows, or jigging large soft plastics.  Cast around structure and clumps of vegetation with crank baits, plastic swim baits, spinner baits, jigs, buck tails, and large weighted jerk baits.  Work the flats around drop-offs by positioning over the deeper water surrounding them and casting jerk baits spinners, and buck tails over and around them."
+  }
+};
+var _default = techniques;
+exports.default = _default;
+},{}],"lib/Tips.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = getTips;
+
+var _TipsObject = _interopRequireDefault(require("./TipsObject.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getTips() {
+  var species = document.getElementById("species");
+  var seasons = document.getElementById("season");
+  var par = document.querySelector("#techniques");
+  var background = document.querySelector(".tipsMain");
+  var bluegill = "https://i.imgur.com/4i6DkKG.jpg";
+  var tipsImages = [bluegill];
+  document.querySelector("#tipsForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    console.log(tipsImages);
+    var choice1 = _TipsObject.default[species.value];
+    par.textContent = choice1[seasons.value];
+    console.log(species.value);
+    background.style.backgroundImage = "url(\"".concat(species.value, "\")"); // tipsImages.forEach(el => {
+    //     console.log(el);
+    //     if (species.value === el) {
+    //         background.style.backgroundImage = `url("${el}")`;
+    //     }
+    // });
+  });
+}
+},{"./TipsObject.js":"lib/TipsObject.js"}],"components/controllers/Tips.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Tips = _interopRequireDefault(require("../../lib/Tips"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(st) {
+  (0, _Tips.default)();
+};
+
+exports.default = _default;
+},{"../../lib/Tips":"lib/Tips.js"}],"components/controllers/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Home", {
+  enumerable: true,
+  get: function () {
+    return _Home.default;
+  }
+});
+Object.defineProperty(exports, "Lake", {
+  enumerable: true,
+  get: function () {
+    return _Lake.default;
+  }
+});
+Object.defineProperty(exports, "Register", {
+  enumerable: true,
+  get: function () {
+    return _Register.default;
+  }
+});
+Object.defineProperty(exports, "Search", {
+  enumerable: true,
+  get: function () {
+    return _Search.default;
+  }
+});
+Object.defineProperty(exports, "Tips", {
+  enumerable: true,
+  get: function () {
+    return _Tips.default;
+  }
+});
+
+var _Home = _interopRequireDefault(require("./Home"));
+
+var _Lake = _interopRequireDefault(require("./Lake"));
+
+var _Register = _interopRequireDefault(require("./Register"));
+
+var _Search = _interopRequireDefault(require("./Search"));
+
+var _Tips = _interopRequireDefault(require("./Tips"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./Home":"components/controllers/Home.js","./Lake":"components/controllers/Lake.js","./Register":"components/controllers/Register.js","./Search":"components/controllers/Search.js","./Tips":"components/controllers/Tips.js"}],"components/Controller.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var Controllers = _interopRequireWildcard(require("./controllers"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var _default = function _default(st) {
+  Controllers[st.controller](st);
+};
+
+exports.default = _default;
+},{"./controllers":"components/controllers/index.js"}],"lib/Render.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.render = render;
+
+var state = _interopRequireWildcard(require("../store"));
+
+var _components = require("../components");
+
+var _Controller = _interopRequireDefault(require("../components/Controller"));
+
+var _ModalListeners = _interopRequireDefault(require("./ModalListeners"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+// import axios from "axios";
+// import auth from "/firebase";
+console.log(auth);
+
+function render() {
+  var st = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : state.Home;
+  document.querySelector("#root").innerHTML = "\n    ".concat((0, _components.Header)(st), "\n    ").concat((0, _components.Main)(st), "\n    ").concat((0, _components.Footer)(), "\n    ");
+  (0, _Controller.default)(st);
+  (0, _ModalListeners.default)(); // // register new user from email and password
+  // auth.createUserWithEmailAndPassword(email, password);
+  // // sign in existing user
+  // auth.signInWithEmailAndPassword(email, password);
+  // // user sign out
+  // auth.signOut(callback);
+  // // listen for change in authorization status
+  // auth.onAuthStateChanged(user => { console.log(user) });
+}
+},{"../store":"store/index.js","../components":"components/index.js","../components/Controller":"components/Controller.js","./ModalListeners":"lib/ModalListeners.js"}],"node_modules/base64-js/index.js":[function(require,module,exports) {
 'use strict'
 
 exports.byteLength = byteLength
@@ -19722,6 +22023,8 @@ router.on({
   },
   ":page": function page(params) {
     var page = (0, _lodash.capitalize)(params.page);
+    console.log(params);
+    console.log(state);
     (0, _Render.render)(state[page]);
   }
 }).resolve();
@@ -19729,551 +22032,11 @@ var _default = {
   router: router
 };
 exports.default = _default;
-},{"navigo":"node_modules/navigo/lib/navigo.min.js","/store":"store/index.js","./Render":"lib/Render.js","lodash":"node_modules/lodash/lodash.js"}],"lib/Post.js":[function(require,module,exports) {
+},{"navigo":"node_modules/navigo/lib/navigo.min.js","/store":"store/index.js","./Render":"lib/Render.js","lodash":"node_modules/lodash/lodash.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.createPost = createPost;
-exports.posts = exports.Post = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Post = function Post(lake, img, comment) {
-  _classCallCheck(this, Post);
-
-  this.lake = lake, this.img = img, this.comment = comment;
-};
-
-exports.Post = Post;
-var posts = [];
-exports.posts = posts;
-
-function createPost() {
-  var lake = document.querySelector("#postLake").value;
-  var img = document.querySelector("#addImage").value;
-  var comment = document.querySelector("#addComment").value;
-  var newPost = new Post(lake, img, comment);
-  posts.unshift(newPost);
-  var post = new Post(lake, img, comment);
-  posts.unshift(post);
-  console.log(posts);
-}
-},{}],"lib/HomeListeners.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = HomeListeners;
-
-var _ModalListeners = _interopRequireDefault(require("./ModalListeners"));
-
-var _Router = _interopRequireDefault(require("./Router"));
-
-var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
-
-var _Post = require("./Post");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function HomeListeners() {
-  var postsBtn = document.querySelector("#post");
-  var postsModal = document.querySelector(".postsTemplate").innerHTML;
-  var postLoginBtn = document.querySelector("#postLogin"); //Search Button
-
-  document.querySelector("#search").addEventListener("click", function (e) {
-    e.preventDefault();
-
-    _Router.default.navigate("/Lake");
-  }); //Posts Modal Content
-
-  document.querySelector("#post").addEventListener("click", function (event) {
-    event.preventDefault();
-    (0, _ToggleModal.default)(postsModal);
-    document.querySelector(".postsForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      console.log(_Post.posts);
-      (0, _Post.createPost)();
-      document.querySelector(".modalBg").classList.remove("bg-active");
-    }); // postLoginBtn.addEventListener("click", (event) => {
-    //     event.preventDefault();
-    //     toggleModal(loginModal);
-    // });
-  });
-}
-},{"./ModalListeners":"lib/ModalListeners.js","./Router":"lib/Router.js","./ToggleModal":"lib/ToggleModal.js","./Post":"lib/Post.js"}],"lib/InfoWindow.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var InfoWindow = /*#__PURE__*/function () {
-  function InfoWindow() {
-    _classCallCheck(this, InfoWindow);
-  }
-
-  _createClass(InfoWindow, [{
-    key: "attachButton",
-    value: function attachButton(passInObj, name, cb) {
-      var button = document.createElement("button");
-      button.innerText = name;
-      button.addEventListener("click", function () {
-        cb(passInObj);
-      });
-      return button;
-    }
-  }]);
-
-  return InfoWindow;
-}();
-
-exports.default = InfoWindow;
-},{}],"lib/Map.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var initMapTest = /*#__PURE__*/function () {
-  function initMapTest() {
-    _classCallCheck(this, initMapTest);
-
-    this.markers = [];
-    this.options = {
-      zoom: 4,
-      center: {
-        lat: 38.248175,
-        lng: -94.147841
-      }
-    };
-    var mapContainer = document.getElementById("map");
-    this.map = new google.maps.Map(mapContainer, this.options);
-  }
-
-  _createClass(initMapTest, [{
-    key: "addMarker",
-    value: function addMarker(props, cb) {
-      var marker = new google.maps.Marker({
-        position: props,
-        state: props.name,
-        map: this.map
-      }); //    Create Info Window
-
-      var info = new google.maps.InfoWindow({
-        content: cb(marker.state)
-      });
-      marker.addListener("click", function () {
-        info.open(this.map, marker);
-      });
-      this.markers.push(marker);
-    }
-  }]);
-
-  return initMapTest;
-}();
-
-exports.default = initMapTest;
-},{}],"lib/CreateMap.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = CreateMap;
-
-var _Map = _interopRequireDefault(require("./Map"));
-
-var _InfoWindow = _interopRequireDefault(require("./InfoWindow"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function CreateMap() {
-  var mainMap = new _Map.default();
-  var InfoWindows = new _InfoWindow.default();
-  var initialMarkers = [{
-    "lat": 41.634915,
-    "lng": -99.885121,
-    "name": "Nebraska"
-  }, {
-    "lat": 42.418086,
-    "lng": -93.589918,
-    "name": "Iowa"
-  }, {
-    "lat": 43.201730,
-    "lng": -75.532868,
-    "name": "NewYork"
-  }, {
-    "lat": 43.994966,
-    "lng": -72.666294,
-    "name": "Vermont"
-  }]; // function initialMap() {
-  // //Pull Marker info from JSON
-  // fetch("../JSONFiles/states.json")
-  //     .then(res => res.json())
-  //     .then(data => {
-  //         data.forEach(state => {
-  //             initialMarkers.push(state);
-  //         })
-  //         setMarkers();
-  //     });
-  // }
-  //Set Markers Function
-
-  var setMarkers = function setMarkers() {
-    initialMarkers.forEach(function (marker) {
-      mainMap.addMarker(marker, function (state) {
-        return InfoWindows.attachButton(marker, marker.name, zoomToState);
-      });
-    });
-  };
-
-  setMarkers(); // Marker info for individual lakes
-
-  var stateMarkers = {
-    Iowa: [],
-    Nebraska: [],
-    NewYork: [],
-    Tennessee: [],
-    Vermont: []
-  };
-  var lakes = [];
-
-  function zoomToState(marker) {
-    // remove old marker,
-    // place new markers
-    stateMarkers[marker.name].forEach(function (newMarker) {
-      mainMap.addMarker(newMarker, function (state) {
-        return InfoWindows.attachButton(newMarker, newMarker.name, goToLake);
-      });
-    }); // zoom & center
-
-    mainMap.map.setZoom(7);
-    mainMap.map.setCenter(marker);
-  }
-}
-},{"./Map":"lib/Map.js","./InfoWindow":"lib/InfoWindow.js"}],"components/controllers/Home.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _News = _interopRequireDefault(require("../../lib/News"));
-
-var _HomeListeners = _interopRequireDefault(require("../../lib/HomeListeners"));
-
-var _InfoWindow = _interopRequireDefault(require("../../lib/InfoWindow"));
-
-var _CreateMap = _interopRequireDefault(require("../../lib/CreateMap"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = function _default(st) {
-  // NewsFeed();
-  (0, _HomeListeners.default)();
-  setTimeout(function () {
-    (0, _CreateMap.default)();
-  }, 500);
-};
-
-exports.default = _default;
-},{"../../lib/News":"lib/News.js","../../lib/HomeListeners":"lib/HomeListeners.js","../../lib/InfoWindow":"lib/InfoWindow.js","../../lib/CreateMap":"lib/CreateMap.js"}],"components/controllers/Lake.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _default = function _default(st) {};
-
-exports.default = _default;
-},{}],"lib/Register.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Register;
-
-var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Register() {}
-},{"./ToggleModal":"lib/ToggleModal.js"}],"components/controllers/Register.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _Register = _interopRequireDefault(require("../../lib/Register"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = function _default(st) {
-  (0, _Register.default)();
-};
-
-exports.default = _default;
-},{"../../lib/Register":"lib/Register.js"}],"components/controllers/Search.js":[function(require,module,exports) {
-
-},{}],"lib/TipsObject.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var techniques = {
-  bluegill: {
-    winter: "Bluegill will migrate to deeper waters as the vegetation in shallower areas dies off.  Finding remaining plant life around points, bends, and flats near drop-offs will lead to greater numbers of fish.  Focus on the deeper end of the depth range during ice-over conditions.  Use ice jigs tipped with wax worms or other larvae and try either traditional jigging or placing it under a bobber.  Target the areas just above or outside of the weed beds.  When not finding sufficient action, try different combinations of colors and larvae, along with changing locations, until desired result is achieved.  Keeping the larvae fresh may also lead to greater success.",
-    spring: "Protected inlets or coves that contain warm/shallow water and suitable spawning habitats will become the primary areas to focus on.  Stick to shorelines where emerging weeds provide suitable hunting grounds, cover from sunlight, and protection from predators.  Bluegill are schooling fish, so in the event that activity is minimal, move to other areas that may consist of similar conditions.  Larger fish may congregate near areas with easy access to deeper water.  Small spinners, micro crank baits and hair jigs tipped with night crawler pieces are good options in addition to the larvae tipped ice jigs.  Small minnows could also lead to larger fish.  Slow retrieval is often the most effective approach.  If fly fishing is the preferred method, poppers and nymphs may also lead to success.",
-    summer: "While bluegill will begin to occupy the deeper waters of main lake body along with coves/bays, they will remain generally positioned along the shoreline and around available cover.  Locating weed lines and pockets of weed beds in these deeper water areas will become paramount.  Points, ledges, as well as flat areas adjacent to drop-offs that provide weed covered structure should be targeted.  Small spinners and curly-tailed/shad body tipped hair jigs may be productive options.  In addition, slip-bobber rigs tipped with worms, leeches, crickets, grasshoppers or small jigs can also prove effective.  Using the small spinners baited with small worms or leeches to troll or drift over and along points, ledges of drop-offs, and weed lines can help to locate larger concentrations of fish.  Vertical jigging, casting lures, and slip-bobber rigs are more effective approaches once these populations of fish have been found.  During low-light conditions, the disturbance of the water's surface created by poppers can lead to an increase in strikes.",
-    fall: "Areas that continue to provide healthy weed populations are a good place to start.  Fish may congregate inside bends or around points containing shoreline structure with sharp sloping floors.  Micro crank baits, small spinners, and small jigs may produce bites.  A slower retrieve is recommended.  Additionally, minnows, wax worms, meal worms or jigs placed under bobber rigs can prove to be rewarding techniques."
-  },
-  crappie: {
-    winter: "Finding any healthy green vegetation or changes in the profile of the lake floor are key targets. Deep flats at the bases of drop-offs or withing steep inside bends, along with edges of deep points are good places to start.  Jigging spoons and ice jigs baited with a small minnow or wax worms are effective options.  Finicky as they may be, crappie can be found suspended almost anywhere in the water column depending on light conditions, water clarity and/or their mood.  Use of electronics to determine bottom composition and locate areas of healthy weeds may assist in finding these fish.",
-    spring: "Making long casts and remaining as quiet as possible are important practices as crappie are easily spooked.  Locations on the north side of the lake and shallow, dark-bottomed areas often house the most active fish in the early spring since they tend to warm up faster.  Coves, bays or inlets that provide warm shallow water and suitable spawning habitats become target areas.  Points, drop-offs, ledges and inside bends within these areas, or in the lake body just outside of the coves are good places to search.  Additionally, flats along the shoreline containing weeds, fallen trees, or other cover can be good hiding places for the fish.  Jigs tipped with curly tailed grubs, small spinners, jig spinner combos and micro crank baits are effective lures to try.  Also, crappie jigs tipped with a small minnow (with or without a float) may prove to be a rewarding technique.  Try keeping your casts in and around the above areas as crappie are mostly cover oriented.  They are also a schooling fish, so quickly move around if you are not getting bites.",
-    summer: "Deeper water becomes a priority during the summer months.  Search coves, bays and inlets, and suspend around ledges or drop-offs.  Weedy areas along the drop-offs and weedy flats adjacent to them, along with cuts or points in the drop-off itself are prime zones to target.  As they are a schooling fish, use of electronics and changing locations frequently may be important for finding groups of crappie.  If the lake has formed a thermocline, the fish will often suspend at or near its depth.  Trolling these areas with spinner rigs(with or without minnows) and micro crank baits can be effective ways of finding the fish.  Once located, crappie spinner baits, jigs tipped with curly tailed grubs, small spinners, jig spinner combos and micro crank baits are effective lures to try.  Also, crappie jigs tipped with a small minnow (with or without a float) may prove to be a rewarding technique.  Slowly moving along or over the target areas with a trolling motor or drifting while vertically jigging can also be effective.",
-    fall: "As vegetation begins to die off in the shallower areas, crappie will tend to gradually relocate to the deeper areas of of the main lake.  Points, inside turns, flats adjacent to base of drop-offs are good places to start.  The crappie will often concentrate around changes in the bottom structure(hard bottom meets mucky bottom) and deeper weed beds of the main lake areas.  Use of electronics, along with vertically jigging spoons and crappie jigs may help to locate these deep water schools.  Once found, try casting slip-float rigs or jigs baited with minnows."
-  },
-  perch: {
-    earlyWinter: "Perch may be found in the shallower flats that still contain some green healthy vegetation during the light ice periods.  Use of electronics while moving frequently and drilling multiple holes may help to locate fish, as perch are a schooling species.  Fish hooks or ice jigs tipped with a small minnow, minnow head, perch eye, or variety of maggots worked aggressively near the lake bottom may help to attract the fish.  Once drawn in, switch to a more subtle presentation.",
-    winter: "Perch tend to congregate near changes in the bottom composition, so focusing on the bases of drop-offs and their adjacent mid-depth to deep flats may prove effective.  Use of electronics while moving frequently and drilling multiple holes may help to locate fish, as perch are a schooling species.  Fish hooks or ice jigs tipped with a small minnow, minnow head, perch eye, or variety of maggots worked aggressively near the lake bottom may help to attract the fish.  Once drawn in, switch to a more subtle presentation.",
-    earlySpring: "Perch will move back into the shallower flats during the light ice periods.  Use of electronics while moving frequently and drilling multiple holes may help to locate fish, as perch are a schooling species.  Fish hooks or ice jigs tipped with a small minnow, minnow head, perch eye, or variety of maggots worked aggressively near the lake bottom may help to attract the fish.  Once drawn in, switch to a more subtle presentation.",
-    spring: "Shallow areas of coves, bays and inlets provide prime spawning habitats for perch.  Shoreline flats containing a good combination of weed/rock cover in these areas should be targeted.  When schooling, the perch tend to do so in groups of similar sized fish.  Try moving to around to find the larger fish if you are catching a lot of smaller ones.  Perch do have excellent vision and are spooked easily, especially in shallow water.  Long casts while remaining as quiet as possible are extremely important.  Slowly trolling or drifting may help to find the fish.  Once they are located, however, casting is the more effective method.  Perch tend to spend their time near the bottom, so start there.  Try micro crank baits, hairpin spinners, and in-line spinners.  Float rigs, spinner rigs, and small jigs tipped with minnows, curly tailed grubs, night crawlers or maggots can also be effective.",
-    summer: "Perch will migrate to deeper waters in the summer months.  Areas to target include points and pockets in the weed line, as well as the weedy flats near drop-offs.  The fish often will be found near the base of the weeds in these areas.  When there is a thermocline present in the lake, the larger perch will usually be attracted to where it meets any structure near the lake bottom.  Perch tend to spend their time near the bottom, so start there.  Try micro crank baits, hairpin spinners, and in-line spinners.  Float rigs, spinner rigs, and small jigs tipped with minnows, curly tailed grubs, night crawlers or maggots can also be effective.  Long casts while remaining as quiet as possible are extremely important.  Slowly trolling or drifting may help to find the fish.  Once they are located, however, casting is the more effective method.",
-    fall: "Perch will feed aggressively during the fall months in order to prepare for winter.  This time of year they will begin their migration into the shallower flats containing ample rock/weed cover.  Try slowly trolling or drifting over these areas may help in finding the fish.  Once they are located, however, casting is the more effective method.  Perch tend to spend their time near the bottom, so start there.  Try micro crank baits, hairpin spinners, and in-line spinners.  Float rigs, spinner rigs, and small jigs tipped with minnows, curly tailed grubs, night crawlers or maggots can also be effective."
-  },
-  smb: {
-    spring: "Spring time will lead to the smallmouth bass being found in shallower areas.  Search the bays, coves and areas of the main lake just outside of them; targeting the inside turns, ledges and points in and around the break line.  These fish tend to be startled easily making slow trolling or drifting with long casts an effective approach.  Jerk baits, spinner baits, in-line spinners, or jigs tipped with minnows or curly tail grubs can be effective.  Try hard-bottomed areas containing gravel or boulders as the smallmouth do tend to stick to the rocky cover.",
-    summer: "Summer leads to a migration to deeper waters for smallmouth bass, still maintaining their concentration around rocky hard-bottomed areas.  Target the ledges, points and inside bends around these areas containing gravel or boulders with scattered vegetation.  Jig-n-pigs, jigs with curly tailed grubs, tube baits, jerk baits, crank baits, and smaller Texas-rigged worms are all good approaches for artificial lures.  If live bait is preferred, try slip-bobber or slip-sinker rigs with minnows, night-crawlers, leeches or crayfish.  Try jerk baits, spinners or top water lures over rocky areas in low light conditions to attract attention.",
-    fall: "Deeper water will remain the place to find the majority of smallmouth in the fall.  Areas of the lake around the base of drop-offs with changing bottom composition(rocky to soft) and steep slopes should be points of emphasis.  Deep diving crank baits, drop-shot rigs with soft plastics, jigging spoons and larger jigs tipped with curly tailed grubs or shad type plastics and tube baits are all good methods.  If you seem to have found a concentration of fish, try a vertical jigging approach with either traditional jigs or jigging spoons while trolling or drifting to cover the target area."
-  },
-  lmb: {
-    earlyWinter: "The continued drop in temperature, vegetation die-off and migration of bait fish to deeper water leads to the largemouth moving back out into the main body of the lake.  As the fish prefer to be able to easily move up and down the water column based on weather conditions, channel ledges and points with steep slopes should be the primary areas to target.  Bottom structure, such as, rocks/boulders and timber help to retain heat and attract fish.  Electronics may prove useful in locating these structures.  Carolina-rigged plastics, deep diving crank baits and spinners with a slower retrieve may be effective.  When struggling to find action, dead sticking suspended jerk baits or soft plastics may entice a strike or two.",
-    winter: "The deep cold of winter will find the fish located in the deep areas of the main body of the lake.  Again, the points, inside bends, and bases of drop-offs around steep slopes, as well as deep river channels and the bottom of creeks.  Look for areas that contain bottom structure(rocks, stumps, standing timber, boulders).  This is where the bait fish are most likely to be, and the largemouth will follow.  Smaller lures with a slower retrieve may prove more effective as the fish will tend to be more sluggish during these winter months.  This slow retrieval of suspending jerk baits coupled with long pauses throughout the process can be rewarding.  Other options for slowly working over an area include: drop-shot rigs, spoons, lead head grubs, and jigs.",
-    earlySpring: "The fish will finally start coming out from their wintering areas in search of suitable spawning locations with the warmer temperatures and longer days.  Protected coves with shallow flat provide the shelter they are seeking and should be the primary areas of focus.  The migration does not happen overnight, and along the way, the largemouth may seek cover in rocky or wooded structure along shoreline breaks and river channels.  Shallow hard-bottomed flats at the base of a drop-off can be very active with fish.  More so, even, when there is some sort of cover present.  Good options for covering a lot of water fast include:  crank baits, spinners, and suspending jerk baits.  Boat docks, brush, and wooded structure are great places to try pitching jigs.  The fish will remain a little sluggish still, so a slow to moderate retrieval is preferred.",
-    spring: "Spawning season will lead to largemouth bass seeking shelter in protected coves/inlets.  Creek arms would be another area of focus.  Any type of cover(docks, wooden structure, weeds, underwater brush) that provides the bass with protection should be primary areas of emphasis.  Channels of creeks, along with humps, points or shallow structure in the lakes may also find fish hiding before they begin their migration out of the shallower waters.  Both Carolina and Texas-rigged plastics, may be productive.  Other effective options include:  spinners, shallow to medium diving crank baits, jerk baits and jigging.  A slower presentation is also recommended as these fish will remain lethargic throughout the early spring.  Then, as temperatures begin to rise, a faster presentation may prove more effective.  When not having success with lures, trying live bait(shiners, crayfish) may help entice the fish.",
-    summer: "Search bottom structure(humps, points, channel ledges) in the main body of the lake or in deeper parts of creek arms during the summer months.  Finding submerged timber, brush and weeds that provide cover for the fish will be important.  Deep water weed lines and flat at the base of drop-offs(especially any containing the above underwater structure) may also be productive areas.  Again, the Carolina or Texas-rigged plastics, medium to deep diving crank baits, and jigging are recommended methods.  Top water lures may help get the fishes attention in low-light conditions.",
-    earlyFall: "The largemouth will begin to feed aggressively on bait fish, in preparation for winter, as temperatures begin to drop.  Look for submerged structure/weeds in the shallow flats that have easy access to deeper waters.  Bait fish may also school  around  ledges, shallow shoreline points, and inside bends; and the largemouth will follow.  This also holds true where any creek arms meet the main lake.  Spinners, shallow diving or lipless crank baits, and jerk baits become the lures of choice this time of year.  Larger baits may be more effective now that the bait fish have gotten bigger.  Try casting to the edges of submerged cover or across the flats.",
-    fall: "Finding remaining healthy vegetation, along with any wooden cover/structure becomes important.  Search around points, humps, and channel ledges of the shallower creek arms and coves as the largemouth will begin to follow the bait fish in from the main body of the lake.  The bass that do remain in the main body will be feeding on the bait fish as they move in and out of these shallower areas.  So, focus on point directly adjacent to them.  Top-water, spinners, shallow diving or lipless crank baits, and jerk baits with a faster retrieve/presentation may be productive.  Larger baits may be more effective now that the bait fish have gotten bigger.  Try casting to the edges of submerged cover or across the flats."
-  },
-  walleye: {
-    winter: "Walleye may be found searching the flats around bases and ledges of drop-offs, or may stick to the structure of inside turns and points adjacent to these areas.  Any of these areas still containing healthy vegetation should be the primary focus.  Jigging spoons, or jigs tipped with minnows jigged vertically have proven effective.  Also, slip-bobbers and tip-ups baited with minnows can be effective around submerged structure and weed lines.  The fish will tend to gather around structure in the deeper parts of the main lake body during the heavy ice over period.  During the lighter ice over times, shallower flats and structure may be more productive areas.",
-    spring: "Structure found around points and ledges of the the shallower areas of inlets and shorelines will be the areas to target.  As well as any flats around the drop-offs to deeper waters.  The walleye will spook easily in these shallower waters, so use a slow approach while remaining as quiet as possible.  Changes in bottom composition, rock piles, and emerging weeds will be good places to start.  Try slip-bobbers baited with minnows, jigging with plastics(curly tail, shad), minnow-tipped jigs, and minnow-like crank baits using long casts to keep from scaring the fish off.  Long-line trolling along shallow flats, underwater structure, and submerged weeds with a minnow-tipped slip-sinker rig, live-bait rig, or spinner-rig, along with the above listed lures under a planer board is a good way to cover a large area quickly.",
-    summer: "The walleye will be found in the deeper water of the main lake body or adjacent to inlets during the summer months.  If a thermocline has developed, try to stay at or above it.  Ledges of drop-offs, flats adjacent to them and weed lines or other submerged structure will be primary areas to focus on.  Night-crawlers and leeches will become effective baits.  Try them with slip-bobber rigs or jigs around these areas.  Trolling these or spinner rigs with leeches or night-crawlers, or minnow-like crank baits may help entice the fish in low light conditions.",
-    fall: "Finding the walleye may prove difficult during the fall months as the fish can be found at a variety of depths.  Ledges and bases of drop-offs, the flats surrounding them, inside bends, and sloped points are good places to start.  As the temperatures begin to drop, a slower presentation becomes more effective.  Larger lures and baits(4-6 inches) will also become more important as the bait fish have gotten bigger.  Casting large plastic swim baits, minnow-like crank baits, or minnow tipped rigs over and around weed beds may be effective.  For a vertical presentation, try jigging spoons, slip-bobber or jigs tipped with minnows, or jigging spoons around these weed beds or along ledges and bases of drop-offs.  Slow trolling these baits is a good option for covering a lot of water quickly.  Flats adjacent to drop-offs become prime target areas during low-light conditions.  Try drifting/trolling or fan casting over these areas to cover a large area quickly."
-  },
-  pike: {
-    winter: "As ambush predators, shallow weeds or the inside of weed lines will find the pike patrolling for bait fish this time of year.  Search the drop-offs or flats adjacent to them still containing these weedy structures.  As the weeds in these shallower areas begin to die off, the pike will begin to search out this cover in the deeper areas.  Set your tip-ups with 4-6 inch minnows, suckers, or shiners along the weed lines or just above them.  Jigs or jigging spoons with minnows may also be productive strategies.",
-    spring: "Shallow coves/bays or the main lake body just outside of them become primary target areas.  Search for inside turns, points or flats with developing weeds.  The fish will spook easily in these shallow waters, so try to remain a silent as possible.  Try casting in-line spinners, spinner baits, soft plastics, spoons, or jigs tipped with small to medium sized minnows over and around Rock piles, weedy flats, and clumps of emerging weeds.  A slower presentation is recommended this time of year.  To cover a large area of water quickly, try long-line trolling spoons, or minnow-tipped jigs or slip-sinker rigs along submerged structure or over flats.  Jigs and slip-bobber rigs tipped with minnows are a good option when targeting specific areas.",
-    summer: "During the summer months, the larger pike will move out to the sharply sloped points of deeper, cooler waters while the smaller pike('snakes') will remain in the shallower areas containing weedy cover.  Target the main lake body where these characteristics are present.  If a thermocline has developed, try to stay at or above it while targeting the deeper fish.  The pike may be attracted to larger lures or baits this time of year.  Larger buck tails, spoons, jerk baits, and spinners worked over and along weed lines/beds are effective approaches.  Casting with deep-diving crank baits, weighted swim baits, and minnow-tipped jigs can also be productive.  Trolling these baits is a good way to cover a large area.  A quicker presentation is preferred during these warmer months, and in low-light conditions top-water lures are a good way to attract attention.",
-    fall: "This is the time of year for the largest lures, as the bait fish have gotten bigger.  Target areas still containing healthy weed populations.  Work the flats around drop-offs by positioning over the deeper water surrounding them and casting jerk baits spinners, and buck tails over and around them.  For more sharply sloped terrain or over inside bends, try diving crank baits, or large minnow or curly-tailed tipped jigs.  Trolling these baits is a good way to cover a large area.  In low-light conditions top-water lures are a good way to attract attention."
-  },
-  muskie: {
-    spring: "Shallow coves/bays and the areas of the main lake body just outside of them or around inlets containing developing weeds and points should be targeted.  Muskie will be easily scared off in these shallower waters, so remain a silent as possible while slowly approaching these areas.  Small to medium lures with a slower presentation will be preferred this time of year.  Try minnow or plastic-tipped jigs, spoons, shallow diving crank/swim baits, and jerk baits casting across flats containing emerging weeds, or over and around shallow structure(rock piles, weeds).",
-    summer: "Ledges of drop-offs, weedy flats adjacent to them, rocky/weedy points, and weed lines will be the primary target areas.  Try to stay at or above the thermocline if one has developed on the lake.  This time of year, larger lures with a faster retrieve will be more effective as the bait fish have gotten bigger and the muskie more active.  Try crank baits, jerk baits, spinners, and large buck tails.  Once again, in low-light conditions, top-water lures are a good way to attract attention.  Diving style jerk baits can be especially effective while working around weedy flats due to the ability to drive them down into openings and steer them around clumps.  For heavy weed areas, weedless spoons and spinners are a good way to avoid getting hung up.",
-    fall: "Search out mid-depth flats containing vegetation adjacent to drop-offs, inside bends,  deeper/steeper points in the main body of the lake, and drop-offs.  The sharp inside bends can be worked vertically  with quick-strike rigs baited with large minnows, or jigging large soft plastics.  Cast around structure and clumps of vegetation with crank baits, plastic swim baits, spinner baits, jigs, buck tails, and large weighted jerk baits.  Work the flats around drop-offs by positioning over the deeper water surrounding them and casting jerk baits spinners, and buck tails over and around them."
-  }
-};
-var _default = techniques;
-exports.default = _default;
-},{}],"lib/Tips.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = getTips;
-
-var _TipsObject = _interopRequireDefault(require("./TipsObject.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getTips() {
-  var species = document.getElementById("species");
-  var seasons = document.getElementById("season");
-  var par = document.querySelector("#techniques");
-  var background = document.querySelector(".tipsMain");
-  var bluegill = "https://i.imgur.com/4i6DkKG.jpg";
-  var tipsImages = [bluegill];
-  document.querySelector("#tipsForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-    console.log(tipsImages);
-    var choice1 = _TipsObject.default[species.value];
-    par.textContent = choice1[seasons.value];
-    console.log(species.value);
-    background.style.backgroundImage = "url(\"".concat(species.value, "\")"); // tipsImages.forEach(el => {
-    //     console.log(el);
-    //     if (species.value === el) {
-    //         background.style.backgroundImage = `url("${el}")`;
-    //     }
-    // });
-  });
-}
-},{"./TipsObject.js":"lib/TipsObject.js"}],"components/controllers/Tips.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _Tips = _interopRequireDefault(require("../../lib/Tips"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = function _default(st) {
-  (0, _Tips.default)();
-};
-
-exports.default = _default;
-},{"../../lib/Tips":"lib/Tips.js"}],"components/controllers/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "Home", {
-  enumerable: true,
-  get: function () {
-    return _Home.default;
-  }
-});
-Object.defineProperty(exports, "Lake", {
-  enumerable: true,
-  get: function () {
-    return _Lake.default;
-  }
-});
-Object.defineProperty(exports, "Register", {
-  enumerable: true,
-  get: function () {
-    return _Register.default;
-  }
-});
-Object.defineProperty(exports, "Search", {
-  enumerable: true,
-  get: function () {
-    return _Search.default;
-  }
-});
-Object.defineProperty(exports, "Tips", {
-  enumerable: true,
-  get: function () {
-    return _Tips.default;
-  }
-});
-
-var _Home = _interopRequireDefault(require("./Home"));
-
-var _Lake = _interopRequireDefault(require("./Lake"));
-
-var _Register = _interopRequireDefault(require("./Register"));
-
-var _Search = _interopRequireDefault(require("./Search"));
-
-var _Tips = _interopRequireDefault(require("./Tips"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Home":"components/controllers/Home.js","./Lake":"components/controllers/Lake.js","./Register":"components/controllers/Register.js","./Search":"components/controllers/Search.js","./Tips":"components/controllers/Tips.js"}],"components/Controller.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var Controllers = _interopRequireWildcard(require("./controllers"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-var _default = function _default(st) {
-  Controllers[st.controller](st);
-};
-
-exports.default = _default;
-},{"./controllers":"components/controllers/index.js"}],"lib/Render.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.render = render;
-
-var state = _interopRequireWildcard(require("../store"));
-
-var _components = require("../components");
-
-var _Controller = _interopRequireDefault(require("../components/Controller"));
-
-var _ModalListeners = _interopRequireDefault(require("./ModalListeners"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function render() {
-  var st = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : state.Home;
-  document.querySelector("#root").innerHTML = "\n    ".concat((0, _components.Header)(st), "\n    ").concat((0, _components.Main)(st), "\n    ").concat((0, _components.Footer)(), "\n    ");
-  (0, _Controller.default)(st);
-  (0, _ModalListeners.default)();
-}
-},{"../store":"store/index.js","../components":"components/index.js","../components/Controller":"components/Controller.js","./ModalListeners":"lib/ModalListeners.js"}],"index.js":[function(require,module,exports) {
-"use strict";
-
-var _navigo = _interopRequireDefault(require("navigo"));
-
-var state = _interopRequireWildcard(require("./store"));
-
-var _Render = require("./lib/Render");
-
-var _lodash = require("lodash");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var router = new _navigo.default(window.location.origin);
-router.on({
-  "/": function _() {
-    return (0, _Render.render)(state.Home);
-  },
-  ":page": function page(params) {
-    var page = (0, _lodash.capitalize)(params.page);
-    (0, _Render.render)(state[page]);
-  }
-}).resolve();
-},{"navigo":"node_modules/navigo/lib/navigo.min.js","./store":"store/index.js","./lib/Render":"lib/Render.js","lodash":"node_modules/lodash/lodash.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var _Router = require("./lib/Router");
+},{"./lib/Router":"lib/Router.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -20301,7 +22064,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56228" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62933" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
