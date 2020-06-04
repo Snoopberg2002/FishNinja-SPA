@@ -10,5 +10,8 @@ router.on({
     "/": () => render(state.Home), 
     ":page": params => {
       let page = capitalize(params.page);
+      console.log(params);
+      console.log(state);
       render(state[page]);
     }}).resolve();
+
