@@ -1,6 +1,6 @@
 export default () => `
 <header>
-    <h3 id="home"><a id="home" href="/Home">Home</a></h3>
+    <h3 id="home"><a id="home" href="/Home" data-navigo>Home</a></h3>
 
     <nav>
         <a href="#" class="about">About</a>
