@@ -591,9 +591,9 @@ function HomeListeners() {
   var postLoginBtn = document.querySelector("#postLogin"); //Search Button
 
   document.querySelector("#search").addEventListener("click", function (e) {
-    e.preventDefault();
+    e.preventDefault(); // router.navigate("/Lake");
 
-    _Router.default.navigate("/Lake");
+    window.location.href = window.location.origin + "/Lake";
   }); //Posts Modal Content
 
   document.querySelector("#post").addEventListener("click", function (event) {
@@ -2496,11 +2496,11 @@ function CreateMap() {
     "lat": 43.994966,
     "lng": -72.666294,
     "name": "Vermont"
-  }];
-
-  _axios.default.get("./JSONFiles/Iowa.json").then(function (response) {
-    console.log(response.data);
-  }); // //Pull Marker info from JSON
+  }]; // axios.get("./JSONFiles/Iowa.json")
+  //     .then(response => {
+  //         console.log(response.data);
+  //     })
+  // //Pull Marker info from JSON
   // fetch("./JSONFiles/states.json")
   //     .then(res => res.json())
   //     .then(data => {
@@ -2510,7 +2510,6 @@ function CreateMap() {
   //         setMarkers();
   //     });
   //Set Markers Function
-
 
   var setMarkers = function setMarkers() {
     initialMarkers.forEach(function (marker) {
@@ -2822,8 +2821,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 // import axios from "axios";
 // import auth from "/firebase";
-console.log(auth);
-
 function render() {
   var st = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : state.Home;
   document.querySelector("#root").innerHTML = "\n    ".concat((0, _components.Header)(st), "\n    ").concat((0, _components.Main)(st), "\n    ").concat((0, _components.Footer)(), "\n    ");
@@ -22064,7 +22061,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62933" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63480" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
