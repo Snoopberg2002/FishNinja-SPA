@@ -1,5 +1,5 @@
 import * as Controllers from './controllers';
 
-export default (st) => {
-    Controllers[st.controller](st);
+export default (st, props) => {
+    Controllers[st.controller](st, props);
 }

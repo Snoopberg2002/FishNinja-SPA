@@ -5,7 +5,7 @@ import CreateMap from "../../lib/CreateMap";
 import CreatePosts from "../../lib/CreatePosts";
 
 export default (st) => {
-    // NewsFeed();
+    NewsFeed();
     HomeListeners();
     setTimeout(() => {
         CreateMap();

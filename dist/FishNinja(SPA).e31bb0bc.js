@@ -102133,7 +102133,7 @@ var _CreatePosts = _interopRequireDefault(require("../../lib/CreatePosts"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function _default(st) {
-  // NewsFeed();
+  (0, _News.default)();
   (0, _HomeListeners.default)();
   setTimeout(function () {
     (0, _CreateMap.default)();
@@ -102141,29 +102141,7 @@ var _default = function _default(st) {
 };
 
 exports.default = _default;
-},{"../../lib/News":"lib/News.js","../../lib/HomeListeners":"lib/HomeListeners.js","../../lib/InfoWindow":"lib/InfoWindow.js","../../lib/CreateMap":"lib/CreateMap.js","../../lib/CreatePosts":"lib/CreatePosts.js"}],"lib/BuildLakePage.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = BuildLakePage;
-
-var _CreateMap = require("./CreateMap");
-
-function BuildLakePage() {
-  console.log(_CreateMap.thisLake); // document.querySelector("#lakeTitle").textContent = lake.name;
-  // if (lake.species === "N/A") {
-  //     document.querySelector("#residentSpecies").textContent = "Tennant list coming soon.";
-  // } else {
-  //     document.querySelector("#residentSpecies").textContent = lake.species;
-  // }
-  // document.querySelector("#amenities").textContent = lake.amenities;
-  // document.querySelector("#commentsList").textContent = lake.comments;
-  // document.querySelector("#contourMap").setAttribute("src", lake.contourMap.url);
-  // document.querySelector("#regulations").setAttribute("src", lake.regulations.url);
-}
-},{"./CreateMap":"lib/CreateMap.js"}],"components/controllers/Lake.js":[function(require,module,exports) {
+},{"../../lib/News":"lib/News.js","../../lib/HomeListeners":"lib/HomeListeners.js","../../lib/InfoWindow":"lib/InfoWindow.js","../../lib/CreateMap":"lib/CreateMap.js","../../lib/CreatePosts":"lib/CreatePosts.js"}],"components/controllers/Lake.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -102171,16 +102149,32 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _BuildLakePage = _interopRequireDefault(require("../../lib/BuildLakePage"));
+var _firebase = require("../../firebase");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = function _default(st) {
-  (0, _BuildLakePage.default)();
+var _default = function _default(st, lake) {
+  _firebase.db.collection("Lakes") // .where("id", "==", lake.id)
+  .doc(lake.id).get().then(function (res) {
+    BuildLakePage(res.data());
+  });
 };
 
 exports.default = _default;
-},{"../../lib/BuildLakePage":"lib/BuildLakePage.js"}],"lib/Register.js":[function(require,module,exports) {
+
+function BuildLakePage(lake) {
+  document.querySelector("#lakeTitle").textContent = lake.name;
+
+  if (lake.species === "N/A") {
+    document.querySelector("#residentSpecies").textContent = "Tennant list coming soon.";
+  } else {
+    document.querySelector("#residentSpecies").textContent = lake.species;
+  }
+
+  document.querySelector("#amenities").textContent = lake.amenities;
+  document.querySelector("#commentsList").textContent = lake.comments;
+  document.querySelector("#contourMap").setAttribute("src", lake.contourMap.url);
+  document.querySelector("#regulations").setAttribute("src", lake.regulations.url);
+}
+},{"../../firebase":"firebase/index.js"}],"lib/Register.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -102488,8 +102482,8 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var _default = function _default(st) {
-  Controllers[st.controller](st);
+var _default = function _default(st, props) {
+  Controllers[st.controller](st, props);
 };
 
 exports.default = _default;
@@ -102519,8 +102513,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // import { auth, db } from "../firebase";
 function render() {
   var st = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : state.Home;
-  document.querySelector("#root").innerHTML = "\n    ".concat((0, _components.Header)(st), "\n    ").concat((0, _components.Main)(st), "\n    ").concat((0, _components.Footer)(), "\n    ");
-  (0, _Controller.default)(st);
+  var props = arguments.length > 1 ? arguments[1] : undefined;
+  document.querySelector("#root").innerHTML = "\n    ".concat((0, _components.Header)(st), "\n    ").concat((0, _components.Main)(st, props), "\n    ").concat((0, _components.Footer)(), "\n    ");
+  (0, _Controller.default)(st, props);
   (0, _ModalListeners.default)(); // // register new user from email and password
   // auth.createUserWithEmailAndPassword(email, password);
   // // sign in existing user
@@ -121714,9 +121709,14 @@ router.on({
   "/": function _() {
     return (0, _Render.render)(state.Home);
   },
-  ":page": function page(params) {
+  "/Tips": function Tips() {
+    return (0, _Render.render)(state.Tips);
+  },
+  "/Lake/:id": function LakeId(params) {
     var page = (0, _lodash.capitalize)(params.page);
-    (0, _Render.render)(state[page]);
+    return (0, _Render.render)(state.Lake, {
+      id: params.id
+    });
   }
 }).resolve();
 var _default = {
@@ -121755,7 +121755,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62650" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52019" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
