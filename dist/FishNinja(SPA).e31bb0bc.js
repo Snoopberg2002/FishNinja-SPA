@@ -102050,6 +102050,8 @@ var _Tennessee = _interopRequireDefault(require("../JSONFiles/Tennessee.json"));
 
 var _Vermont = _interopRequireDefault(require("../JSONFiles/Vermont.json"));
 
+var _firebase = require("../firebase");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // import { default as LakeInfoWindow } from "./lakeInfoWindow";
@@ -102083,11 +102085,19 @@ function CreateMap() {
   function zoomToState(marker) {
     // remove old marker,
     // place new markers
-    stateMarkers[marker.name].forEach(function (newMarker) {
-      mainMap.addMarker(newMarker, function (state) {
-        return InfoWindows.attachButton(newMarker, newMarker.name, goToLake);
+    _firebase.db.collection("Lakes").where("state", "==", marker.name).get().then(function (res) {
+      res.forEach(function (doc) {
+        var newMarker = doc.data();
+        newMarker.id = doc.id;
+        mainMap.addMarker(newMarker, function (state) {
+          return InfoWindows.attachButton(newMarker, newMarker.name, goToLake);
+        });
       });
-    }); // zoom & center
+    }); // stateMarkers[marker.name].forEach(newMarker => {
+    //     mainMap.addMarker(newMarker, state => InfoWindows.attachButton(newMarker, newMarker.name, addLakeInfo));
+    // });
+    // zoom & center
+
 
     mainMap.map.setZoom(7);
     mainMap.map.setCenter(marker);
@@ -102099,10 +102109,10 @@ function CreateMap() {
   }
 
   function goToLake(marker) {
-    window.location.href = window.location.origin + "/Lake";
+    window.location.href = window.location.origin + "/Lake/" + marker.id;
   }
 }
-},{"./Router":"lib/Router.js","./Map":"lib/Map.js","./InfoWindow":"lib/InfoWindow.js","../JSONFiles/states.json":"JSONFiles/states.json","../JSONFiles/Iowa.json":"JSONFiles/Iowa.json","../JSONFiles/Nebraska.json":"JSONFiles/Nebraska.json","../JSONFiles/NewYork.json":"JSONFiles/NewYork.json","../JSONFiles/Tennessee.json":"JSONFiles/Tennessee.json","../JSONFiles/Vermont.json":"JSONFiles/Vermont.json"}],"components/controllers/Home.js":[function(require,module,exports) {
+},{"./Router":"lib/Router.js","./Map":"lib/Map.js","./InfoWindow":"lib/InfoWindow.js","../JSONFiles/states.json":"JSONFiles/states.json","../JSONFiles/Iowa.json":"JSONFiles/Iowa.json","../JSONFiles/Nebraska.json":"JSONFiles/Nebraska.json","../JSONFiles/NewYork.json":"JSONFiles/NewYork.json","../JSONFiles/Tennessee.json":"JSONFiles/Tennessee.json","../JSONFiles/Vermont.json":"JSONFiles/Vermont.json","../firebase":"firebase/index.js"}],"components/controllers/Home.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -102354,12 +102364,11 @@ function getTips() {
   var bluegill = "https://i.imgur.com/4i6DkKG.jpg";
   var tipsImages = [bluegill];
   document.querySelector("#tipsForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-    console.log(tipsImages);
+    event.preventDefault(); // console.log(tipsImages);
+
     var choice1 = _TipsObject.default[species.value];
     par.textContent = choice1[seasons.value];
-    par.style.color = "white";
-    console.log(species.value);
+    par.style.color = "white"; // console.log(species.value);
 
     if (species.value === "bluegill") {
       background.style.backgroundImage = "url(\"".concat(bluegill, "\")");
@@ -102370,7 +102379,7 @@ function getTips() {
     }
 
     if (species.value === "perch") {
-      background.style.backgroundImage = "url(\"https://i.imgur.com/9UAUpoD.jpg\")";
+      background.style.backgroundImage = "url(\"https://i.imgur.com/LQE794m.jpg\")"; // par.style.color = "lightSkyBlue";
     }
 
     if (species.value === "smb") {
@@ -121746,7 +121755,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61977" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62650" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
