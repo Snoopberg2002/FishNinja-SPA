@@ -165,7 +165,7 @@ h4 > a, .about, .contact, .login {
 
 .postsForm {
     padding-top: 20px;
-    height: 350px;
+    height: 375px;
     display: flex;
     color: #FFF;
     flex-direction: column;

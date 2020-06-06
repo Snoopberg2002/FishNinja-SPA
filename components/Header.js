@@ -70,6 +70,9 @@ export default () => `
                     <label class="postsEls" for="postLake">Lake Name:</label>
                     <input class="postsEls" type="text" id="postLake" name="postLake" placeholder="Required for image upload.">
                     <br>
+                    <label class="postsEls" for="postState">State:</label>
+                    <input class="postsEls" type="text" id="postState" name="postState" placeholder="Required for image upload.">
+                    <br>
                     <label class="postsEls" for="addImage">Upload Image</label>
                     <input class="postsEls" type="file" id="addImage" name="addImage" value="addImage">
                     <br>

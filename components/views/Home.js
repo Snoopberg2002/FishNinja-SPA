@@ -39,7 +39,7 @@ const st = () => `
 
     <div class="posts">
         <h3 id="posts">Recent Posts</h3>
-        <ul>
+        <ul id="newPosts">
             <li>Goose Takeover in Benton Park!</li>
             <li>Where's the fish?</li>
         </ul>
