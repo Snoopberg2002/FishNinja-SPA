@@ -266,7 +266,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _default = function _default(st) {
-  return "\n<section class=\"lakePageMain\">\n    <h1 id=\"lakeTitle\">This Lake</h1>\n\n    <div id=\"speciesList\">\n        <h3 id=\"speciesHead\">Resident Species</h3>\n        <h4 id=\"residentSpecies\">These Fish</h4>\n    </div>\n\n    <div id=\"amenities\">\n        <h3 id=\"amenitiesHead\">Amenities</h3>\n        <h4 id=\"amenities\">These Amenities</h4>\n    </div>\n\n    <div id=\"lakeComments\">\n        <h3 id=\"commentsHead\">Comments:</h3>\n    <p id=\"commentslist\"></p>\n    </div>\n\n    <div id=\"lakeMap\">\n\n    </div>\n\n    <div id=\"locationDetails\">\n        <h4 id=\"county\">County:</h4>\n        <h4 id=\"directions\"><a id=\"directions\" href=\"#\">Directions</a></h4>\n    </div>\n\n    <img id=\"contourMap\" src=\"\">\n\n    <div id=\"lakeRules\">\n        <h4 id=\"lakeStandards\">Lake Standards</h4>\n        <ul id=\"rulesList\">\n            <li>Boating:</li>\n            <li>Boat Launch:</li>\n            <li>Ice Fishing:</li>\n            <li>Bow Fishing:</li>\n        </ul>\n        <a id=\"regulations\" href=\"\">Regulations</a>\n    </div>\n\n    <div id=\"lakePosts\">\n        <h2 id=\"lakePostsHead\">Lake Posts</h2>\n        <ul id=\"postsList\">\n            <li>Add Posts</li>\n        </ul>\n        <input type=\"submit\" name=\"comment\" value=\"Comment\">\n    </div>\n</section>\n";
+  return "\n<section class=\"lakePageMain\">\n    <h1 id=\"lakeTitle\">This Lake</h1>\n\n    <h2 id=\"weatherHead\">Weather</h2>\n    <div id=\"thisWeather\">\n        <h3 id=\"rightNow\">Right Now:</h3>\n        <h3 id=\"high\">High:</h3>\n        <h3 id=\"low\">Low:</h3>\n    </div> \n\n    <div id=\"speciesList\">\n        <h3 id=\"speciesHead\">Resident Species</h3>\n        <h4 id=\"residentSpecies\">These Fish</h4>\n    </div>\n\n    <div id=\"amenities\">\n        <h3 id=\"amenitiesHead\">Amenities: </h3>\n        <p id=\"amenitiesContent\">These Amenities</p>\n    </div>\n\n    <div id=\"lakeComments\">\n        <h3 id=\"commentsHead\">Comments:</h3>\n        <p id=\"commentsContent\"></p>\n    </div>\n\n    <div id=\"lakeMap\">\n\n    </div>\n\n    <div id=\"locationDetails\">\n        <h4 id=\"county\">County:</h4>\n        <h4 id=\"acres\">Acres:</h4>\n        <h4 id=\"directions\"><a id=\"directions\" href=\"#\">Directions</a></h4>\n    </div>\n\n    <div id=\"lakeRules\">\n        <h4 id=\"lakeStandards\">Lake Standards</h4>\n        <ul id=\"rulesList\">\n            <li id=\"boatLaunch\">Boat Launch:</li>\n            <li id=\"iceFishing\">Ice Fishing:</li>\n            <li id=\"bowFishing\">Bow Fishing:</li>\n            <li id=\"access\">Access:</li>\n        </ul>\n        <a id=\"regulations\" href=\"\">Regulations</a>\n        <a id=\"contourMap\" href=\"\">Contour Map</a>\n    </div>\n\n    <div id=\"lakePosts\">\n        <h2 id=\"lakePostsHead\">Lake Posts</h2>\n        <ul id=\"postsList\">\n            <li>Add Posts</li>\n        </ul>\n        <input type=\"submit\" name=\"comment\" value=\"Comment\">\n    </div>\n</section>\n";
 };
 
 exports.default = _default;
@@ -451,7 +451,7 @@ var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function NewsFeed() {
-  var url = "https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=fishing&apiKey=b31fe28ec61944e786a43026ba67928c";
+  var url = "https://newsapi.org/v2/everything?q=fishing&apiKey=ce592c9e9c6441cca100f4bc925f4273";
   var req = new Request(url);
   var stories = [];
   fetch(req, {
@@ -102133,7 +102133,7 @@ var _CreatePosts = _interopRequireDefault(require("../../lib/CreatePosts"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function _default(st) {
-  (0, _News.default)();
+  // NewsFeed();
   (0, _HomeListeners.default)();
   setTimeout(function () {
     (0, _CreateMap.default)();
@@ -102151,10 +102151,16 @@ exports.default = void 0;
 
 var _firebase = require("../../firebase");
 
+var _axios = _interopRequireDefault(require("axios"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var _default = function _default(st, lake) {
   _firebase.db.collection("Lakes") // .where("id", "==", lake.id)
   .doc(lake.id).get().then(function (res) {
     BuildLakePage(res.data());
+    InitMap(res.data());
+    GetWeather(res.data());
   });
 };
 
@@ -102164,17 +102170,51 @@ function BuildLakePage(lake) {
   document.querySelector("#lakeTitle").textContent = lake.name;
 
   if (lake.species === "N/A") {
-    document.querySelector("#residentSpecies").textContent = "Tennant list coming soon.";
+    document.querySelector("#residentSpecies").textContent = "Tenant list coming soon.";
   } else {
     document.querySelector("#residentSpecies").textContent = lake.species;
   }
 
-  document.querySelector("#amenities").textContent = lake.amenities;
-  document.querySelector("#commentsList").textContent = lake.comments;
-  document.querySelector("#contourMap").setAttribute("src", lake.contourMap.url);
-  document.querySelector("#regulations").setAttribute("src", lake.regulations.url);
+  document.querySelector("#amenitiesContent").textContent = lake.amenities;
+  document.querySelector("#commentsContent").textContent = lake.comments;
+  document.querySelector("#county").textContent = "County: ".concat(lake.county);
+  document.querySelector("#acres").textContent = "Acres: ".concat(lake.acres);
+  document.querySelector("#boatLaunch").textContent = "Boat Launch: ".concat(lake.boatLaunch);
+  document.querySelector("#iceFishing").textContent = "Ice Fishing: ".concat(lake.iceFishing);
+  document.querySelector("#bowFishing").textContent = "Bow Fishing: ".concat(lake.bowFishing);
+  document.querySelector("#access").textContent = "Access: ".concat(lake.access);
+
+  if (lake.contourMap = "N/A") {
+    document.querySelector("#contourMap").textContent = "";
+  }
+
+  document.querySelector("#contourMap").setAttribute("href", lake.contourMap.url);
+
+  if (lake.regulations = "N/A") {
+    document.querySelector("#regulations").textContent = "";
+  }
+
+  document.querySelector("#regulations").setAttribute("href", lake.regulations.url);
+  document.querySelector("#county").textContent = "County: ".concat(lake.county);
 }
-},{"../../firebase":"firebase/index.js"}],"lib/Register.js":[function(require,module,exports) {
+
+function InitMap(lake) {
+  var options = {
+    zoom: 13,
+    center: {
+      lat: lake.lat,
+      lng: lake.lng
+    }
+  };
+  var lakeMap = new google.maps.Map(document.getElementById("lakeMap"), options);
+}
+
+function GetWeather(lake) {
+  _axios.default.get("pro.openweathermap.org/data/2.5/forecast/hourly?lat={".concat(lake.lat, "}&lon={").concat(lake.lng, "}&appid={06c7cb455d2c2ecf48244fb8596609f8}")).then(function (result) {
+    console.log(result);
+  });
+}
+},{"../../firebase":"firebase/index.js","axios":"node_modules/axios/index.js"}],"lib/Register.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -121709,8 +121749,17 @@ router.on({
   "/": function _() {
     return (0, _Render.render)(state.Home);
   },
+  "/Home": function Home() {
+    return (0, _Render.render)(state.Home);
+  },
   "/Tips": function Tips() {
     return (0, _Render.render)(state.Tips);
+  },
+  "/Search": function Search() {
+    return (0, _Render.render)(state.Search);
+  },
+  "/Register": function Register() {
+    return (0, _Render.render)(state.Register);
   },
   "/Lake/:id": function LakeId(params) {
     var page = (0, _lodash.capitalize)(params.page);
@@ -121755,7 +121804,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52019" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50283" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

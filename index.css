@@ -365,7 +365,7 @@ th {
     background-image: url("https://i.imgur.com/E9NUrEM.jpg");
     background-size: cover;
     display: grid;
-    grid-template: repeat(10, 1fr)/repeat(12, 1fr);
+    grid-template: repeat(9, 1fr)/repeat(12, 1fr);
 }
 
 #lakeTitle {
@@ -377,17 +377,34 @@ th {
     align-self: flex-start;
 }
 
+#weatherHead {
+    justify-self: center;
+    grid-area: 2/3/span 1/span 2;
+    margin: 0px;
+}
+
+#thisWeather {
+    grid-area: 3/1/span 1/span 6;
+    display: flex;
+    justify-content: space-evenly;
+    color: #FFF;
+}
+
+/* #rightNow, #high, #low {
+    margin: 0px;
+} */
+
 #speciesHead, #amenitiesHead, #commentsHead {
     font-weight: bolder;
 }
 
 #speciesList {
-    grid-area: 2/1/span 1/span 6;
+    grid-area: 4/1/span 2/span 6;
     color: #FFF;
 }
 
 #amenities {
-    grid-area: 3/1/span 2/span 4;
+    grid-area: 7/7/span 1/span 4;
     color: #FFF;
 }
 
@@ -396,7 +413,7 @@ th {
 }
 
 #locationDetails {
-    grid-area: 5/7/span 1/span 2;
+    grid-area: 5/7/span 2/span 2;
     color: #FFF;
 }
 
@@ -405,12 +422,12 @@ th {
 }
 
 #lakeComments {
-    grid-area: 5/1/span 2/span 6;
+    grid-area: 6/1/span 1/span 6;
     color: #FFF;
 }
 
 #lakeRules {
-    grid-area: 5/10/span 3/span 3;
+    grid-area: 5/10/span 2/span 3;
     color: #FFF;
 }
 
@@ -418,7 +435,11 @@ th {
     grid-area: 7/1/span 4/span 6;
 }
 
-#contourMap {
+#regulations, #contourMap {
+    color: #fff05A
+}
+
+/* #contourMap {
     grid-area: 8/7/span 3/span 6;
     justify-self: center;
-}
+} */
