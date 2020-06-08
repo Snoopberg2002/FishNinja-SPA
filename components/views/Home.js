@@ -40,8 +40,7 @@ const st = () => `
     <div class="posts">
         <h3 id="posts">Recent Posts</h3>
         <ul id="newPosts">
-            <li>Goose Takeover in Benton Park!</li>
-            <li>Where's the fish?</li>
+            <li><a href="#" id="fakePost">(Benton Park Pond)-Goose Takeover!</a></li>
         </ul>
         <input type="submit" value="AddComment/UploadImage" class="post" id="post">
     </div>

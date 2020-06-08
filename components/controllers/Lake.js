@@ -9,34 +9,50 @@ export default (st, lake) => {
     .then(res => {
         BuildLakePage(res.data());
         InitMap(res.data());
-        // GetWeather(res.data());
+        GetWeather(res.data());
     });
 
 }
 
 function BuildLakePage(lake) {
     document.querySelector("#lakeTitle").textContent = lake.name;
+    
     if (lake.species === "N/A") {
         document.querySelector("#residentSpecies").textContent = "Tenant list coming soon.";
     } else {
         document.querySelector("#residentSpecies").textContent = lake.species;
     }
+    
     document.querySelector("#amenitiesContent").textContent = lake.amenities;
+    
     document.querySelector("#commentsContent").textContent = lake.comments;
+    
     document.querySelector("#county").textContent = `County: ${lake.county}`;
+    
     document.querySelector("#acres").textContent = `Acres: ${lake.acres}`;
+
+    document.querySelector("#route").textContent = lake.directions;
+    
     document.querySelector("#boatLaunch").textContent = `Boat Launch: ${lake.boatLaunch}`;
+    
     document.querySelector("#iceFishing").textContent = `Ice Fishing: ${lake.iceFishing}`;
+    
     document.querySelector("#bowFishing").textContent = `Bow Fishing: ${lake.bowFishing}`;
+    
     document.querySelector("#access").textContent = `Access: ${lake.access}`;
-    if (lake.contourMap = "N/A") {
+
+    if (lake.contourMap === "N/A") {
         document.querySelector("#contourMap").textContent = "";
+    } else {
+        document.querySelector("#contourMap").setAttribute("href", lake.contourMap.url);
     }
-    document.querySelector("#contourMap").setAttribute("href", lake.contourMap.url);
-    if (lake.regulations = "N/A") {
+
+    if (lake.regulations === "N/A") {
         document.querySelector("#regulations").textContent = "";
+    } else {
+        document.querySelector("#regulations").setAttribute("href", lake.regulations.url);
     }
-    document.querySelector("#regulations").setAttribute("href", lake.regulations.url);
+    
     document.querySelector("#county").textContent = `County: ${lake.county}`;
 }
 

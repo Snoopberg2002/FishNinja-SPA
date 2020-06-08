@@ -82,10 +82,17 @@ h4 > a, .about, .contact, .login {
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding-left: 30px;
+    padding-right: 30px;
+    overflow: inherit;
 }
 
 .aboutHead, .aboutBody {
     color: #fff05A;
+}
+
+.aboutHead {
+    font-family: Merienda;
 }
 
 .contactsModal {
@@ -164,12 +171,24 @@ h4 > a, .about, .contact, .login {
 }
 
 .postsForm {
-    padding-top: 20px;
+    padding-top: 0px;
     height: 375px;
     display: flex;
     color: #FFF;
     flex-direction: column;
     align-items: center;
+}
+
+.newPostModal {
+    width: 60%;
+    height: 100%;
+    overflow: inherit;
+}
+
+.newPostContent {
+    background-image: url("https://i.imgur.com/kA9JB0r.jpg");
+    background-position: center;
+    color: #FFF;
 }
 
 /* Main Content */
@@ -292,8 +311,8 @@ footer {
 
 /* Register Page */
 .registerMain {
-    background-image: url("https://i.imgur.com/mHqV1dN.jpg");
-    background-position: center;
+    background-image: url("https://i.imgur.com/AWmoshp.jpg");
+    background-size: cover;
     min-height: 675px;
     }
 
@@ -315,11 +334,6 @@ footer {
 }
 
 /* Tips Page */
-#tipsForm {
-    border: none;
-    padding-top: 80px;
-}
-
 .tipsMain {
     display: flex;
     flex-direction: column;
@@ -330,7 +344,12 @@ footer {
 
 #tipsForm {
     align-self: center;
-    padding-top: 100px;
+    padding-top: 20px;
+    border: none;
+}
+
+#tipsHead {
+    font-family: Merienda;
 }
 
 #techniques {
@@ -404,7 +423,7 @@ th {
 }
 
 #amenities {
-    grid-area: 7/7/span 1/span 4;
+    grid-area: 6/7/span 2/span 3;
     color: #FFF;
 }
 
@@ -413,11 +432,7 @@ th {
 }
 
 #locationDetails {
-    grid-area: 5/7/span 2/span 2;
-    color: #FFF;
-}
-
-#directions {
+    grid-area: 5/7/span 3/span 3;
     color: #FFF;
 }
 
@@ -431,6 +446,11 @@ th {
     color: #FFF;
 }
 
+#directions {
+    grid-area: 7/8/span 3/span 5;
+    color: #FFF;
+}
+
 #lakePosts {
     grid-area: 7/1/span 4/span 6;
 }
@@ -438,8 +458,3 @@ th {
 #regulations, #contourMap {
     color: #fff05A
 }
-
-/* #contourMap {
-    grid-area: 8/7/span 3/span 6;
-    justify-self: center;
-} */

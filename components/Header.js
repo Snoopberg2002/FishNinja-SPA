@@ -15,7 +15,7 @@ export default () => `
         <div class="aboutModal">
             <section class="aboutContent">
                 <h1 class="aboutHead">About</h1>
-                <h4 class="aboutBody">We here at the Fish Ninja are committed to providing in-depth, detailed and accurate information, about fishing areas, to anglers everywhere.  For far too long it has been far too difficult to find valuable details about where to fish and, just as important, what fish species may be present in any given lake to fish for.  We intend to change that.  Furthermore, it is our hope that allowing anglers to connect with one another will provide an even greater opportunity to share knowledge between individuals or with the entire fishing world.  In this ever changing landscape, we shall remain diligent in our approach to gathering, updating, and sharing everything we can find in order to help improve fishing experiences across America.</h4>
+                <h4 class="aboutBody">The Fish Ninja is committed to providing the most complete and comprehensive fishing website available.  It is our ongoing and never ending mission to compile and present any and all information relevant to fishing lakes across the United States.  While it is our intention to remain steadfast in this pledge, we can not do it alone.  It is only through the input and feedback of our users that this site can reach its full potential.  Having all the raw data in the world still only paints part of the picture.  Without boots on the ground to say, this lake's shoreline is packed shoulder to shoulder with anglers every weekend, or there is a major construction project up the road that really has the fish dug in; then we really don't have the whole story.  We, unfortunately, will not be able to visit all of these lakes, which is why we need your help.  Connect with other angler's personally, or post your thoughts for the fishing world to see.  We will do our best to put all comments provided to good use.</h4>
             </section>
         </div>
     </template>
@@ -74,13 +74,26 @@ export default () => `
                     <input class="postsEls" type="text" id="postState" name="postState" placeholder="Required for image upload.">
                     <br>
                     <label class="postsEls" for="addImage">Upload Image</label>
-                    <input class="postsEls" type="file" id="addImage" name="addImage" value="addImage">
+                    <input class="postsEls" type="file" accept="image/*" id="addImage" name="addImage" value="addImage">
                     <br>
                     <label class="postsEls" for="addComment">Add Comments</label>
                     <input class="postsEls" type="text" id="addComment" name="addComment" placeholder="Add Text Here">
                     <br>
                     <input class="postsEls" type="submit" id="createPost" name="createPost" value="Create Post">
                 </form>
+            </section>
+        </div>
+    </template>
+
+    <!-- New Posts Modal -->
+    <template class="newPostTemplate">
+        <div class="newPostModal">
+            <section class="newPostContent">
+                <img src="" id="newPostImage" class="newPostEls">
+                <h2 id="newPostLake" class="newPostEls">Lake Name</h2>
+                <h3 id="newPostState" class="newPostEls">Lake State</h3> 
+                <label for="newPostComments" class="newPostEls">Posted By</label>
+                <p id="newPostComments" class="newPostEls">Comments</p>
             </section>
         </div>
     </template>

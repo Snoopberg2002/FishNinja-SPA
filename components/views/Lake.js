@@ -31,7 +31,11 @@ export default st => `
     <div id="locationDetails">
         <h4 id="county">County:</h4>
         <h4 id="acres">Acres:</h4>
-        <h4 id="directions"><a id="directions" href="#">Directions</a></h4>
+    </div>
+
+    <div id="directions">
+        <h4 id="directionsHead">Directions:</h4>
+        <p id="route"></p>
     </div>
 
     <div id="lakeRules">

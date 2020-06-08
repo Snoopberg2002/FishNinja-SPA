@@ -1,6 +1,9 @@
 export default st => `
 <section class="tipsMain">
     <form id="tipsForm" action="#" method="POST">
+        <h1 id="tipsHead">Tips from the Pros</h1>
+        <br>
+        <br>
         <select id="species" name="species">
             <option id="bluegill" value="bluegill">Sunfish/Bluegill</option>
             <option id="crappie" value="crappie">Crappie</option>

@@ -239,7 +239,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _default = function _default() {
-  return "\n<header>\n    <h3 id=\"home\"><a id=\"home\" href=\"/Home\" data-navigo>Home</a></h3>\n\n    <nav>\n        <a href=\"#\" class=\"about\">About</a>\n        <a href=\"#\" class=\"contact\">Contact</a>\n        <a href=\"#\" class=\"login\">Login/Register</a>\n    </nav>\n\n    <h4 class=\"tips\"><a href=\"/Tips\" data-navigo>Tips & Techniques</a></h4>\n\n    <!-- About Modal -->\n    <template class=\"aboutTemplate\">\n        <div class=\"aboutModal\">\n            <section class=\"aboutContent\">\n                <h1 class=\"aboutHead\">About</h1>\n                <h4 class=\"aboutBody\">We here at the Fish Ninja are committed to providing in-depth, detailed and accurate information, about fishing areas, to anglers everywhere.  For far too long it has been far too difficult to find valuable details about where to fish and, just as important, what fish species may be present in any given lake to fish for.  We intend to change that.  Furthermore, it is our hope that allowing anglers to connect with one another will provide an even greater opportunity to share knowledge between individuals or with the entire fishing world.  In this ever changing landscape, we shall remain diligent in our approach to gathering, updating, and sharing everything we can find in order to help improve fishing experiences across America.</h4>\n            </section>\n        </div>\n    </template>\n    <!-- Contacts Modal -->\n    <template class=\"contactsTemplate\">\n        <div class=\"contactsModal\">\n            <section class=\"contactsContent\">\n                <h1>Contacts</h1>\n            </section>\n        </div>\n    </template>\n    <!-- Login Modal -->\n    <template class=\"loginTemplate\">\n        <div class=\"loginModal\">\n            <section class=\"loginContent\">\n                <form action=\"index.html\" method=\"POST\" id=\"login\">\n                    <label for=\"username\">Username:</label>\n                    <input type=\"text\" name=\"username\" id=\"username\">\n                    <br>\n                    <label for=\"user-pw\">Password:</label>\n                    <input id=\"user-pw\" type=\"password\" name=\"user-pw\">\n                    <h3>Not already a member?  <a href=\"/Register\" id=\"registerLink\" data-navigo>Register  </a></h3>\n                    <br>\n                    <input id=\"submit\" type=\"submit\" value=\"Submit\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- News Modal -->\n    <template class=\"newsTemplate\">\n        <div class=\"newsModal\">\n            <section class=\"newsContent\">\n                <img src=\"\" alt=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"storyImage>\n                <h2 id=\"title\">Title</h2>\n                <h4 id=\"author\">Author</h4>\n                <a href=\"\" id=\"storyLink\">Link to Page</a>\n                <br>\n                <p id=\"story\">Content</p>\n            </section>\n        </div>\n    </template>\n\n    <!-- Posts Modal -->\n    <template class=\"postsTemplate\">\n        <div class=\"postsModal\">\n            <section class=\"postsContent\">\n                <form class=\"postsForm\" action=\"https://formspree.io/xbjzoonz\" method=\"POST\">\n                    <h2 id=\"createPostHead\">CreatePost</h2>\n                    <label for=\"createPostHead\" class=\"postLogin\">Must be <a href=\"/Register\" data-navigo class=\"login\" id=\"postLogin\">Logged In </a>to post.</label>\n                    <br>\n                    <label class=\"postsEls\" for=\"postLake\">Lake Name:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postLake\" name=\"postLake\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"postState\">State:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postState\" name=\"postState\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addImage\">Upload Image</label>\n                    <input class=\"postsEls\" type=\"file\" id=\"addImage\" name=\"addImage\" value=\"addImage\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addComment\">Add Comments</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"addComment\" name=\"addComment\" placeholder=\"Add Text Here\">\n                    <br>\n                    <input class=\"postsEls\" type=\"submit\" id=\"createPost\" name=\"createPost\" value=\"Create Post\">\n                </form>\n            </section>\n        </div>\n    </template>\n</header>\n";
+  return "\n<header>\n    <h3 id=\"home\"><a id=\"home\" href=\"/Home\" data-navigo>Home</a></h3>\n\n    <nav>\n        <a href=\"#\" class=\"about\">About</a>\n        <a href=\"#\" class=\"contact\">Contact</a>\n        <a href=\"#\" class=\"login\">Login/Register</a>\n    </nav>\n\n    <h4 class=\"tips\"><a href=\"/Tips\" data-navigo>Tips & Techniques</a></h4>\n\n    <!-- About Modal -->\n    <template class=\"aboutTemplate\">\n        <div class=\"aboutModal\">\n            <section class=\"aboutContent\">\n                <h1 class=\"aboutHead\">About</h1>\n                <h4 class=\"aboutBody\">The Fish Ninja is committed to providing the most complete and comprehensive fishing website available.  It is our ongoing and never ending mission to compile and present any and all information relevant to fishing lakes across the United States.  While it is our intention to remain steadfast in this pledge, we can not do it alone.  It is only through the input and feedback of our users that this site can reach its full potential.  Having all the raw data in the world still only paints part of the picture.  Without boots on the ground to say, this lake's shoreline is packed shoulder to shoulder with anglers every weekend, or there is a major construction project up the road that really has the fish dug in; then we really don't have the whole story.  We, unfortunately, will not be able to visit all of these lakes, which is why we need your help.  Connect with other angler's personally, or post your thoughts for the fishing world to see.  We will do our best to put all comments provided to good use.</h4>\n            </section>\n        </div>\n    </template>\n    <!-- Contacts Modal -->\n    <template class=\"contactsTemplate\">\n        <div class=\"contactsModal\">\n            <section class=\"contactsContent\">\n                <h1>Contacts</h1>\n            </section>\n        </div>\n    </template>\n    <!-- Login Modal -->\n    <template class=\"loginTemplate\">\n        <div class=\"loginModal\">\n            <section class=\"loginContent\">\n                <form action=\"index.html\" method=\"POST\" id=\"login\">\n                    <label for=\"username\">Username:</label>\n                    <input type=\"text\" name=\"username\" id=\"username\">\n                    <br>\n                    <label for=\"user-pw\">Password:</label>\n                    <input id=\"user-pw\" type=\"password\" name=\"user-pw\">\n                    <h3>Not already a member?  <a href=\"/Register\" id=\"registerLink\" data-navigo>Register  </a></h3>\n                    <br>\n                    <input id=\"submit\" type=\"submit\" value=\"Submit\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- News Modal -->\n    <template class=\"newsTemplate\">\n        <div class=\"newsModal\">\n            <section class=\"newsContent\">\n                <img src=\"\" alt=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"storyImage>\n                <h2 id=\"title\">Title</h2>\n                <h4 id=\"author\">Author</h4>\n                <a href=\"\" id=\"storyLink\">Link to Page</a>\n                <br>\n                <p id=\"story\">Content</p>\n            </section>\n        </div>\n    </template>\n\n    <!-- Posts Modal -->\n    <template class=\"postsTemplate\">\n        <div class=\"postsModal\">\n            <section class=\"postsContent\">\n                <form class=\"postsForm\" action=\"https://formspree.io/xbjzoonz\" method=\"POST\">\n                    <h2 id=\"createPostHead\">CreatePost</h2>\n                    <label for=\"createPostHead\" class=\"postLogin\">Must be <a href=\"/Register\" data-navigo class=\"login\" id=\"postLogin\">Logged In </a>to post.</label>\n                    <br>\n                    <label class=\"postsEls\" for=\"postLake\">Lake Name:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postLake\" name=\"postLake\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"postState\">State:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postState\" name=\"postState\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addImage\">Upload Image</label>\n                    <input class=\"postsEls\" type=\"file\" accept=\"image/*\" id=\"addImage\" name=\"addImage\" value=\"addImage\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addComment\">Add Comments</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"addComment\" name=\"addComment\" placeholder=\"Add Text Here\">\n                    <br>\n                    <input class=\"postsEls\" type=\"submit\" id=\"createPost\" name=\"createPost\" value=\"Create Post\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- New Posts Modal -->\n    <template class=\"newPostTemplate\">\n        <div class=\"newPostModal\">\n            <section class=\"newPostContent\">\n                <img src=\"\" id=\"newPostImage\" class=\"newPostEls\">\n                <h2 id=\"newPostLake\" class=\"newPostEls\">Lake Name</h2>\n                <h3 id=\"newPostState\" class=\"newPostEls\">Lake State</h3> \n                <label for=\"newPostComments\" class=\"newPostEls\">Posted By</label>\n                <p id=\"newPostComments\" class=\"newPostEls\">Comments</p>\n            </section>\n        </div>\n    </template>\n</header>\n";
 };
 
 exports.default = _default;
@@ -252,7 +252,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var st = function st() {
-  return "\n<section class=\"homeMain\">\n    <h1 class=\"heading\">Keeping Lines Tight Across America!</h1>\n    <div id=\"map\"></div>\n    <h2>Lake Search:</h2>\n    <form id=\"searchForm\" action=\"/Search\" method=\"POST\">\n        <section id=\"location\">\n            <label for=\"location\" id=\"location\">City, State:  </label>\n            <input type=\"text\" name=\"location\" id=\"location\" value=\"location\" placeholder=\"Login for location\">\n        </section>\n        <br>\n\n        <label for=\"distance\">Distance:</label>\n        <section id=\"distance\">\n            <input type=\"radio\" class=\"search\" id=\"any\" name=\"choice\" value=\"any\" checked>\n            <label for=\"any\">25 miles</label>\n                \n            <input type=\"radio\" class=\"search\" id=\"public\" name=\"choice\" value=\"public\">\n            <label for=\"public\">50 miles</label>\n                \n            <input type=\"radio\" class=\"search\" id=\"private\" name=\"choice\" value=\"private\">\n            <label for=\"private\">100 miles</label>\n        </section>\n\n        <section id=\"species\">\n            <label>Species:  </label>\n            <input type=\"text\" name=\"species\" value=\"species\" placeholder=\"Optional\">\n        </section>\n\n        <input type=\"submit\" value=\"Search\" id=\"search\">\n    </form>\n\n    <div class=\"news\">\n        <h3 id=\"newsHead\">Fishing News</h3>\n        <ul id=\"news\">\n            \n        </ul>\n    </div>\n\n    <div class=\"posts\">\n        <h3 id=\"posts\">Recent Posts</h3>\n        <ul id=\"newPosts\">\n            <li>Goose Takeover in Benton Park!</li>\n            <li>Where's the fish?</li>\n        </ul>\n        <input type=\"submit\" value=\"AddComment/UploadImage\" class=\"post\" id=\"post\">\n    </div>\n</section>\n";
+  return "\n<section class=\"homeMain\">\n    <h1 class=\"heading\">Keeping Lines Tight Across America!</h1>\n    <div id=\"map\"></div>\n    <h2>Lake Search:</h2>\n    <form id=\"searchForm\" action=\"/Search\" method=\"POST\">\n        <section id=\"location\">\n            <label for=\"location\" id=\"location\">City, State:  </label>\n            <input type=\"text\" name=\"location\" id=\"location\" value=\"location\" placeholder=\"Login for location\">\n        </section>\n        <br>\n\n        <label for=\"distance\">Distance:</label>\n        <section id=\"distance\">\n            <input type=\"radio\" class=\"search\" id=\"any\" name=\"choice\" value=\"any\" checked>\n            <label for=\"any\">25 miles</label>\n                \n            <input type=\"radio\" class=\"search\" id=\"public\" name=\"choice\" value=\"public\">\n            <label for=\"public\">50 miles</label>\n                \n            <input type=\"radio\" class=\"search\" id=\"private\" name=\"choice\" value=\"private\">\n            <label for=\"private\">100 miles</label>\n        </section>\n\n        <section id=\"species\">\n            <label>Species:  </label>\n            <input type=\"text\" name=\"species\" value=\"species\" placeholder=\"Optional\">\n        </section>\n\n        <input type=\"submit\" value=\"Search\" id=\"search\">\n    </form>\n\n    <div class=\"news\">\n        <h3 id=\"newsHead\">Fishing News</h3>\n        <ul id=\"news\">\n            \n        </ul>\n    </div>\n\n    <div class=\"posts\">\n        <h3 id=\"posts\">Recent Posts</h3>\n        <ul id=\"newPosts\">\n            <li><a href=\"#\" id=\"fakePost\">(Benton Park Pond)-Goose Takeover!</a></li>\n        </ul>\n        <input type=\"submit\" value=\"AddComment/UploadImage\" class=\"post\" id=\"post\">\n    </div>\n</section>\n";
 };
 
 var _default = st;
@@ -266,7 +266,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _default = function _default(st) {
-  return "\n<section class=\"lakePageMain\">\n    <h1 id=\"lakeTitle\">This Lake</h1>\n\n    <h2 id=\"weatherHead\">Weather</h2>\n    <div id=\"thisWeather\">\n        <h3 id=\"rightNow\">Right Now:</h3>\n        <h3 id=\"high\">High:</h3>\n        <h3 id=\"low\">Low:</h3>\n    </div> \n\n    <div id=\"speciesList\">\n        <h3 id=\"speciesHead\">Resident Species</h3>\n        <h4 id=\"residentSpecies\">These Fish</h4>\n    </div>\n\n    <div id=\"amenities\">\n        <h3 id=\"amenitiesHead\">Amenities: </h3>\n        <p id=\"amenitiesContent\">These Amenities</p>\n    </div>\n\n    <div id=\"lakeComments\">\n        <h3 id=\"commentsHead\">Comments:</h3>\n        <p id=\"commentsContent\"></p>\n    </div>\n\n    <div id=\"lakeMap\">\n\n    </div>\n\n    <div id=\"locationDetails\">\n        <h4 id=\"county\">County:</h4>\n        <h4 id=\"acres\">Acres:</h4>\n        <h4 id=\"directions\"><a id=\"directions\" href=\"#\">Directions</a></h4>\n    </div>\n\n    <div id=\"lakeRules\">\n        <h4 id=\"lakeStandards\">Lake Standards</h4>\n        <ul id=\"rulesList\">\n            <li id=\"boatLaunch\">Boat Launch:</li>\n            <li id=\"iceFishing\">Ice Fishing:</li>\n            <li id=\"bowFishing\">Bow Fishing:</li>\n            <li id=\"access\">Access:</li>\n        </ul>\n        <a id=\"regulations\" href=\"\">Regulations</a>\n        <a id=\"contourMap\" href=\"\">Contour Map</a>\n    </div>\n\n    <div id=\"lakePosts\">\n        <h2 id=\"lakePostsHead\">Lake Posts</h2>\n        <ul id=\"postsList\">\n            <li>Add Posts</li>\n        </ul>\n        <input type=\"submit\" name=\"comment\" value=\"Comment\">\n    </div>\n</section>\n";
+  return "\n<section class=\"lakePageMain\">\n    <h1 id=\"lakeTitle\">This Lake</h1>\n\n    <h2 id=\"weatherHead\">Weather</h2>\n    <div id=\"thisWeather\">\n        <h3 id=\"rightNow\">Right Now:</h3>\n        <h3 id=\"high\">High:</h3>\n        <h3 id=\"low\">Low:</h3>\n    </div> \n\n    <div id=\"speciesList\">\n        <h3 id=\"speciesHead\">Resident Species</h3>\n        <h4 id=\"residentSpecies\">These Fish</h4>\n    </div>\n\n    <div id=\"amenities\">\n        <h3 id=\"amenitiesHead\">Amenities: </h3>\n        <p id=\"amenitiesContent\">These Amenities</p>\n    </div>\n\n    <div id=\"lakeComments\">\n        <h3 id=\"commentsHead\">Comments:</h3>\n        <p id=\"commentsContent\"></p>\n    </div>\n\n    <div id=\"lakeMap\">\n\n    </div>\n\n    <div id=\"locationDetails\">\n        <h4 id=\"county\">County:</h4>\n        <h4 id=\"acres\">Acres:</h4>\n    </div>\n\n    <div id=\"directions\">\n        <h4 id=\"directionsHead\">Directions:</h4>\n        <p id=\"route\"></p>\n    </div>\n\n    <div id=\"lakeRules\">\n        <h4 id=\"lakeStandards\">Lake Standards</h4>\n        <ul id=\"rulesList\">\n            <li id=\"boatLaunch\">Boat Launch:</li>\n            <li id=\"iceFishing\">Ice Fishing:</li>\n            <li id=\"bowFishing\">Bow Fishing:</li>\n            <li id=\"access\">Access:</li>\n        </ul>\n        <a id=\"regulations\" href=\"\">Regulations</a>\n        <a id=\"contourMap\" href=\"\">Contour Map</a>\n    </div>\n\n    <div id=\"lakePosts\">\n        <h2 id=\"lakePostsHead\">Lake Posts</h2>\n        <ul id=\"postsList\">\n            <li>Add Posts</li>\n        </ul>\n        <input type=\"submit\" name=\"comment\" value=\"Comment\">\n    </div>\n</section>\n";
 };
 
 exports.default = _default;
@@ -305,7 +305,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _default = function _default(st) {
-  return "\n<section class=\"tipsMain\">\n    <form id=\"tipsForm\" action=\"#\" method=\"POST\">\n        <select id=\"species\" name=\"species\">\n            <option id=\"bluegill\" value=\"bluegill\">Sunfish/Bluegill</option>\n            <option id=\"crappie\" value=\"crappie\">Crappie</option>\n            <option id=\"perch\" value=\"perch\">Perch</option>\n            <option id=\"smb\" value=\"smb\">Smallmouth Bass</option>\n            <option id=\"lmb\" value=\"lmb\">Largemouth Bass</option>\n            <option id=\"walleye\" value=\"walleye\">Walleye</option>\n            <option id=\"pike\" value=\"pike\">Northern Pike</option>\n            <option id=\"muskie\" value=\"muskie\">Muskie</option>\n        </select>\n\n        <select id=\"season\" name=\"season\">\n            <option id=\"earlyWinter\" value=\"earlyWinter\">Early Winter</option>\n            <option id=\"winter\" value=\"winter\">Winter</option>\n            <option id=\"earlySpring\" value=\"earlySpring\">Early Spring</option>\n            <option id=\"spring\" value=\"spring\">Spring</option>\n            <option id=\"summer\" value=\"summer\">Summer</option>\n            <option id=\"earlyFall\" value=\"earlyFall\">Early Fall</option>\n            <option id=\"fall\" value=\"fall\">Fall</option>               \n        </select>\n        <br>\n\n        <input type=\"submit\" value=\"Select\" id=\"select\">\n    </form>\n    <p id=\"techniques\">Select species and season for tips and techniques.</p>\n</section>\n";
+  return "\n<section class=\"tipsMain\">\n    <form id=\"tipsForm\" action=\"#\" method=\"POST\">\n        <h1 id=\"tipsHead\">Tips from the Pros</h1>\n        <br>\n        <br>\n        <select id=\"species\" name=\"species\">\n            <option id=\"bluegill\" value=\"bluegill\">Sunfish/Bluegill</option>\n            <option id=\"crappie\" value=\"crappie\">Crappie</option>\n            <option id=\"perch\" value=\"perch\">Perch</option>\n            <option id=\"smb\" value=\"smb\">Smallmouth Bass</option>\n            <option id=\"lmb\" value=\"lmb\">Largemouth Bass</option>\n            <option id=\"walleye\" value=\"walleye\">Walleye</option>\n            <option id=\"pike\" value=\"pike\">Northern Pike</option>\n            <option id=\"muskie\" value=\"muskie\">Muskie</option>\n        </select>\n\n        <select id=\"season\" name=\"season\">\n            <option id=\"earlyWinter\" value=\"earlyWinter\">Early Winter</option>\n            <option id=\"winter\" value=\"winter\">Winter</option>\n            <option id=\"earlySpring\" value=\"earlySpring\">Early Spring</option>\n            <option id=\"spring\" value=\"spring\">Spring</option>\n            <option id=\"summer\" value=\"summer\">Summer</option>\n            <option id=\"earlyFall\" value=\"earlyFall\">Early Fall</option>\n            <option id=\"fall\" value=\"fall\">Fall</option>               \n        </select>\n        <br>\n\n        <input type=\"submit\" value=\"Select\" id=\"select\">\n    </form>\n    <p id=\"techniques\">Select species and season for tips and techniques.</p>\n</section>\n";
 };
 
 exports.default = _default;
@@ -536,28 +536,7 @@ function modalListeners() {
     (0, _ToggleModal.default)(loginModal);
   });
 }
-},{"./ToggleModal":"lib/ToggleModal.js"}],"lib/Post.js":[function(require,module,exports) {
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Post = function Post(lake, img, comment) {
-  _classCallCheck(this, Post);
-
-  this.lake = lake, this.img = img, this.comment = comment;
-};
-
-var posts = [];
-
-function createPost() {
-  var lake = document.querySelector("#postLake").value;
-  var img = document.querySelector("#addImage").value;
-  var comment = document.querySelector("#addComment").value;
-  var newPost = new Post(lake, img, comment);
-  posts.unshift(newPost);
-  var post = new Post(lake, img, comment);
-  posts.unshift(post);
-  console.log(posts);
-}
-},{}],"node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
+},{"./ToggleModal":"lib/ToggleModal.js"}],"node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
 'use strict';
 
 module.exports = function bind(fn, thisArg) {
@@ -36751,7 +36730,42 @@ var _auth = _interopRequireDefault(require("./auth"));
 var _db = _interopRequireDefault(require("./db"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./auth":"firebase/auth.js","./db":"firebase/db.js"}],"lib/CreatePosts.js":[function(require,module,exports) {
+},{"./auth":"firebase/auth.js","./db":"firebase/db.js"}],"lib/AddPosts.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = AddPosts;
+
+var _firebase = require("../firebase");
+
+var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function AddPosts() {
+  var target = document.querySelector("#newPosts");
+
+  _firebase.db.collection("userPosts").get().then(function (res) {
+    res.forEach(function (doc) {
+      var post = doc.data();
+      var elem = document.createElement("li");
+      elem.innerHTML = "<a class=\"newPost\" href=\"#\">(".concat(post.LakeName, ")-").concat(post.Comment, "</a>");
+      target.appendChild(elem);
+      elem.addEventListener("click", function (e) {
+        e.preventDefault();
+        console.log(post);
+        (0, _ToggleModal.default)(document.querySelector(".newPostTemplate").innerHTML);
+        document.querySelector("#newPostImage").src = post.Image;
+        document.querySelector("#newPostLake").textContent = post.LakeName;
+        document.querySelector("#newPostState").textContent = post.LakeState;
+        document.querySelector("#newPostComments").textContent = post.Comment;
+      });
+    });
+  });
+}
+},{"../firebase":"firebase/index.js","./ToggleModal":"lib/ToggleModal.js"}],"lib/CreatePosts.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36763,58 +36777,25 @@ var _axios = _interopRequireDefault(require("axios"));
 
 var _firebase = require("../firebase");
 
+var _AddPosts = _interopRequireDefault(require("./AddPosts"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 function CreatePosts() {
-  var Post = function Post(lake, img, comment) {
-    _classCallCheck(this, Post);
+  var lake = document.querySelector("#postLake").value;
+  var state = document.querySelector("#postState").value;
+  var img = document.querySelector("#addImage").value;
+  var comment = document.querySelector("#addComment").value;
 
-    this.lake = lake, this.img = img, this.comment = comment;
-  };
+  _firebase.db.collection("userPosts").add({
+    Comment: comment,
+    LakeName: lake,
+    LakeState: state,
+    Image: img
+  }); // AddPosts();
 
-  var posts = [];
-
-  function createPost() {
-    var lake = document.querySelector("#postLake").value;
-    var state = document.querySelector("#postState");
-    var img = document.querySelector("#addImage").value;
-    var comment = document.querySelector("#addComment").value;
-    var newPost = new Post(lake, state, img, comment);
-    posts.unshift(newPost);
-    console.log(posts);
-
-    _firebase.db.collection("Posts").add({
-      Comment: comment,
-      LakeName: lake,
-      LakeState: state,
-      Image: img
-    });
-  }
-
-  createPost();
-
-  function addPost() {
-    var target = document.querySelector("#newPosts");
-
-    _firebase.db.collection("userPosts").get().then(console.log(_firebase.db.collection("userPosts"))).then(function (dbPosts) {
-      console.log(dbPosts);
-      dbPosts.docs.forEach(function (item) {
-        console.log(item);
-      });
-    }); // posts.forEach((post) => {
-    //     console.log(post);
-    //     const elem = document.createElement("li");
-    //     elem.innerHTML = `<a class="newPost" href="#">${post.lake}, ${post.comment}</a>`;
-    //     target.appendChild(elem);
-    // });
-
-  }
-
-  addPost();
 }
-},{"axios":"node_modules/axios/index.js","../firebase":"firebase/index.js"}],"lib/HomeListeners.js":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js","../firebase":"firebase/index.js","./AddPosts":"lib/AddPosts.js"}],"lib/HomeListeners.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36827,8 +36808,6 @@ var _ModalListeners = _interopRequireDefault(require("./ModalListeners"));
 var _Router = _interopRequireDefault(require("./Router"));
 
 var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
-
-var _Post = require("./Post");
 
 var _CreatePosts = _interopRequireDefault(require("./CreatePosts"));
 
@@ -36858,7 +36837,7 @@ function HomeListeners() {
     // });
   });
 }
-},{"./ModalListeners":"lib/ModalListeners.js","./Router":"lib/Router.js","./ToggleModal":"lib/ToggleModal.js","./Post":"lib/Post.js","./CreatePosts":"lib/CreatePosts.js"}],"lib/InfoWindow.js":[function(require,module,exports) {
+},{"./ModalListeners":"lib/ModalListeners.js","./Router":"lib/Router.js","./ToggleModal":"lib/ToggleModal.js","./CreatePosts":"lib/CreatePosts.js"}],"lib/InfoWindow.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36958,7 +36937,7 @@ module.exports = [{
 }, {
   "lat": 43.201730,
   "lng": -75.532868,
-  "name": "NewYork"
+  "name": "New York"
 }, {
   "lat": 43.994966,
   "lng": -72.666294,
@@ -102128,12 +102107,13 @@ var _InfoWindow = _interopRequireDefault(require("../../lib/InfoWindow"));
 
 var _CreateMap = _interopRequireDefault(require("../../lib/CreateMap"));
 
-var _CreatePosts = _interopRequireDefault(require("../../lib/CreatePosts"));
+var _AddPosts = _interopRequireDefault(require("../../lib/AddPosts"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function _default(st) {
   // NewsFeed();
+  (0, _AddPosts.default)();
   (0, _HomeListeners.default)();
   setTimeout(function () {
     (0, _CreateMap.default)();
@@ -102141,7 +102121,7 @@ var _default = function _default(st) {
 };
 
 exports.default = _default;
-},{"../../lib/News":"lib/News.js","../../lib/HomeListeners":"lib/HomeListeners.js","../../lib/InfoWindow":"lib/InfoWindow.js","../../lib/CreateMap":"lib/CreateMap.js","../../lib/CreatePosts":"lib/CreatePosts.js"}],"components/controllers/Lake.js":[function(require,module,exports) {
+},{"../../lib/News":"lib/News.js","../../lib/HomeListeners":"lib/HomeListeners.js","../../lib/InfoWindow":"lib/InfoWindow.js","../../lib/CreateMap":"lib/CreateMap.js","../../lib/AddPosts":"lib/AddPosts.js"}],"components/controllers/Lake.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -102179,22 +102159,24 @@ function BuildLakePage(lake) {
   document.querySelector("#commentsContent").textContent = lake.comments;
   document.querySelector("#county").textContent = "County: ".concat(lake.county);
   document.querySelector("#acres").textContent = "Acres: ".concat(lake.acres);
+  document.querySelector("#route").textContent = lake.directions;
   document.querySelector("#boatLaunch").textContent = "Boat Launch: ".concat(lake.boatLaunch);
   document.querySelector("#iceFishing").textContent = "Ice Fishing: ".concat(lake.iceFishing);
   document.querySelector("#bowFishing").textContent = "Bow Fishing: ".concat(lake.bowFishing);
   document.querySelector("#access").textContent = "Access: ".concat(lake.access);
 
-  if (lake.contourMap = "N/A") {
+  if (lake.contourMap === "N/A") {
     document.querySelector("#contourMap").textContent = "";
+  } else {
+    document.querySelector("#contourMap").setAttribute("href", lake.contourMap.url);
   }
 
-  document.querySelector("#contourMap").setAttribute("href", lake.contourMap.url);
-
-  if (lake.regulations = "N/A") {
+  if (lake.regulations === "N/A") {
     document.querySelector("#regulations").textContent = "";
+  } else {
+    document.querySelector("#regulations").setAttribute("href", lake.regulations.url);
   }
 
-  document.querySelector("#regulations").setAttribute("href", lake.regulations.url);
   document.querySelector("#county").textContent = "County: ".concat(lake.county);
 }
 
@@ -102247,52 +102229,46 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function CreateUser() {
   document.querySelector("#registerForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // convert HTML elements to Array
-
-    var inputList = Array.from(event.target.elements); // remove submit button from list
-
-    inputList.pop();
-    var inputs = inputList.map(function (input) {
-      return input.value;
-    });
-    console.log(inputs);
-    var homeCity = inputs[0];
-    var homeState = inputs[1];
-    var favoriteLake = inputs[2];
-    var email = inputs[3];
-    var userName = inputs[4];
-    var pass = inputs[5];
-    var verPass = inputs[6];
+    event.preventDefault();
+    var homeCity = document.querySelector("#homeCity").value;
+    var homeState = document.querySelector("#homeState").value;
+    var favoriteLake = document.querySelector("#favLake").value;
+    var email = document.querySelector("#email").value;
+    var userName = document.querySelector("#userName").value;
+    var pass = document.querySelector("#pass").value;
+    var verPass = document.querySelector("#verPass").value;
 
     if (pass != verPass) {
       alert("Passwords do not match.");
-    } //create user in Firebase
+    } // //create user in Firebase
+    // auth.createUserWithEmailAndPassword(email, pass).then(response => {
+    //   console.log("user registered");
+    //   console.log(response);
+    //   console.log(response.user);
+    //   addUserToStateAndDb(userName, email, pass, homeCity, homeState, favoriteLake);  
+    // //   render(state.Home);  
+    // });  
 
 
-    _firebase.auth.createUserWithEmailAndPassword(email, pass).then(function (response) {
-      console.log("user registered");
-      console.log(response);
-      console.log(response.user);
-      addUserToStateAndDb(userName, email, pass, homeCity, homeState, favoriteLake);
-      (0, _Render.render)(state.Home);
-    });
-
-    function addUserToStateAndDb(userName, homeCity, homeState, email, pass) {
+    function addUserToStateAndDb() {
       // state.User.username = userName;
       // state.User.homeCity = homeCity;
       // state.User.homeState = homeState;
       // state.User.email = email;
       // state.User.loggedIn = true;
       _firebase.db.collection("Users").add({
-        userName: userName,
-        homeCity: homeCity,
-        homeState: homeState,
-        favoriteLake: favoriteLake,
-        email: email,
-        pass: pass,
+        UserName: userName,
+        HomeCity: homeCity,
+        HomeState: homeState,
+        FavoriteLake: favoriteLake,
+        Email: email,
+        Password: pass,
         signedIn: true
       });
     }
+
+    addUserToStateAndDb();
+    (0, _Render.render)("/Home");
   });
 }
 },{"../firebase":"firebase/index.js","./Render":"lib/Render.js","../store":"store/index.js"}],"components/controllers/Register.js":[function(require,module,exports) {
@@ -102409,7 +102385,7 @@ function getTips() {
     }
 
     if (species.value === "crappie") {
-      background.style.backgroundImage = "url(\"https://i.imgur.com/ubQXLFw.jpg\")";
+      background.style.backgroundImage = "url(\"https://i.imgur.com/NFGq8Tf.jpg\")";
     }
 
     if (species.value === "perch") {
@@ -102421,7 +102397,7 @@ function getTips() {
     }
 
     if (species.value === "lmb") {
-      background.style.backgroundImage = "url(\"https://i.imgur.com/WTakntr.jpg\")";
+      background.style.backgroundImage = "url(\"https://i.imgur.com/WTakntr.jpg\")"; // par.style.color = "#000";
     }
 
     if (species.value === "walleye") {
@@ -121804,7 +121780,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50283" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52614" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
