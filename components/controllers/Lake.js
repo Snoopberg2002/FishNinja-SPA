@@ -65,7 +65,7 @@ function InitMap(lake) {
 }
 
 function GetWeather(lake) {
-    axios.get(`pro.openweathermap.org/data/2.5/forecast/hourly?lat={${lake.lat}}&lon={${lake.lng}}&appid={06c7cb455d2c2ecf48244fb8596609f8}`)
+    axios.get(`pro.openweathermap.org/data/2.5/forecast/hourly?lat=${lake.lat}&lon=${lake.lng}&appid=06c7cb455d2c2ecf48244fb8596609f8`)
     .then(result => {
         console.log(result);
     }) 

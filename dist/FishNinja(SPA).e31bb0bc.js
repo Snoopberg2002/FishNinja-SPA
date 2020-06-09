@@ -182,6 +182,19 @@ var _default = {
   controller: "Tips"
 };
 exports.default = _default;
+},{}],"store/Users.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  userName: "",
+  email: "",
+  signedIn: false
+};
+exports.default = _default;
 },{}],"store/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -218,6 +231,12 @@ Object.defineProperty(exports, "Tips", {
     return _Tips.default;
   }
 });
+Object.defineProperty(exports, "Users", {
+  enumerable: true,
+  get: function () {
+    return _Users.default;
+  }
+});
 
 var _Home = _interopRequireDefault(require("./Home"));
 
@@ -229,8 +248,10 @@ var _Search = _interopRequireDefault(require("./Search"));
 
 var _Tips = _interopRequireDefault(require("./Tips"));
 
+var _Users = _interopRequireDefault(require("./Users"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Home":"store/Home.js","./Lake":"store/Lake.js","./Register":"store/Register.js","./Search":"store/Search.js","./Tips":"store/Tips.js"}],"components/Header.js":[function(require,module,exports) {
+},{"./Home":"store/Home.js","./Lake":"store/Lake.js","./Register":"store/Register.js","./Search":"store/Search.js","./Tips":"store/Tips.js","./Users":"store/Users.js"}],"components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -102192,7 +102213,7 @@ function InitMap(lake) {
 }
 
 function GetWeather(lake) {
-  _axios.default.get("pro.openweathermap.org/data/2.5/forecast/hourly?lat={".concat(lake.lat, "}&lon={").concat(lake.lng, "}&appid={06c7cb455d2c2ecf48244fb8596609f8}")).then(function (result) {
+  _axios.default.get("pro.openweathermap.org/data/2.5/forecast/hourly?lat=".concat(lake.lat, "&lon=").concat(lake.lng, "&appid=06c7cb455d2c2ecf48244fb8596609f8")).then(function (result) {
     console.log(result);
   });
 }
@@ -121780,7 +121801,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52614" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63504" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
