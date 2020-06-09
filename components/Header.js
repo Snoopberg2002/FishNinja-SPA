@@ -31,12 +31,12 @@ export default () => `
     <template class="loginTemplate">
         <div class="loginModal">
             <section class="loginContent">
-                <form action="index.html" method="POST" id="login">
-                    <label for="username">Username:</label>
-                    <input type="text" name="username" id="username">
+                <form action="" method="POST" id="login">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" id="email">
                     <br>
-                    <label for="user-pw">Password:</label>
-                    <input id="user-pw" type="password" name="user-pw">
+                    <label for="pass">Password:</label>
+                    <input id="pass" type="password" name="password">
                     <h3>Not already a member?  <a href="/Register" id="registerLink" data-navigo>Register  </a></h3>
                     <br>
                     <input id="submit" type="submit" value="Submit">

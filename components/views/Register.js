@@ -1,6 +1,6 @@
 export default st => `
 <section class="registerMain">
-    <form id="registerForm" action="#" method="POST">
+    <form id="registerForm" action="" method="POST">
         <label class="registerEls" for="homeCity">Home City:</label>
         <input type="text" name="homeCity" class="registerEls" id="homeCity">
         <br>

@@ -15,6 +15,8 @@ export default (st, lake) => {
 }
 
 function BuildLakePage(lake) {
+    console.log(lake);
+
     document.querySelector("#lakeTitle").textContent = lake.name;
     
     if (lake.species === "N/A") {
@@ -41,7 +43,7 @@ function BuildLakePage(lake) {
     
     document.querySelector("#access").textContent = `Access: ${lake.access}`;
 
-    if (lake.contourMap === "N/A") {
+    if (lake.contourMap === "N/A" || lake.contourMap === "") {
         document.querySelector("#contourMap").textContent = "";
     } else {
         document.querySelector("#contourMap").setAttribute("href", lake.contourMap.url);
@@ -65,7 +67,7 @@ function InitMap(lake) {
 }
 
 function GetWeather(lake) {
-    axios.get(`pro.openweathermap.org/data/2.5/forecast/hourly?lat=${lake.lat}&lon=${lake.lng}&appid=06c7cb455d2c2ecf48244fb8596609f8`)
+    axios.get(`api.openweathermap.org/data/2.5/weather?lat=${lake.lat}&lon=${lake.lng}&appid=06c7cb455d2c2ecf48244fb8596609f8`)
     .then(result => {
         console.log(result);
     }) 
