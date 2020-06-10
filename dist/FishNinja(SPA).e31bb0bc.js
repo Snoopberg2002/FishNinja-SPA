@@ -472,13 +472,12 @@ var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function NewsFeed() {
-  var url = "https://newsapi.org/v2/everything?q=fishing&apiKey=ce592c9e9c6441cca100f4bc925f4273";
+  var url = "https://newsapi.org/v2/everything?q=fishing&apiKey=ce592c9e9c6441cca100f4bc925f4273/:splat 200";
   var req = new Request(url);
   var stories = [];
-  fetch(req, {
-    headers: {
-      "Access-Control-Allow-Origin": window.location.origin
-    }
+  fetch("https://newsapi.org/v2/everything?q=fishing&apiKey=ce592c9e9c6441cca100f4bc925f4273", {// headers: {
+    //   "Access-Control-Allow-Origin": window.location.origin
+    // },
   }).then(function (response) {
     return response.json();
   }).then(function (res) {
@@ -102184,7 +102183,7 @@ var _AddPosts = _interopRequireDefault(require("../../lib/AddPosts"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function _default(st) {
-  // NewsFeed();
+  (0, _News.default)();
   (0, _AddPosts.default)();
   (0, _HomeListeners.default)();
   setTimeout(function () {
@@ -102265,7 +102264,7 @@ function InitMap(lake) {
 }
 
 function GetWeather(lake) {
-  _axios.default.get("api.openweathermap.org/data/2.5/forecast?lat=".concat(lake.lat, "&lon=").concat(lake.lng, "&appid=06c7cb455d2c2ecf48244fb8596609f8")).then(function (result) {
+  _axios.default.get("api.openweathermap.org/data/2.5/weather?lat=".concat(lake.lat, "&lon=").concat(lake.lng, "&appid=06c7cb455d2c2ecf48244fb8596609f8")).then(function (result) {
     console.log(result);
   });
 }
@@ -121849,7 +121848,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54505" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56333" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
