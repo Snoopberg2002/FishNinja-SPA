@@ -2,6 +2,10 @@ export default () => `
 <header>
     <h3 id="home"><a id="home" href="/Home" data-navigo>Home</a></h3>
 
+    <div id="userLogout" class="logoutDiv">
+        <h4 id="welcome">Welcome<a id="stateUserName" href="#"></a><a id="logout" href="#">Logout</a></h4>
+    </div>
+
     <nav>
         <a href="#" class="about">About</a>
         <a href="#" class="contact">Contact</a>
@@ -99,3 +103,4 @@ export default () => `
     </template>
 </header>
 `
+

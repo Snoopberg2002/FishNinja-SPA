@@ -11,15 +11,27 @@ header {
 
 #home {
     border: none;
+    align-self: flex-start;
 }
 
 h3 > a {
     color: #000;
 }
 
+#userLogout {
+    grid-area: 2/1/span 1/span 4;
+    align-self: flex-end;
+    margin: 0px;
+}
+
+#welcome, #logout {
+    color: #000;
+}
+
 nav {
     grid-area: 1 / 7 / span 1 / span 6;
     justify-self: right;
+    font-weight: bold;
 }
 
 .tips {
