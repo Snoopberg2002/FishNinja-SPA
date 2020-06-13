@@ -1,8 +1,9 @@
 import { auth, db } from "../../firebase";
 import axios from "axios";
+import { capitalize, round } from "lodash";
 
 export default (st, lake) => {
-    db.collection("Lakes")
+    db.collection("FishingLakes")
     // .where("id", "==", lake.id)
     .doc(lake.id)
     .get()
@@ -12,7 +13,7 @@ export default (st, lake) => {
         GetWeather(res.data());
     });
 
-}
+} 
 
 function BuildLakePage(lake) {
     console.log(lake);
@@ -43,7 +44,7 @@ function BuildLakePage(lake) {
     
     document.querySelector("#access").textContent = `Access: ${lake.access}`;
 
-    if (lake.contourMap === "N/A" || lake.contourMap === "") {
+    if (lake.contourMap === "N/A" || lake.contourMap === "" || lake.contourMap === "undefined") {
         document.querySelector("#contourMap").textContent = "";
     } else {
         document.querySelector("#contourMap").setAttribute("href", lake.contourMap.url);
@@ -66,9 +67,59 @@ function InitMap(lake) {
     let lakeMap = new google.maps.Map(document.getElementById("lakeMap"), options);
 }
 
+
 function GetWeather(lake) {
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lake.lat}&lon=${lake.lng}&appid=06c7cb455d2c2ecf48244fb8596609f8`)
-    .then(result => {
-        console.log(result);
+    axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lake.lat}&lon=${lake.lng}&appid=06c7cb455d2c2ecf48244fb8596609f8`)
+    .then(res => {
+        console.log(res.data);
+        let w = res.data;
+        let k = w.current.temp;
+        let temp = (k - 273.15) * 9/5 + 32;
+        console.log(k);
+        
+        document.querySelector("#weatherHead").textContent = `Weather: ${capitalize(w.current.weather[0].description)}`;
+        document.querySelector("#rightNow").textContent = `Right Now: ${round(temp)}`;
+        document.querySelector("#wind").textContent = `Wind: ${w.current.wind_speed}mph`;
+        document.querySelector("#humidity").textContent = `Humidity: ${w.current.humidity}%`;
+
+        k = w.daily[0].temp.max;
+        temp = (k - 273.15) * 9/5 + 32;
+        console.log(temp);
+        document.querySelector("#high").textContent = `High: ${round(temp)}`;
+
+        k = w.daily[0].temp.min;
+        temp = (k - 273.15) * 9/5 + 32;
+        document.querySelector("#low").textContent = `Low: ${round(temp)}`;
+
+        document.querySelector("#tomHead").textContent = `Tomorrow: ${capitalize(w.daily[1].weather[0].description)}`;
+
+        k = w.daily[1].temp.max;
+        temp = (k - 273.15) * 9/5 + 32;
+        document.querySelector("#tomHigh").textContent = `High: ${round(temp)}`;
+
+        k = w.daily[1].temp.min;
+        temp = (k - 273.15) * 9/5 + 32;
+        document.querySelector("#tomLow").textContent = `Low: ${round(temp)}`;
+
+        document.querySelector("#day3Head").textContent = `Day After: ${capitalize(w.daily[2].weather[0].description)}`;
+
+        k = w.daily[2].temp.max;
+        temp = (k - 273.15) * 9/5 + 32;
+        document.querySelector("#day3High").textContent = `High: ${round(temp)}`;
+
+        k = w.daily[2].temp.min;
+        temp = (k - 273.15) * 9/5 + 32;
+        document.querySelector("#day3Low").textContent = `Low: ${round(temp)}`;
+
+        document.querySelector("#day4Head").textContent = `And Then: ${capitalize(w.daily[3].weather[0].description)}`;
+
+        k = w.daily[3].temp.max;
+        temp = (k - 273.15) * 9/5 + 32;
+        document.querySelector("#day4High").textContent = `High: ${round(temp)}`;
+
+        k = w.daily[3].temp.min;
+        temp = (k - 273.15) * 9/5 + 32;
+        document.querySelector("#day4Low").textContent = `Low: ${round(temp)}`;
+
     }) 
 }

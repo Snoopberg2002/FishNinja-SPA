@@ -4,10 +4,30 @@ export default st => `
 
     <h2 id="weatherHead">Weather</h2>
     <div id="thisWeather">
-        <h3 id="rightNow">Right Now:</h3>
-        <h3 id="high">High:</h3>
-        <h3 id="low">Low:</h3>
+        <h4 id="rightNow">Right Now:</h4>
+        <h4 id="high">High:</h4>
+        <h4 id="low">Low:</h4>
+        <h4 id="wind">Wind:</h4>
+        <h4 id="humidity">Humidity:</h4>
     </div> 
+
+    <h3 id="tomHead">Tomorrow:</h3>
+    <div id="tomorrow">
+        <h5 id="tomHigh">High:</h5>
+        <h5 id="tomLow">Low:</h5>
+    </div>
+
+    <h3 id="day3Head">Day After:</h3>
+    <div id="day3">
+        <h5 id="day3High">High:</h5>
+        <h5 id="day3Low">Low:</h5>
+    </div>
+
+    <h3 id="day4Head">And Then:</h3>
+    <div id="day4">
+        <h5 id="day4High">High:</h5>
+        <h5 id="day4Low">Low:</h5>
+    </div>
 
     <div id="speciesList">
         <h3 id="speciesHead">Resident Species</h3>
