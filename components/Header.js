@@ -1,11 +1,18 @@
+import * as state from "../store";
+
+let userState = "";
+console.log(state.User);
+if (state.User.signedIn) {
+    userState = `    <div id="userLogout" class="logoutDiv">
+    <h4 id="welcome">Welcome <a id="stateUserName" href="#">${state.User.userName}</a> <a id="logout" href="#">Logout</a></h4>
+</div>`
+}
+
 export default () => `
 <header>
     <h3 id="home"><a id="home" href="/Home" data-navigo>Home</a></h3>
 
-    <div id="userLogout" class="logoutDiv">
-        <h4 id="welcome">Welcome<a id="stateUserName" href="#"></a><a id="logout" href="#">Logout</a></h4>
-    </div>
-
+    ${userState}
     <nav>
         <a href="#" class="about">About</a>
         <a href="#" class="contact">Contact</a>
@@ -96,7 +103,7 @@ export default () => `
                 <img src="" id="newPostImage" class="newPostEls">
                 <h2 id="newPostLake" class="newPostEls">Lake Name</h2>
                 <h3 id="newPostState" class="newPostEls">Lake State</h3> 
-                <label for="newPostComments" class="newPostEls">Posted By</label>
+                <h4 id="postedBy"class="newPostEls">Posted By:</h4>
                 <p id="newPostComments" class="newPostEls">Comments</p>
             </section>
         </div>

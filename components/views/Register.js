@@ -10,6 +10,12 @@ export default st => `
         <label class="registerEls" for="favLake">Favorite Lake:</label>
         <input type="text" name="favLake" class="registerEls" id="favLake">
         <br>
+        <label for="gender" class=""registerEls>Gender:</label>
+        <select id="gender" name="gender">
+            <option id="male" value="male">Male</option>
+            <option id="female" value="female">Female</option>
+        </select>
+        <br>
         <label class="registerEls" for="email">Email Address:</label>
         <input type="email" name="email" class="registerEls" id="email" placeholder="user@anyEmail.com">
         <br>

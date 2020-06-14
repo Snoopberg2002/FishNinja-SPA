@@ -189,11 +189,16 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _default = {
-  userName: "",
-  email: "",
+var user = localStorage.getItem("user");
+var userObject = {
   signedIn: false
 };
+
+if (user) {
+  userObject = JSON.parse(user);
+}
+
+var _default = userObject;
 exports.default = _default;
 },{}],"store/index.js":[function(require,module,exports) {
 "use strict";
@@ -259,12 +264,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var state = _interopRequireWildcard(require("../store"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var userState = "";
+console.log(state.User);
+
+if (state.User.signedIn) {
+  userState = "    <div id=\"userLogout\" class=\"logoutDiv\">\n    <h4 id=\"welcome\">Welcome <a id=\"stateUserName\" href=\"#\">".concat(state.User.userName, "</a> <a id=\"logout\" href=\"#\">Logout</a></h4>\n</div>");
+}
+
 var _default = function _default() {
-  return "\n<header>\n    <h3 id=\"home\"><a id=\"home\" href=\"/Home\" data-navigo>Home</a></h3>\n\n    <div id=\"userLogout\" class=\"logoutDiv\">\n        <h4 id=\"welcome\">Welcome<a id=\"stateUserName\" href=\"#\"></a><a id=\"logout\" href=\"#\">Logout</a></h4>\n    </div>\n\n    <nav>\n        <a href=\"#\" class=\"about\">About</a>\n        <a href=\"#\" class=\"contact\">Contact</a>\n        <a href=\"#\" class=\"login\">Login/Register</a>\n    </nav>\n\n    <h4 class=\"tips\"><a href=\"/Tips\" data-navigo>Tips & Techniques</a></h4>\n\n    <!-- About Modal -->\n    <template class=\"aboutTemplate\">\n        <div class=\"aboutModal\">\n            <section class=\"aboutContent\">\n                <h1 class=\"aboutHead\">About</h1>\n                <h4 class=\"aboutBody\">The Fish Ninja is committed to providing the most complete and comprehensive fishing website available.  It is our ongoing and never ending mission to compile and present any and all information relevant to fishing lakes across the United States.  While it is our intention to remain steadfast in this pledge, we can not do it alone.  It is only through the input and feedback of our users that this site can reach its full potential.  Having all the raw data in the world still only paints part of the picture.  Without boots on the ground to say, this lake's shoreline is packed shoulder to shoulder with anglers every weekend, or there is a major construction project up the road that really has the fish dug in; then we really don't have the whole story.  We, unfortunately, will not be able to visit all of these lakes, which is why we need your help.  Connect with other angler's personally, or post your thoughts for the fishing world to see.  We will do our best to put all comments provided to good use.</h4>\n            </section>\n        </div>\n    </template>\n    <!-- Contacts Modal -->\n    <template class=\"contactsTemplate\">\n        <div class=\"contactsModal\">\n            <section class=\"contactsContent\">\n                <h1>Contacts</h1>\n            </section>\n        </div>\n    </template>\n    <!-- Login Modal -->\n    <template class=\"loginTemplate\">\n        <div class=\"loginModal\">\n            <section class=\"loginContent\">\n                <form action=\"\" method=\"POST\" id=\"login\">\n                    <label for=\"email\">Email:</label>\n                    <input type=\"text\" name=\"email\" id=\"email\">\n                    <br>\n                    <label for=\"pass\">Password:</label>\n                    <input id=\"pass\" type=\"password\" name=\"password\">\n                    <h3>Not already a member?  <a href=\"/Register\" id=\"registerLink\" data-navigo>Register  </a></h3>\n                    <br>\n                    <input id=\"submit\" type=\"submit\" value=\"Submit\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- News Modal -->\n    <template class=\"newsTemplate\">\n        <div class=\"newsModal\">\n            <section class=\"newsContent\">\n                <img src=\"\" alt=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"storyImage>\n                <h2 id=\"title\">Title</h2>\n                <h4 id=\"author\">Author</h4>\n                <a href=\"\" id=\"storyLink\">Link to Page</a>\n                <br>\n                <p id=\"story\">Content</p>\n            </section>\n        </div>\n    </template>\n\n    <!-- Posts Modal -->\n    <template class=\"postsTemplate\">\n        <div class=\"postsModal\">\n            <section class=\"postsContent\">\n                <form class=\"postsForm\" action=\"https://formspree.io/xbjzoonz\" method=\"POST\">\n                    <h2 id=\"createPostHead\">CreatePost</h2>\n                    <label for=\"createPostHead\" class=\"postLogin\">Must be <a href=\"/Register\" data-navigo class=\"login\" id=\"postLogin\">Logged In </a>to post.</label>\n                    <br>\n                    <label class=\"postsEls\" for=\"postLake\">Lake Name:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postLake\" name=\"postLake\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"postState\">State:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postState\" name=\"postState\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addImage\">Upload Image</label>\n                    <input class=\"postsEls\" type=\"file\" accept=\"image/*\" id=\"addImage\" name=\"addImage\" value=\"addImage\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addComment\">Add Comments</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"addComment\" name=\"addComment\" placeholder=\"Add Text Here\">\n                    <br>\n                    <input class=\"postsEls\" type=\"submit\" id=\"createPost\" name=\"createPost\" value=\"Create Post\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- New Posts Modal -->\n    <template class=\"newPostTemplate\">\n        <div class=\"newPostModal\">\n            <section class=\"newPostContent\">\n                <img src=\"\" id=\"newPostImage\" class=\"newPostEls\">\n                <h2 id=\"newPostLake\" class=\"newPostEls\">Lake Name</h2>\n                <h3 id=\"newPostState\" class=\"newPostEls\">Lake State</h3> \n                <label for=\"newPostComments\" class=\"newPostEls\">Posted By</label>\n                <p id=\"newPostComments\" class=\"newPostEls\">Comments</p>\n            </section>\n        </div>\n    </template>\n</header>\n";
+  return "\n<header>\n    <h3 id=\"home\"><a id=\"home\" href=\"/Home\" data-navigo>Home</a></h3>\n\n    ".concat(userState, "\n    <nav>\n        <a href=\"#\" class=\"about\">About</a>\n        <a href=\"#\" class=\"contact\">Contact</a>\n        <a href=\"#\" class=\"login\">Login/Register</a>\n    </nav>\n\n    <h4 class=\"tips\"><a href=\"/Tips\" data-navigo>Tips & Techniques</a></h4>\n\n    <!-- About Modal -->\n    <template class=\"aboutTemplate\">\n        <div class=\"aboutModal\">\n            <section class=\"aboutContent\">\n                <h1 class=\"aboutHead\">About</h1>\n                <h4 class=\"aboutBody\">The Fish Ninja is committed to providing the most complete and comprehensive fishing website available.  It is our ongoing and never ending mission to compile and present any and all information relevant to fishing lakes across the United States.  While it is our intention to remain steadfast in this pledge, we can not do it alone.  It is only through the input and feedback of our users that this site can reach its full potential.  Having all the raw data in the world still only paints part of the picture.  Without boots on the ground to say, this lake's shoreline is packed shoulder to shoulder with anglers every weekend, or there is a major construction project up the road that really has the fish dug in; then we really don't have the whole story.  We, unfortunately, will not be able to visit all of these lakes, which is why we need your help.  Connect with other angler's personally, or post your thoughts for the fishing world to see.  We will do our best to put all comments provided to good use.</h4>\n            </section>\n        </div>\n    </template>\n    <!-- Contacts Modal -->\n    <template class=\"contactsTemplate\">\n        <div class=\"contactsModal\">\n            <section class=\"contactsContent\">\n                <h1>Contacts</h1>\n            </section>\n        </div>\n    </template>\n    <!-- Login Modal -->\n    <template class=\"loginTemplate\">\n        <div class=\"loginModal\">\n            <section class=\"loginContent\">\n                <form action=\"\" method=\"POST\" id=\"login\">\n                    <label for=\"email\">Email:</label>\n                    <input type=\"text\" name=\"email\" id=\"email\">\n                    <br>\n                    <label for=\"pass\">Password:</label>\n                    <input id=\"pass\" type=\"password\" name=\"password\">\n                    <h3>Not already a member?  <a href=\"/Register\" id=\"registerLink\" data-navigo>Register  </a></h3>\n                    <br>\n                    <input id=\"submit\" type=\"submit\" value=\"Submit\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- News Modal -->\n    <template class=\"newsTemplate\">\n        <div class=\"newsModal\">\n            <section class=\"newsContent\">\n                <img src=\"\" alt=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"storyImage>\n                <h2 id=\"title\">Title</h2>\n                <h4 id=\"author\">Author</h4>\n                <a href=\"\" id=\"storyLink\">Link to Page</a>\n                <br>\n                <p id=\"story\">Content</p>\n            </section>\n        </div>\n    </template>\n\n    <!-- Posts Modal -->\n    <template class=\"postsTemplate\">\n        <div class=\"postsModal\">\n            <section class=\"postsContent\">\n                <form class=\"postsForm\" action=\"https://formspree.io/xbjzoonz\" method=\"POST\">\n                    <h2 id=\"createPostHead\">CreatePost</h2>\n                    <label for=\"createPostHead\" class=\"postLogin\">Must be <a href=\"/Register\" data-navigo class=\"login\" id=\"postLogin\">Logged In </a>to post.</label>\n                    <br>\n                    <label class=\"postsEls\" for=\"postLake\">Lake Name:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postLake\" name=\"postLake\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"postState\">State:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postState\" name=\"postState\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addImage\">Upload Image</label>\n                    <input class=\"postsEls\" type=\"file\" accept=\"image/*\" id=\"addImage\" name=\"addImage\" value=\"addImage\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addComment\">Add Comments</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"addComment\" name=\"addComment\" placeholder=\"Add Text Here\">\n                    <br>\n                    <input class=\"postsEls\" type=\"submit\" id=\"createPost\" name=\"createPost\" value=\"Create Post\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- New Posts Modal -->\n    <template class=\"newPostTemplate\">\n        <div class=\"newPostModal\">\n            <section class=\"newPostContent\">\n                <img src=\"\" id=\"newPostImage\" class=\"newPostEls\">\n                <h2 id=\"newPostLake\" class=\"newPostEls\">Lake Name</h2>\n                <h3 id=\"newPostState\" class=\"newPostEls\">Lake State</h3> \n                <h4 id=\"postedBy\"class=\"newPostEls\">Posted By:</h4>\n                <p id=\"newPostComments\" class=\"newPostEls\">Comments</p>\n            </section>\n        </div>\n    </template>\n</header>\n");
 };
 
 exports.default = _default;
-},{}],"components/views/Home.js":[function(require,module,exports) {
+},{"../store":"store/index.js"}],"components/views/Home.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -300,7 +318,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _default = function _default(st) {
-  return "\n<section class=\"registerMain\">\n    <form id=\"registerForm\" action=\"\" method=\"POST\">\n        <label class=\"registerEls\" for=\"homeCity\">Home City:</label>\n        <input type=\"text\" name=\"homeCity\" class=\"registerEls\" id=\"homeCity\">\n        <br>\n        <label class=\"registerEls\" for=\"homeState\">Home State:</label>\n        <input type=\"text\" name=\"homeState\" class=\"registerEls\" id=\"homeState\">\n        <br>\n        <label class=\"registerEls\" for=\"favLake\">Favorite Lake:</label>\n        <input type=\"text\" name=\"favLake\" class=\"registerEls\" id=\"favLake\">\n        <br>\n        <label class=\"registerEls\" for=\"email\">Email Address:</label>\n        <input type=\"email\" name=\"email\" class=\"registerEls\" id=\"email\" placeholder=\"user@anyEmail.com\">\n        <br>\n        <label class=\"registerEls\" for=\"userName\">Username:</label>\n        <input type=\"text\" name=\"userName\" class=\"registerEls\" id=\"userName\">\n        <h5 class=\"registerEls\">Password must be at least 8 characters with at least one number.</h5>\n        <br>\n        <label class=\"registerEls\" for=\"pass\">Password:</label>\n        <input type=\"password\" name=\"pass\" class=\"registerEls\" id=\"pass\">\n        <br>\n        <label class=\"registerEls\" for=\"verPass\">Verify Password:</label>\n        <input type=\"password\" name=\"verPass\" class=\"registerEls\" id=\"verPass\">\n        <br>\n        <input type=\"submit\" value=\"Register\" class=\"registerEls\" id=\"register\">\n    </form>\n</section>\n";
+  return "\n<section class=\"registerMain\">\n    <form id=\"registerForm\" action=\"\" method=\"POST\">\n        <label class=\"registerEls\" for=\"homeCity\">Home City:</label>\n        <input type=\"text\" name=\"homeCity\" class=\"registerEls\" id=\"homeCity\">\n        <br>\n        <label class=\"registerEls\" for=\"homeState\">Home State:</label>\n        <input type=\"text\" name=\"homeState\" class=\"registerEls\" id=\"homeState\">\n        <br>\n        <label class=\"registerEls\" for=\"favLake\">Favorite Lake:</label>\n        <input type=\"text\" name=\"favLake\" class=\"registerEls\" id=\"favLake\">\n        <br>\n        <label for=\"gender\" class=\"\"registerEls>Gender:</label>\n        <select id=\"gender\" name=\"gender\">\n            <option id=\"male\" value=\"male\">Male</option>\n            <option id=\"female\" value=\"female\">Female</option>\n        </select>\n        <br>\n        <label class=\"registerEls\" for=\"email\">Email Address:</label>\n        <input type=\"email\" name=\"email\" class=\"registerEls\" id=\"email\" placeholder=\"user@anyEmail.com\">\n        <br>\n        <label class=\"registerEls\" for=\"userName\">Username:</label>\n        <input type=\"text\" name=\"userName\" class=\"registerEls\" id=\"userName\">\n        <h5 class=\"registerEls\">Password must be at least 8 characters with at least one number.</h5>\n        <br>\n        <label class=\"registerEls\" for=\"pass\">Password:</label>\n        <input type=\"password\" name=\"pass\" class=\"registerEls\" id=\"pass\">\n        <br>\n        <label class=\"registerEls\" for=\"verPass\">Verify Password:</label>\n        <input type=\"password\" name=\"verPass\" class=\"registerEls\" id=\"verPass\">\n        <br>\n        <input type=\"submit\" value=\"Register\" class=\"registerEls\" id=\"register\">\n    </form>\n</section>\n";
 };
 
 exports.default = _default;
@@ -36716,6 +36734,18 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function modalListeners() {
   // Modals' Elements
   var activeModal = document.querySelector(".activeModal");
@@ -36746,37 +36776,54 @@ function modalListeners() {
     (0, _ToggleModal.default)(loginModal);
     document.querySelector("#login").addEventListener("submit", function (event) {
       event.preventDefault();
-      console.log(state.User);
-      var email = document.querySelector("#email").value;
-      var password = document.querySelector("#pass").value;
-      document.querySelector("#stateUserName").textContent = email;
 
-      _firebase.auth.signInWithEmailAndPassword(email, password).then(function () {
-        console.log(state.User);
-        console.log("user signed in");
-        getUserFromDb(email).then(function () {
-          return (0, _Render.render)(state.Home);
-        });
+      var inputs = _toConsumableArray(event.target.elements);
+
+      var email, password;
+      inputs.forEach(function (el) {
+        switch (el.name) {
+          case "email":
+            email = el.value;
+            break;
+
+          case "password":
+            password = el.value;
+            break;
+        }
       });
 
-      function updateUserInState() {}
+      _firebase.auth.signInWithEmailAndPassword(email, password).then(function (result) {
+        console.log(result);
+        console.log("user signed in");
+        getUserFromDb(); // let user = {
+        //   signedIn: true,
+        //   email: result.user.email
+        // };
+        // console.log(user);
+        // localStorage.setItem("user", JSON.stringify(user));
+        // window.location.reload();
+      });
 
       function getUserFromDb(email) {
-        return _firebase.db.collection("Users").get().then(function (snapshot) {
+        _firebase.db.collection("Users").get().then(function (snapshot) {
           return snapshot.docs.forEach(function (doc) {
             if (email === doc.data().email) {
               var id = doc.id;
 
-              _firebase.db.collection("Users").doc(id).update({
-                signedIn: true
-              });
+              _firebase.db.collection("Users").doc(id);
 
-              console.log("user signed in in db");
-              var user = doc.data();
-              state.User.userName = user.userName;
-              state.User.email = email;
-              state.User.signedIn = true;
-              console.log(state.User);
+              var User = doc.data();
+              var user = {
+                signedIn: true,
+                email: User.Email,
+                userName: User.UserName,
+                homeCity: User.HomeCity,
+                homeState: User.HomeState,
+                favoriteLake: User.FavoriteLake
+              };
+              console.log(user);
+              localStorage.setItem("user", JSON.stringify(user));
+              window.location.reload();
             }
           });
         });
@@ -36814,6 +36861,7 @@ function AddPosts() {
         document.querySelector("#newPostImage").src = post.Image;
         document.querySelector("#newPostLake").textContent = post.LakeName;
         document.querySelector("#newPostState").textContent = post.LakeState;
+        document.querySelector("#postedBy").textContent = "Posted By:  ".concat(post.UserName);
         document.querySelector("#newPostComments").textContent = post.Comment;
       });
     });
@@ -36833,6 +36881,12 @@ var _firebase = require("../firebase");
 
 var _AddPosts = _interopRequireDefault(require("./AddPosts"));
 
+var state = _interopRequireWildcard(require("../store"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function CreatePosts() {
@@ -36845,11 +36899,12 @@ function CreatePosts() {
     Comment: comment,
     LakeName: lake,
     LakeState: state,
-    Image: img
+    Image: img,
+    UserName: state.User.userName
   }); // AddPosts();
 
 }
-},{"axios":"node_modules/axios/index.js","../firebase":"firebase/index.js","./AddPosts":"lib/AddPosts.js"}],"lib/HomeListeners.js":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js","../firebase":"firebase/index.js","./AddPosts":"lib/AddPosts.js","../store":"store/index.js"}],"lib/HomeListeners.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36884,7 +36939,7 @@ function HomeListeners() {
     document.querySelector(".postsForm").addEventListener("submit", function (e) {
       e.preventDefault();
       (0, _CreatePosts.default)();
-      document.querySelector(".modalBg").classList.remove("bg-active");
+      window.location.reload();
     }); // postLoginBtn.addEventListener("click", (event) => {
     //     event.preventDefault();
     //     toggleModal(loginModal);
@@ -105933,7 +105988,7 @@ var _AddPosts = _interopRequireDefault(require("../../lib/AddPosts"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function _default(st) {
-  (0, _News.default)();
+  // NewsFeed();
   (0, _AddPosts.default)();
   (0, _HomeListeners.default)();
   setTimeout(function () {
@@ -125213,20 +125268,7 @@ function GetWeather(lake) {
     document.querySelector("#day4Low").textContent = "Low: ".concat((0, _lodash.round)(temp));
   });
 }
-},{"../../firebase":"firebase/index.js","axios":"node_modules/axios/index.js","lodash":"node_modules/lodash/lodash.js"}],"lib/Register.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Register;
-
-var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Register() {}
-},{"./ToggleModal":"lib/ToggleModal.js"}],"lib/CreateUser.js":[function(require,module,exports) {
+},{"../../firebase":"firebase/index.js","axios":"node_modules/axios/index.js","lodash":"node_modules/lodash/lodash.js"}],"lib/CreateUser.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -125250,6 +125292,7 @@ function CreateUser() {
     var homeCity = document.querySelector("#homeCity").value;
     var homeState = document.querySelector("#homeState").value;
     var favoriteLake = document.querySelector("#favLake").value;
+    var gender = document.querySelector("#gender").value;
     var email = document.querySelector("#email").value;
     var userName = document.querySelector("#userName").value;
     var password = document.querySelector("#pass").value;
@@ -125265,7 +125308,7 @@ function CreateUser() {
       console.log(response);
       console.log(response.user);
       addUserToStateAndDb(userName, email, homeCity, homeState, favoriteLake);
-      (0, _Render.render)(state.Home);
+      window.location.reload();
     });
 
     function addUserToStateAndDb() {
@@ -125278,8 +125321,8 @@ function CreateUser() {
         HomeCity: homeCity,
         HomeState: homeState,
         FavoriteLake: favoriteLake,
-        Email: email,
-        signedIn: true
+        Gender: gender,
+        Email: email
       });
     }
   });
@@ -125292,8 +125335,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _Register = _interopRequireDefault(require("../../lib/Register"));
-
 var _CreateUser = _interopRequireDefault(require("../../lib/CreateUser"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -125303,7 +125344,7 @@ var _default = function _default(st) {
 };
 
 exports.default = _default;
-},{"../../lib/Register":"lib/Register.js","../../lib/CreateUser":"lib/CreateUser.js"}],"components/controllers/Search.js":[function(require,module,exports) {
+},{"../../lib/CreateUser":"lib/CreateUser.js"}],"components/controllers/Search.js":[function(require,module,exports) {
 
 },{}],"lib/TipsObject.js":[function(require,module,exports) {
 "use strict";
@@ -125565,51 +125606,19 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function LogoutListener(user) {
-  // select link in header
-  document.querySelector("#logout").addEventListener("click", function (event) {
-    event.preventDefault();
-    console.log(user); // if user is logged in,
+  var logoutBtn = document.querySelector("#logout");
 
-    if (user.signedIn) {
-      event.preventDefault(); // log out functionality
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", function (event) {
+      event.preventDefault();
 
-      _firebase.auth.signOut().then(function () {
-        console.log("user logged out");
-        logOutUserInDb(user.email);
-        resetUserInState(); //update user in database
+      _firebase.auth.signOut();
 
-        _firebase.db.collection("Users").get;
-        (0, _Render.render)(state.Home);
-      });
-
+      localStorage.clear();
+      window.location.reload();
       console.log(user);
-    } // if user is logged out, clicking the link will render sign in page (handled by <a>'s href)
-
-  });
-}
-
-function logOutUserInDb(email) {
-  if (state.User.signedIn) {
-    _firebase.db.collection("Users").get().then(function (snapshot) {
-      return snapshot.docs.forEach(function (doc) {
-        if (email === doc.data().email) {
-          var id = doc.id;
-
-          _firebase.db.collection("Users").doc(id).update({
-            signedIn: false
-          });
-        }
-      });
     });
-
-    console.log("user signed out in db");
   }
-}
-
-function resetUserInState() {
-  state.User.userName = "";
-  state.User.email = "";
-  state.User.signedIn = false;
 }
 },{"./ToggleModal":"lib/ToggleModal.js","../firebase":"firebase/index.js","./Render":"lib/Render.js","../store":"store/index.js"}],"lib/Render.js":[function(require,module,exports) {
 "use strict";
@@ -125740,7 +125749,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64554" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57285" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
