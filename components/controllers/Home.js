@@ -10,7 +10,7 @@ import * as state from "../../store";
 
 export default (st) => {
     SetBackground(document.querySelector(".homeMain"));
-    NewsFeed();
+    // NewsFeed();
     AddPosts();
     HomeListeners();
     setTimeout(() => {

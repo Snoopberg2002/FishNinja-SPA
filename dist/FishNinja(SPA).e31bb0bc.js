@@ -36713,7 +36713,83 @@ var _auth = _interopRequireDefault(require("./auth"));
 var _db = _interopRequireDefault(require("./db"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./auth":"firebase/auth.js","./db":"firebase/db.js"}],"lib/ModalListeners.js":[function(require,module,exports) {
+},{"./auth":"firebase/auth.js","./db":"firebase/db.js"}],"lib/UserSignin.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = UserSignin;
+
+var _firebase = require("../firebase");
+
+var state = _interopRequireWildcard(require("../store"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var users = _firebase.db.collection("Users");
+
+function UserSignin() {
+  var inputs = _toConsumableArray(event.target.elements);
+
+  var email, password;
+  inputs.forEach(function (el) {
+    switch (el.name) {
+      case "email":
+        email = el.value;
+        break;
+
+      case "password":
+        password = el.value;
+        break;
+    }
+  });
+
+  _firebase.auth.signInWithEmailAndPassword(email, password).then(function (result) {
+    console.log(result);
+    console.log("user signed in");
+    getUserFromDb(result.user.uid);
+  });
+
+  function getUserFromDb(uid) {
+    users;
+    users.where("uid", "==", uid).get().then(function (snapshot) {
+      snapshot.forEach(function (doc) {
+        console.log(doc.data());
+        var id = doc.id;
+        var User = doc.data();
+        var user = {
+          signedIn: true,
+          email: User.Email,
+          userName: User.UserName,
+          homeCity: User.HomeCity,
+          homeState: User.HomeState,
+          favoriteLake: User.FavoriteLake,
+          gender: User.Gender,
+          userId: id
+        };
+        console.log(user);
+        localStorage.setItem("user", JSON.stringify(user));
+        window.location.reload();
+      });
+    });
+  }
+}
+},{"../firebase":"firebase/index.js","../store":"store/index.js"}],"lib/ModalListeners.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36729,23 +36805,13 @@ var _Render = require("./Render");
 
 var state = _interopRequireWildcard(require("../store"));
 
+var _UserSignin = _interopRequireDefault(require("./UserSignin"));
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 var users = _firebase.db.collection("Users");
 
@@ -36779,60 +36845,11 @@ function modalListeners() {
     (0, _ToggleModal.default)(loginModal);
     document.querySelector("#login").addEventListener("submit", function (event) {
       event.preventDefault();
-
-      var inputs = _toConsumableArray(event.target.elements);
-
-      var email, password;
-      inputs.forEach(function (el) {
-        switch (el.name) {
-          case "email":
-            email = el.value;
-            break;
-
-          case "password":
-            password = el.value;
-            break;
-        }
-      });
-
-      _firebase.auth.signInWithEmailAndPassword(email, password).then(function (result) {
-        console.log(result);
-        console.log("user signed in");
-        getUserFromDb(result.user.uid); // let user = {
-        //   signedIn: true,
-        //   email: result.user.email
-        // };
-        // console.log(user);
-        // localStorage.setItem("user", JSON.stringify(user));
-        // window.location.reload();
-      });
-
-      function getUserFromDb(uid) {
-        users;
-        users.where("uid", "==", uid).get().then(function (snapshot) {
-          snapshot.forEach(function (doc) {
-            var id = doc.id;
-            var User = doc.data();
-            var user = {
-              signedIn: true,
-              email: User.Email,
-              userName: User.UserName,
-              homeCity: User.HomeCity,
-              homeState: User.HomeState,
-              favoriteLake: User.FavoriteLake,
-              gender: User.Gender,
-              userId: id
-            };
-            console.log(user);
-            localStorage.setItem("user", JSON.stringify(user));
-            window.location.reload();
-          });
-        });
-      }
+      (0, _UserSignin.default)();
     });
   });
 }
-},{"./ToggleModal":"lib/ToggleModal.js","../firebase":"firebase/index.js","./Render":"lib/Render.js","../store":"store/index.js"}],"lib/AddPosts.js":[function(require,module,exports) {
+},{"./ToggleModal":"lib/ToggleModal.js","../firebase":"firebase/index.js","./Render":"lib/Render.js","../store":"store/index.js","./UserSignin":"lib/UserSignin.js"}],"lib/AddPosts.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56349,8 +56366,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function _default(st) {
-  (0, _SetBackground.default)(document.querySelector(".homeMain"));
-  (0, _News.default)();
+  (0, _SetBackground.default)(document.querySelector(".homeMain")); // NewsFeed();
+
   (0, _AddPosts.default)();
   (0, _HomeListeners.default)();
   setTimeout(function () {
@@ -56496,6 +56513,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function CreateUser() {
   document.querySelector("#registerForm").addEventListener("submit", function (event) {
     event.preventDefault();
+
+    var users = _firebase.db.collection("Users");
+
     var homeCity = document.querySelector("#homeCity").value;
     var homeState = document.querySelector("#homeState").value;
     var favoriteLake = document.querySelector("#favLake").value;
@@ -56518,16 +56538,14 @@ function CreateUser() {
     });
 
     function addUserToStateAndDb() {
-      _firebase.db.collection("Users").add({
+      users.add({
         UserName: userName,
         HomeCity: homeCity,
         HomeState: homeState,
         FavoriteLake: favoriteLake,
         Gender: gender,
         Email: email
-      }).then(function () {
-        return window.location.reload();
-      });
+      }).then(console.log("Hello"));
     }
   });
 }
@@ -56689,10 +56707,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = SetSeasons;
 
 function SetSeasons(target, seasons) {
-  var seasons7 = "\n    <option id=\"earlyWinter\" value=\"earlyWinter\">Early Winter</option>\n    <option id=\"winter\" value=\"winter\">Winter</option>\n    <option id=\"earlySpring\" value=\"earlySpring\">Early Spring</option>\n    <option id=\"spring\" value=\"spring\">Spring</option>\n    <option id=\"summer\" value=\"summer\">Summer</option>\n    <option id=\"earlyFall\" value=\"earlyFall\">Early Fall</option>\n    <option id=\"fall\" value=\"fall\">Fall</option>  \n    ";
-  var seasons6 = "\n    <option id=\"earlyWinter\" value=\"earlyWinter\">Early Winter</option>\n    <option id=\"winter\" value=\"winter\">Winter</option>\n    <option id=\"earlySpring\" value=\"earlySpring\">Early Spring</option>\n    <option id=\"spring\" value=\"spring\">Spring</option>\n    <option id=\"summer\" value=\"summer\">Summer</option>\n    <option id=\"fall\" value=\"fall\">Fall</option>  \n    ";
-  var seasons4 = "\n    <option id=\"winter\" value=\"winter\">Winter</option>\n    <option id=\"spring\" value=\"spring\">Spring</option>\n    <option id=\"summer\" value=\"summer\">Summer</option>\n    <option id=\"fall\" value=\"fall\">Fall</option>  \n    ";
-  var seasons3 = "\n    <option id=\"spring\" value=\"spring\">Spring</option>\n    <option id=\"summer\" value=\"summer\">Summer</option>\n    <option id=\"fall\" value=\"fall\">Fall</option> \n    ";
+  var seasons7 = "\n    <option id=\"pickSeason\" value=\"pickSeason\">Select Season</option>\n    <option id=\"earlyWinter\" value=\"earlyWinter\">Early Winter</option>\n    <option id=\"winter\" value=\"winter\">Winter</option>\n    <option id=\"earlySpring\" value=\"earlySpring\">Early Spring</option>\n    <option id=\"spring\" value=\"spring\">Spring</option>\n    <option id=\"summer\" value=\"summer\">Summer</option>\n    <option id=\"earlyFall\" value=\"earlyFall\">Early Fall</option>\n    <option id=\"fall\" value=\"fall\">Fall</option>  \n    ";
+  var seasons6 = "\n    <option id=\"pickSeason\" value=\"pickSeason\">Select Season</option>\n    <option id=\"earlyWinter\" value=\"earlyWinter\">Early Winter</option>\n    <option id=\"winter\" value=\"winter\">Winter</option>\n    <option id=\"earlySpring\" value=\"earlySpring\">Early Spring</option>\n    <option id=\"spring\" value=\"spring\">Spring</option>\n    <option id=\"summer\" value=\"summer\">Summer</option>\n    <option id=\"fall\" value=\"fall\">Fall</option>  \n    ";
+  var seasons4 = "\n    <option id=\"pickSeason\" value=\"pickSeason\">Select Season</option>\n    <option id=\"winter\" value=\"winter\">Winter</option>\n    <option id=\"spring\" value=\"spring\">Spring</option>\n    <option id=\"summer\" value=\"summer\">Summer</option>\n    <option id=\"fall\" value=\"fall\">Fall</option>  \n    ";
+  var seasons3 = "\n    <option id=\"pickSeason\" value=\"pickSeason\">Select Season</option>\n    <option id=\"spring\" value=\"spring\">Spring</option>\n    <option id=\"summer\" value=\"summer\">Summer</option>\n    <option id=\"fall\" value=\"fall\">Fall</option> \n    ";
   target.addEventListener("change", function (e) {
     console.log(target.value);
 
@@ -57025,7 +57043,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59631" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61558" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
