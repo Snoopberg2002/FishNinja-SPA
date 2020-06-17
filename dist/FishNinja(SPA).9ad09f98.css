@@ -339,6 +339,30 @@ footer {
     align-self: flex-start;
 }
 
+#ninjaUsers {
+    grid-area: 3/1/span 3/span 12;
+    display: flex;
+}
+
+#ninjaImage {
+    border: 1px solid #00274C;
+    border-radius: 50px;
+}
+
+#ninjaName, #ninjaState {
+    margin: 5px;
+}
+
+#ninjaCity {
+    margin: 0px;
+}
+
+.ninjas {
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #FFF05A;
+}
+
 /* Register Page */
 .registerMain {
     background-image: url("https://i.imgur.com/AWmoshp.jpg");

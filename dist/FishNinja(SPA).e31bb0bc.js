@@ -425,7 +425,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _default = function _default() {
-  return "\n<footer>\n    <img src=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"left\">\n    <img src=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"right\">\n    <h1 id=\"wateringHole\">Local Watering Hole</h1>\n    <h4 id=\"connect\">Connect with other anglers to share tips, favorite places, and secrets.</h4>\n</footer>\n\n<!-- Create Nav Modals -->\n<div class=\"modalBg\">\n    <div class=\"modalContent\">\n\n    </div>\n    <span id=\"modal-close\">X</span>\n</div>\n";
+  return "\n<footer>\n    <img src=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"left\">\n    <img src=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"right\">\n    <h1 id=\"wateringHole\">Local Watering Hole</h1>\n    <h4 id=\"connect\">Connect with other anglers to share tips, favorite places, and secrets.</h4>\n    \n    <section id=\"ninjaUsers\">\n    </section>\n</footer>\n\n<!-- Create Nav Modals -->\n<div class=\"modalBg\">\n    <div class=\"modalContent\">\n\n    </div>\n    <span id=\"modal-close\">X</span>\n</div>\n";
 };
 
 exports.default = _default;
@@ -56863,7 +56863,37 @@ function LogoutListener(user) {
     });
   }
 }
-},{"./ToggleModal":"lib/ToggleModal.js","../firebase":"firebase/index.js","./Render":"lib/Render.js","../store":"store/index.js"}],"lib/Render.js":[function(require,module,exports) {
+},{"./ToggleModal":"lib/ToggleModal.js","../firebase":"firebase/index.js","./Render":"lib/Render.js","../store":"store/index.js"}],"lib/UserCards.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = UserCards;
+
+var _firebase = require("../firebase");
+
+function UserCards(target) {
+  _firebase.db.collection("Users").get().then(function (res) {
+    res.forEach(function (doc) {
+      var user = doc.data();
+      console.log(user.Gender);
+      var div = document.createElement("div");
+      div.setAttribute("class", "ninjas");
+      div.setAttribute("height", "125px");
+      var ninjaCard = "\n            <image id=\"ninjaImage\" height=\"50px\"><a id=\"ninjaImage\" href=\"#\"></a></image>\n            <h4 id=\"ninjaName\">".concat(user.UserName, "</h4>\n            <p id=\"ninjaCity\">").concat(user.HomeCity, ",</p>\n            <p id=\"ninjaState\">").concat(user.HomeState, "</p>");
+      div.innerHTML = ninjaCard;
+      target.appendChild(div);
+
+      if (user.Gender === "male") {
+        document.querySelector("#ninjaImage").setAttribute("src", "https://i.imgur.com/0uKU5oV.png");
+      } else {
+        document.querySelector("#ninjaImage").setAttribute("src", "https://i.imgur.com/NFBQHoj.png?1");
+      }
+    });
+  });
+}
+},{"../firebase":"firebase/index.js"}],"lib/Render.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56882,6 +56912,8 @@ var _ModalListeners = _interopRequireDefault(require("./ModalListeners"));
 var _CheckUserStatus = _interopRequireDefault(require("./CheckUserStatus"));
 
 var _LogoutListener = _interopRequireDefault(require("./LogoutListener"));
+
+var _UserCards = _interopRequireDefault(require("./UserCards"));
 
 var _firebase = require("../firebase");
 
@@ -56902,6 +56934,7 @@ function render() {
   (0, _CheckUserStatus.default)();
   (0, _LogoutListener.default)(state.User);
   listenForAuthChange();
+  (0, _UserCards.default)(document.querySelector("#ninjaUsers"));
 }
 
 function listenForAuthChange() {
@@ -56910,7 +56943,7 @@ function listenForAuthChange() {
     return user ? console.log(user) : "";
   });
 }
-},{"../store":"store/index.js","../components":"components/index.js","../components/Controller":"components/Controller.js","./ModalListeners":"lib/ModalListeners.js","./CheckUserStatus":"lib/CheckUserStatus.js","./LogoutListener":"lib/LogoutListener.js","../firebase":"firebase/index.js"}],"lib/Router.js":[function(require,module,exports) {
+},{"../store":"store/index.js","../components":"components/index.js","../components/Controller":"components/Controller.js","./ModalListeners":"lib/ModalListeners.js","./CheckUserStatus":"lib/CheckUserStatus.js","./LogoutListener":"lib/LogoutListener.js","./UserCards":"lib/UserCards.js","../firebase":"firebase/index.js"}],"lib/Router.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56992,7 +57025,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60258" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59631" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
