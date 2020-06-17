@@ -42,7 +42,7 @@ const st = () => `
         <ul id="newPosts">
             <li><a href="#" id="fakePost">(Benton Park Pond)-Goose Takeover!</a></li>
         </ul>
-        <input type="submit" value="AddComment/UploadImage" class="post" id="post">
+        <input type="submit" value="Add Comments / Upload Image" class="post" id="post">
     </div>
 </section>
 `

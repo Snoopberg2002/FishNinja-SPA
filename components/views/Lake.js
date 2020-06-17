@@ -12,18 +12,22 @@ export default st => `
     </div> 
 
     <h3 id="tomHead">Tomorrow:</h3>
+    <br>
+    <h3 id="forecast2"></h3>
     <div id="tomorrow">
         <h5 id="tomHigh">High:</h5>
         <h5 id="tomLow">Low:</h5>
     </div>
 
     <h3 id="day3Head">Day After:</h3>
+    <h3 id="forecast3"></h3>
     <div id="day3">
         <h5 id="day3High">High:</h5>
         <h5 id="day3Low">Low:</h5>
     </div>
 
     <h3 id="day4Head">And Then:</h3>
+    <h3 id="forecast4"></h3>
     <div id="day4">
         <h5 id="day4High">High:</h5>
         <h5 id="day4Low">Low:</h5>

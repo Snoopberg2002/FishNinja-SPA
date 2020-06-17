@@ -48,12 +48,14 @@ function BuildLakePage(lake) {
         document.querySelector("#contourMap").textContent = "";
     } else {
         document.querySelector("#contourMap").setAttribute("href", lake.contourMap.url);
+        document.querySelector("#contourMap").setAttribute("target", "_blank");
     }
 
     if (lake.regulations === "N/A") {
         document.querySelector("#regulations").textContent = "";
     } else {
         document.querySelector("#regulations").setAttribute("href", lake.regulations.url);
+        document.querySelector("#regulations").setAttribute("target", "_blank");
     }
     
     document.querySelector("#county").textContent = `County: ${lake.county}`;
@@ -91,7 +93,7 @@ function GetWeather(lake) {
         temp = (k - 273.15) * 9/5 + 32;
         document.querySelector("#low").textContent = `Low: ${round(temp)}`;
 
-        document.querySelector("#tomHead").textContent = `Tomorrow: ${capitalize(w.daily[1].weather[0].description)}`;
+        document.querySelector("#forecast2").textContent = capitalize(w.daily[1].weather[0].description);
 
         k = w.daily[1].temp.max;
         temp = (k - 273.15) * 9/5 + 32;
@@ -101,7 +103,7 @@ function GetWeather(lake) {
         temp = (k - 273.15) * 9/5 + 32;
         document.querySelector("#tomLow").textContent = `Low: ${round(temp)}`;
 
-        document.querySelector("#day3Head").textContent = `Day After: ${capitalize(w.daily[2].weather[0].description)}`;
+        document.querySelector("#forecast3").textContent = capitalize(w.daily[2].weather[0].description);
 
         k = w.daily[2].temp.max;
         temp = (k - 273.15) * 9/5 + 32;
@@ -111,7 +113,7 @@ function GetWeather(lake) {
         temp = (k - 273.15) * 9/5 + 32;
         document.querySelector("#day3Low").textContent = `Low: ${round(temp)}`;
 
-        document.querySelector("#day4Head").textContent = `And Then: ${capitalize(w.daily[3].weather[0].description)}`;
+        document.querySelector("#forecast4").textContent = capitalize(w.daily[3].weather[0].description);
 
         k = w.daily[3].temp.max;
         temp = (k - 273.15) * 9/5 + 32;

@@ -1,3 +1,5 @@
+// import { seasons } from "../../lib/SetSeasons";
+// console.log(seasons);
 export default st => `
 <section class="tipsMain">
     <form id="tipsForm" action="#" method="POST">
@@ -5,6 +7,7 @@ export default st => `
         <br>
         <br>
         <select id="species" name="species">
+            <option id="pickSpecies" value="pickSpecies">Select Species</option>
             <option id="bluegill" value="bluegill">Sunfish/Bluegill</option>
             <option id="crappie" value="crappie">Crappie</option>
             <option id="perch" value="perch">Perch</option>
@@ -16,13 +19,7 @@ export default st => `
         </select>
 
         <select id="season" name="season">
-            <option id="earlyWinter" value="earlyWinter">Early Winter</option>
-            <option id="winter" value="winter">Winter</option>
-            <option id="earlySpring" value="earlySpring">Early Spring</option>
-            <option id="spring" value="spring">Spring</option>
-            <option id="summer" value="summer">Summer</option>
-            <option id="earlyFall" value="earlyFall">Early Fall</option>
-            <option id="fall" value="fall">Fall</option>               
+            <option id="pickSeason" value="pickSeason">Select Season</option>       
         </select>
         <br>
 
@@ -31,3 +28,6 @@ export default st => `
     <p id="techniques">Select species and season for tips and techniques.</p>
 </section>
 `
+
+
+

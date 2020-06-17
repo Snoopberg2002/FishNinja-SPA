@@ -32,6 +32,7 @@ nav {
     grid-area: 1 / 7 / span 1 / span 6;
     justify-self: right;
     font-weight: bold;
+    padding: 5px;
 }
 
 .tips {
@@ -298,7 +299,7 @@ li > a {
 
 .posts {
     color: #fff;
-    grid-area: 10/1/span 3/span 4;
+    grid-area: 10/1/span 5/span 4;
     display: flex;
     flex-direction: column;
 }
@@ -439,6 +440,7 @@ th {
     display: flex;
     justify-content: space-evenly;
     padding-top: 30px;
+    height: 20px;
     color: #FFF;
 }
 
@@ -447,16 +449,32 @@ th {
     align-self: flex-start;
     grid-area: 3/1/span 1/span 2;
     margin: 0px;
-    padding-top: 5px;
-    color: lightskyblue;
+    padding-top: 0px;
+    color: #FFF;
+}
+
+#forecast2 {
+    justify-self: center;
+    align-self: flex-start;
+    grid-area: 3/1/span 1/span 2;
+    margin: 0px;
+    padding-top: 20px;
+    color: #FFF;
 }
 
 #tomorrow {
     grid-area: 3/1/span 1/span 2;
     display: flex;
     justify-content: space-evenly;
-    padding-top: 40px;
-    color: lightskyblue;
+    padding-top: 50px;
+    margin: 0px;
+    height: 20px;
+    color: #FFF;
+}
+
+#tomHigh, #tomLow, #day3High, #day3Low, #day4High, #day4Low {
+    margin: 0px;
+    height: 20px;
 }
 
 #day3Head {
@@ -464,7 +482,16 @@ th {
     align-self: flex-start;
     grid-area: 3/3/span 1/span 2;
     margin: 0px;
-    padding-top: 5px;
+    padding-top: 0px;
+    color: #FFF;
+}
+
+#forecast3 {
+    justify-self: center;
+    align-self: flex-start;
+    grid-area: 3/3/span 1/span 2;
+    margin: 0px;
+    padding-top: 20px;
     color: #FFF;
 }
 
@@ -472,7 +499,9 @@ th {
     grid-area: 3/3/span 1/span 2;
     display: flex;
     justify-content: space-evenly;
-    padding-top: 40px;
+    padding-top: 50px;
+    margin: 0px;
+    height: 20px;
     color: #FFF;
 }
 
@@ -481,16 +510,27 @@ th {
     align-self: flex-start;
     grid-area: 3/5/span 1/span 2;
     margin: 0px;
-    padding-top: 5px;
-    color: lightskyblue;
+    padding-top: 0px;
+    color: #FFF;
+}
+
+#forecast4 {
+    justify-self: center;
+    align-self: flex-start;
+    grid-area: 3/5/span 1/span 2;
+    margin: 0px;
+    padding-top: 20px;
+    color: #FFF;
 }
 
 #day4 {
     grid-area: 3/5/span 1/span 2;
     display: flex;
     justify-content: space-evenly;
-    padding-top: 40px;
-    color: lightskyblue;
+    padding-top: 50px;
+    margin: 0px;
+    height: 20px;
+    color: #FFF;
 }
 
 /* #rightNow, #high, #low {
