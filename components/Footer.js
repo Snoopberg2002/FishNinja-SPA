@@ -9,7 +9,7 @@ export default () => `
     </section>
 </footer>
 
-<!-- Create Nav Modals -->
+<!-- Create Modals -->
 <div class="modalBg">
     <div class="modalContent">
 

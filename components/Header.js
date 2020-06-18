@@ -107,6 +107,38 @@ export default () => `
             </section>
         </div>
     </template>
+
+    <template class="entryTemplate">
+        <div class="entryModal">
+            <form id="entryForm" action="/Search" method="POST">
+            <h4 id="submitEntryHead">Submit entry for Catch of the Week!</h4>
+            <section id="location">
+                <label for="location" id="location">City, State:  </label>
+                <input type="text" name="location" id="location" value="location" placeholder="Login for location">
+            </section>
+            <br>
+
+            <label for="distance">Distance:</label>
+            <section id="distance">
+                <input type="radio" class="search" id="any" name="choice" value="any" checked>
+                <label for="any">25 miles</label>
+                    
+                <input type="radio" class="search" id="public" name="choice" value="public">
+                <label for="public">50 miles</label>
+                    
+                <input type="radio" class="search" id="private" name="choice" value="private">
+                <label for="private">100 miles</label>
+            </section>
+
+            <section id="species">
+                <label>Species:  </label>
+                <input type="text" name="species" value="species" placeholder="Optional">
+            </section>
+
+            <input type="submit" value="Search" id="search">
+            </form>
+        </div>
+    </template>
 </header>
 `
 
