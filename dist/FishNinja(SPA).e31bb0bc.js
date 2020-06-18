@@ -56366,8 +56366,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function _default(st) {
-  (0, _SetBackground.default)(document.querySelector(".homeMain")); // NewsFeed();
-
+  (0, _SetBackground.default)(document.querySelector(".homeMain"));
+  (0, _News.default)();
   (0, _AddPosts.default)();
   (0, _HomeListeners.default)();
   setTimeout(function () {
@@ -56657,7 +56657,9 @@ function getTips() {
 
     var choice1 = _TipsObject.default[species.value];
     par.textContent = choice1[seasons.value];
-    par.style.color = "white"; // console.log(species.value);
+    par.style.color = "white";
+    par.style.backgroundColor = "black";
+    par.style.opacity = "0.6"; // console.log(species.value);
 
     if (species.value === "bluegill") {
       background.style.backgroundImage = "url(\"".concat(bluegill, "\")");
@@ -57043,7 +57045,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61558" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49299" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

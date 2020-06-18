@@ -33,6 +33,7 @@ nav {
     justify-self: right;
     font-weight: bold;
     padding: 5px;
+    justify-content: right;
 }
 
 .tips {
@@ -40,10 +41,12 @@ nav {
     grid-area: 2 / 10 / span 1 / span 3;
     justify-self: right;
     align-self: flex-end;
+    padding-right: 20px;
 }
 
 h4 > a, .about, .contact, .login {
     color: black;
+    padding: 2px;
 }
 
 /* Modals */
@@ -85,7 +88,7 @@ h4 > a, .about, .contact, .login {
 }
 
 .aboutModal {
-    width: 85%;
+    width: 70%;
     height: 100%;
     background-image: url("https://i.imgur.com/0uKU5oV.png");
     background-size: cover;
@@ -96,6 +99,7 @@ h4 > a, .about, .contact, .login {
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding-top: 40px;
     padding-left: 30px;
     padding-right: 30px;
     overflow: inherit;
@@ -230,6 +234,8 @@ h4 > a, .about, .contact, .login {
     min-height: 500px;
     display: grid;
     grid-template: repeat(14, 1fr)/repeat(12, 1fr);
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .heading {
@@ -407,7 +413,7 @@ footer {
 }
 
 #techniques {
-    height: 300px;
+    height: 250px;
     width: 500px;
     border: solid black 1px;
     color: #000;
