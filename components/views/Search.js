@@ -1,41 +1,36 @@
 export default st => `
 <section class="searchMain">
-    <h2>Lake Search:</h2>
-    <form id="searchForm" action="/Search" method="POST">
-        <section id="location">
-            <label for="location" id="location">City, State:  </label>
-            <input type="text" name="location" id="location" value="location" placeholder="Login for location">
-        </section>
+    <h1 id="searchHead">Lake Search</h1>
+    <form id="searchForm" action="" method="POST">
+  
+        <label for="searchState">State: </label>
+        <select id="searchState" name="searchState" value="searchState">
+            <option id="selectState" value="selectState">Select State</option>
+            <option id="Iowa" value="Iowa">Iowa</option>
+            <option id="Nebraska" value="Nebraska">Nebraska</option>
+            <option id="New York" value="New York">New York</option>
+            <option id="Tennessee" value="Tennessee">Tennessee</option>
+            <option id="Vermont" value="Vermont">Vermont</option>
+
+        </select>
+
+        <label for="searchCounty">County:  </label>
+        <input type="text" name="searchCounty" id="searchCounty" placeholder="County Name">
+     
+        
+        <label for="searchSpecies">Species:  </label>
+        <select id="searchSpecies" name="searchSpecies" value="searchSpecies">
+            <option id="selectSpecies" value="selectSpecies">Select Species (Optional)</option>
+        </select>
         <br>
-
-        <label for="distance">Distance:</label>
-        <section id="distance">
-            <input type="radio" class="search" id="any" name="choice" value="any" checked>
-            <label for="any">25 miles</label>
-                
-            <input type="radio" class="search" id="public" name="choice" value="public">
-            <label for="public">50 miles</label>
-                
-            <input type="radio" class="search" id="private" name="choice" value="private">
-            <label for="private">100 miles</label>
-        </section>
-
-        <section id="species">
-            <label>Species:  </label>
-            <input type="text" name="species" value="species" placeholder="Optional">
-        </section>
-
         <input type="submit" value="Search" id="search">
     </form>
-
-    <table>
+    <br>
+    <br>
+    <table id="searchTable">
         <tr>
             <th>Lake Name</th>
-            <th>Distance</th>            
-        </tr>
-        <tr>
-            <td>Favorite Lake</td>
-            <td>15 miles</td>
+            <th>Species</th>            
         </tr>
     </table>
 </section>

@@ -330,7 +330,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _default = function _default(st) {
-  return "\n<section class=\"searchMain\">\n    <h2>Lake Search:</h2>\n    <form id=\"searchForm\" action=\"/Search\" method=\"POST\">\n        <section id=\"location\">\n            <label for=\"location\" id=\"location\">City, State:  </label>\n            <input type=\"text\" name=\"location\" id=\"location\" value=\"location\" placeholder=\"Login for location\">\n        </section>\n        <br>\n\n        <label for=\"distance\">Distance:</label>\n        <section id=\"distance\">\n            <input type=\"radio\" class=\"search\" id=\"any\" name=\"choice\" value=\"any\" checked>\n            <label for=\"any\">25 miles</label>\n                \n            <input type=\"radio\" class=\"search\" id=\"public\" name=\"choice\" value=\"public\">\n            <label for=\"public\">50 miles</label>\n                \n            <input type=\"radio\" class=\"search\" id=\"private\" name=\"choice\" value=\"private\">\n            <label for=\"private\">100 miles</label>\n        </section>\n\n        <section id=\"species\">\n            <label>Species:  </label>\n            <input type=\"text\" name=\"species\" value=\"species\" placeholder=\"Optional\">\n        </section>\n\n        <input type=\"submit\" value=\"Search\" id=\"search\">\n    </form>\n\n    <table>\n        <tr>\n            <th>Lake Name</th>\n            <th>Distance</th>            \n        </tr>\n        <tr>\n            <td>Favorite Lake</td>\n            <td>15 miles</td>\n        </tr>\n    </table>\n</section>\n";
+  return "\n<section class=\"searchMain\">\n    <h1 id=\"searchHead\">Lake Search</h1>\n    <form id=\"searchForm\" action=\"\" method=\"POST\">\n  \n        <label for=\"searchState\">State: </label>\n        <select id=\"searchState\" name=\"searchState\" value=\"searchState\">\n            <option id=\"selectState\" value=\"selectState\">Select State</option>\n            <option id=\"Iowa\" value=\"Iowa\">Iowa</option>\n            <option id=\"Nebraska\" value=\"Nebraska\">Nebraska</option>\n            <option id=\"New York\" value=\"New York\">New York</option>\n            <option id=\"Tennessee\" value=\"Tennessee\">Tennessee</option>\n            <option id=\"Vermont\" value=\"Vermont\">Vermont</option>\n\n        </select>\n\n        <label for=\"searchCounty\">County:  </label>\n        <input type=\"text\" name=\"searchCounty\" id=\"searchCounty\" placeholder=\"County Name\">\n     \n        \n        <label for=\"searchSpecies\">Species:  </label>\n        <select id=\"searchSpecies\" name=\"searchSpecies\" value=\"searchSpecies\">\n            <option id=\"selectSpecies\" value=\"selectSpecies\">Select Species (Optional)</option>\n        </select>\n        <br>\n        <input type=\"submit\" value=\"Search\" id=\"search\">\n    </form>\n    <br>\n    <br>\n    <table id=\"searchTable\">\n        <tr>\n            <th>Lake Name</th>\n            <th>Species</th>            \n        </tr>\n    </table>\n</section>\n";
 };
 
 exports.default = _default;
@@ -56532,14 +56532,15 @@ function CreateUser() {
     });
 
     function addUserToStateAndDb() {
-      users.add({
+      var newUser = {
         UserName: userName,
         HomeCity: homeCity,
         HomeState: homeState,
         FavoriteLake: favoriteLake,
         Gender: gender,
         Email: email
-      }).then(console.log("Hello"));
+      };
+      users.add(newUser).then(console.log("Hello"));
     }
   });
 }
@@ -56563,9 +56564,94 @@ var _default = function _default(st) {
 };
 
 exports.default = _default;
-},{"../../lib/CreateUser":"lib/CreateUser.js","../../lib/SetBackground":"lib/SetBackground.js"}],"components/controllers/Search.js":[function(require,module,exports) {
+},{"../../lib/CreateUser":"lib/CreateUser.js","../../lib/SetBackground":"lib/SetBackground.js"}],"lib/SearchLakes.js":[function(require,module,exports) {
+"use strict";
 
-},{}],"lib/TipsObject.js":[function(require,module,exports) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = SearchLakes;
+
+var _firebase = require("../firebase");
+
+function SearchLakes(target) {
+  var state = document.querySelector("#searchState");
+  var county = document.querySelector("#searchCounty");
+  var searchSpecies = document.querySelector("#searchSpecies");
+
+  var lakes = _firebase.db.collection("FishingLakes");
+
+  var choiceLakes = [];
+  var vermont = "\n    <option id=\"selectSpecies\" value=\"selectSpecies\">Select Species (Optional)</option>\n    <option id=\"Bowfin\" value=\"Bowfin\">Bowfin</option>\n    <option id=\"Carp\" value=\"Carp\">Carp</option>\n    <option id=\"ChannelCatfish\" value=\"ChannelCatfish\">Channel Catfish</option>\n    <option id=\"WhiteCrappie\" value=\"WhiteCrappie\">White Crappie</option>\n    <option id=\"LongnoseGar\" value=\"LongnoseGar\">Longnose Gar</option>\n    <option id=\"Muskellunge\" value=\"Muskellunge\">Muskie</option>\n    <option id=\"WhitePerch\" value=\"WhitePerch\">White Perch</option>\n    <option id=\"AmericanShad\" value=\"AmericanShad\">American Shad</option>\n    <option id=\"Sheepshead\" value=\"Sheepshead\">Sheepshead</option>\n    <option id=\"LakeWhitefish\" value=\"LakeWhitefish\">Lake Whitefish</option>\n    <option id=\"BrookTrout\" value=\"BrookTrout\">Brook Trout</option>\n    <option id=\"BrownTrout\" value=\"BrownTrout\">Brown Trout</option>\n    <option id=\"RainbowTrout\" value=\"RainbowTrout\">Rainbow Trout</option>\n    <option id=\"LakeTrout\" value=\"LakeTrout\">Lake Trout</option>\n    <option id=\"LandlockedSalmon\" value=\"LandlockedSalmon\">Landlocked Salmon</option>\n    <option id=\"RainbowSmelt\" value=\"RainbowSmelt\">Rainbow Smelt</option>\n    <option id=\"YellowPerch\" value=\"YellowPerch\">Yellow Perch</option>\n    <option id=\"Walleye\" value=\"Walleye\">Walleye</option>\n    <option id=\"NorthernPike\" value=\"NorthernPike\">Northern Pike</option>\n    <option id=\"ChainPickerel\" value=\"ChainPickerel\">Chain Pickerel</option>\n    <option id=\"LargemouthBass\" value=\"LargemouthBass\">Largemouth Bass</option>\n    <option id=\"SmallmouthBass\" value=\"SmallmouthBass\">Smallmouth Bass</option>\n    <option id=\"Bullhead\" value=\"Bullhead\">Bullhead</option>\n    <option id=\"Panfish\" value=\"Panfish\">Panfish</option>\n    <option id=\"BlackCrappie\" value=\"BlackCrappie\">Black Crappie</option>\n    <option id=\"Burbot\" value=\"Burbot\">Burbot</option>\n    ";
+  var tennessee = "\n    <option id=\"N/A\" value=\"N/A\">N/A</option>\n    ";
+  var iowa = "\n    <option id=\"N/A\" value=\"N/A\">N/A</option>\n    ";
+  var newYork = "\n    <option id=\"selectSpecies\" value=\"selectSpecies\">Select Species (Optional)</option>\n    <option id=\"Bluegill\" value=\"Bluegill\">Bluegill</option>\n    <option id=\"Sunfish\" value=\"Sunfish\">Sunfish</option>\n    <option id=\"Smallmouth Bass\" value=\"Smallmouth Bass\">Smallmouth Bass</option>\n    <option id=\"Largemouth Bass\" value=\"Largemouth Bass\">Largemouth Bass</option>\n    <option id=\"Yellow Perch\" value=\"Yellow Perch\">Yellow Perch</option>\n    <option id=\"Crappie\" value=\"Crappie\">Crappie</option>\n    <option id=\"Northern Pike\" value=\"Northern Pike\">Northern Pike</option>\n    <option id=\"Walleye\" value=\"Walleye\">Walleye</option>\n    <option id=\"Channel Catfish\" value=\"Channel Catfish\">Channel Catfish</option>\n    <option id=\"Tiger Musky\" value=\"Tiger Musky\">Tiger Musky</option>\n    <option id=\"Rainbow Trout\" value=\"Rainbow Trout\">Rainbow Trout</option>\n    <option id=\"Carp\" value=\"Carp\">Carp </option>\n    <option id=\"Chain Pickerel\" value=\"Chain Pickerel\">Chain Pickerel</option>\n    <option id=\"Lake Trout\" value=\"Lake Trout\">Lake Trout</option>\n    <option id=\"Brook Trout\" value=\"Brook Trout\">Brook Trout</option>\n    <option id=\"LL Salmon\" value=\"LL Salmon\">LL Salmon</option>\n    <option id=\"Brown Trout\" value=\"Brown Trout\">Brown Trout</option>\n    <option id=\"Bullhead\" value=\"Bullhead\">Bullhead</option>\n    <option id=\"Splake\" value=\"Splake\">Splake</option>\n    ";
+  var nebraska = "\n    <option id=\"selectSpecies\" value=\"selectSpecies\">Select Species (Optional)</option>\n    <option id=\"Bluegill\" value=\"Bluegill\">Bluegill</option>\n    <option id=\"Sunfish\" value=\"Sunfish\">Sunfish</option>\n    <option id=\"Smallmouth Bass\" value=\"Smallmouth Bass\">Smallmouth Bass</option>\n    <option id=\"Largemouth Bass\" value=\"Largemouth Bass\">Largemouth Bass</option>\n    <option id=\"Yellow Perch\" value=\"Yellow Perch\">Yellow Perch</option>\n    <option id=\"Crappie\" value=\"Crappie\">Crappie</option>\n    <option id=\"Northern Pike\" value=\"Northern Pike\">Northern Pike</option>\n    <option id=\"Walleye\" value=\"Walleye\">Walleye</option>\n    <option id=\"Channel Catfish\" value=\"Channel Catfish\">Channel Catfish</option>\n    <option id=\"Bullhead\" value=\"Bullhead\">Bullhead</option>\n    <option id=\"Redear Sunfish\" value=\"Redear Sunfish\">Redear Sunfish</option>\n    <option id=\"Rainbow Trout\" value=\"Rainbow Trout\">Rainbow Trout</option>\n    <option id=\"Common Carp\" value=\"Common Carp\">Common Carp</option>\n    <option id=\"Flathead Catfish\" value=\"Flathead Catfish\">Flathead Catfish</option>\n    <option id=\"Freshwater Drum\" value=\"Freshwater Drum\">Freshwater Drum</option>\n    <option id=\"Sauger\" value=\"Sauger\">Sauger</option>\n    <option id=\"White Bass\" value=\"White Bass\">White Bass</option>\n    ";
+  state.addEventListener("change", function (e) {
+    if (state.value === "Iowa") {
+      searchSpecies.innerHTML = iowa;
+    }
+
+    if (state.value === "Nebraska") {
+      searchSpecies.innerHTML = nebraska;
+    }
+
+    if (state.value === "New York") {
+      searchSpecies.innerHTML = newYork;
+    }
+
+    if (state.value === "Tennessee") {
+      searchSpecies.innerHTML = tennessee;
+    }
+
+    if (state.value === "Vermont") {
+      searchSpecies.innerHTML = vermont;
+    }
+  });
+  target.addEventListener("submit", function (e) {
+    e.preventDefault();
+    lakes.where("state", "==", state.value).get().then(function (res) {
+      res.forEach(function (doc) {
+        var lake = doc.data();
+        lake.id = doc.id;
+
+        if (lake.county === county.value && lake.species.includes(searchSpecies.value)) {
+          console.log(lake.id);
+          choiceLakes.push(lake);
+          var newRow = document.createElement("tr");
+          var data = "\n                    <td><a href=\"#\" id=\"searchName\">".concat(lake.name, "</a></td>\n                    <td>").concat(lake.species, "</td>\n                    ");
+          newRow.innerHTML = data;
+          document.querySelector("#searchTable").appendChild(newRow);
+          document.querySelector("#searchName").addEventListener("click", function (e) {
+            e.preventDefault();
+            window.location.href = window.location.origin + "/Lake/" + lake.id;
+          });
+        }
+      });
+    });
+  });
+}
+},{"../firebase":"firebase/index.js"}],"components/controllers/Search.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _SetBackground = _interopRequireDefault(require("../../lib/SetBackground"));
+
+var _SearchLakes = _interopRequireDefault(require("../../lib/SearchLakes"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(st) {
+  (0, _SetBackground.default)(document.querySelector(".searchMain"));
+  (0, _SearchLakes.default)(document.querySelector("#searchForm"));
+};
+
+exports.default = _default;
+},{"../../lib/SetBackground":"lib/SetBackground.js","../../lib/SearchLakes":"lib/SearchLakes.js"}],"lib/TipsObject.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57039,7 +57125,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55942" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54367" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

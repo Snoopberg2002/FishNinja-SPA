@@ -266,19 +266,6 @@ h4 > a, .about, .contact, .login {
     align-self: flex-start;
 }
 
-#location {
-    margin-top: 5px;
-}
-
-#species {
-    padding-top: 15px;
-}
-
-#search {
-    margin-top: 25px;
-    border: outset;
-}
-
 #posts, #newsHead {
     border: outset; 
     align-self: center;
@@ -427,21 +414,63 @@ footer {
 
 /* Lake Search Page */
 .searchMain {
-    display: grid;
-    grid-template: repeat(12, 1fr) / repeat(12, 1fr);
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    padding-left: 50px;
+    padding-right: 50px;
+    /* grid-template: repeat(12, 1fr) / repeat(12, 1fr); */
     background-image: url("https://i.imgur.com/mHqV1dN.jpg");
-    background-position: center;
+    background-size: cover;
     min-height: 650px;
     }
-    
-table {
-        grid-area: 5/5/span 7/span 4;
+
+    #searchHead {
+        align-self: center;
+        color: #FFF05A;
+        font-family: Merienda;
+        padding-top: 50px;
+    }
+
+    #searchForm {
+        color: #FFF;
+        display: flex;
         justify-content: center;
-        color: #fff;
+        align-content: center;
+        padding-top: 30px;
+    }
+
+    #searchState, #searchCounty, #searchSpecies {
+        margin-right: 20px;
+        height: 30px;
+    }
+
+    #locationCounty {
+        margin-top: 5px;
     }
     
-th {
+    #speciesSelect {
+        padding-top: 15px;
+    }
+    
+    #search {
         border: outset;
+    }
+    
+    #searchTable {
+            justify-content: center; 
+            color: #fff;
+            background-color: #000;
+            opacity: 0.5;
+        }
+    
+    th {
+        border: outset;
+    }
+
+
+    #searchName {
+        color: #FFF;
     }
 
 /* Lake Page */
