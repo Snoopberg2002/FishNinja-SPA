@@ -73,9 +73,8 @@ export default () => `
     <template class="postsTemplate">
         <div class="postsModal">
             <section class="postsContent">
-                <form class="postsForm" action="https://formspree.io/xbjzoonz" method="POST">
+                <form class="postsForm" action="" method="POST">
                     <h2 id="createPostHead">CreatePost</h2>
-                    <label for="createPostHead" class="postLogin">Must be <a href="/Register" data-navigo class="login" id="postLogin">Logged In </a>to post.</label>
                     <br>
                     <label class="postsEls" for="postLake">Lake Name:</label>
                     <input class="postsEls" type="text" id="postLake" name="postLake" placeholder="Required for image upload.">
@@ -110,33 +109,28 @@ export default () => `
 
     <template class="entryTemplate">
         <div class="entryModal">
-            <form id="entryForm" action="/Search" method="POST">
-            <h4 id="submitEntryHead">Submit entry for Catch of the Week!</h4>
-            <section id="location">
-                <label for="location" id="location">City, State:  </label>
-                <input type="text" name="location" id="location" value="location" placeholder="Login for location">
+            <section class="entryContent">
+                <form id="entryForm" action="" method="POST">
+                <h4 id="submitEntryHead">Submit entry for Catch of the Week!</h4>
+                <br>
+                <label class="entryEls" for="entrySpecies">Species:</label>
+                <input class="entryEls" type="text" id="entrySpecies" name="entrySpecies" >
+                <br>
+                <label class="entryEls" for="entryLake">Lake Name:</label>
+                <input class="entryEls" type="text" id="entryLake" name="entryLake">
+                <br>
+                <label class="entryEls" for="entryState">State:</label>
+                <input class="entryEls" type="text" id="entryState" name="entryState">
+                <br>
+                <label class="entryEls" for="addImage">Upload Image</label>
+                <input class="entryEls" type="file" accept="image/*" id="entryImage" name="addImage" value="addImage">
+                <br>
+                <label class="entryEls" for="entryDescription">Description:</label>
+                <input class="entryEls" type="text" id="entryDescription" name="entryDescription">
+                <br>
+                <input class="entryEls" type="submit" id="createEntry" name="createEntry" value="Create Entry">
+                </form>
             </section>
-            <br>
-
-            <label for="distance">Distance:</label>
-            <section id="distance">
-                <input type="radio" class="search" id="any" name="choice" value="any" checked>
-                <label for="any">25 miles</label>
-                    
-                <input type="radio" class="search" id="public" name="choice" value="public">
-                <label for="public">50 miles</label>
-                    
-                <input type="radio" class="search" id="private" name="choice" value="private">
-                <label for="private">100 miles</label>
-            </section>
-
-            <section id="species">
-                <label>Species:  </label>
-                <input type="text" name="species" value="species" placeholder="Optional">
-            </section>
-
-            <input type="submit" value="Search" id="search">
-            </form>
         </div>
     </template>
 </header>

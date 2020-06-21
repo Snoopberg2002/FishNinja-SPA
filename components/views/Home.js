@@ -14,9 +14,15 @@ const st = () => `
     <div class="posts">
         <h3 id="posts">Recent Posts</h3>
         <ul id="newPosts">
-            <li><a href="#" id="fakePost">(Benton Park Pond)-Goose Takeover!</a></li>
+        
         </ul>
         <input type="submit" value="Add Comments / Upload Image" class="post" id="post">
+    </div>
+
+    <div class="entries">
+        <h2 id="catchOfTheWeek">Catch of the Week</h2>
+        <h3 id="submitEntry"><a href="#" id="submitEntry">Submit Entry Here</a></h3>
+        <h3 id="submissions"><a href="#" id="submissions">See This Weeks Submissions</a></h3>
     </div>
 </section>
 `

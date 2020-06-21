@@ -222,9 +222,38 @@ h4 > a, .about, .contact, .login {
     background-image: url("https://i.imgur.com/kA9JB0r.jpg");
     background-position: center;
     color: #FFF;
-    height: 75%;
+    height: 100%;
 }
 
+#newPostImage {
+    height: 225px;
+    width: auto;
+}
+
+.entryModal {
+    width: 100%;
+    height: 100%;
+    overflow: inherit;
+}
+
+.entryContent {
+    background-image: url("https://i.imgur.com/WTakntr.jpg");
+    background-position: center;
+    display: flex;
+    justify-content: center;
+}
+
+#entryForm {
+    padding-top: 0px;
+    height: 100%;
+    width: 60%;
+    display: flex;
+    color: #FFF;
+    background-color: #000;
+    opacity: 0.6;
+    flex-direction: column;
+    align-items: center;
+}
 /* Main Content */
 .homeMain {
     background-image: url("https://i.imgur.com/OYgioQA.jpg");
@@ -233,7 +262,7 @@ h4 > a, .about, .contact, .login {
     background-size: cover;
     min-height: 500px;
     display: grid;
-    grid-template: repeat(11, 1fr)/repeat(12, 1fr);
+    grid-template: repeat(12, 1fr)/repeat(12, 1fr);
     padding-right: 10px;
     padding-left: 10px;
 }
@@ -249,8 +278,8 @@ h4 > a, .about, .contact, .login {
 
 #map {
     grid-area: 2/1/span 5/span 12;
-    height: 450px;
-    width: 90%;
+    height: 400px;
+    width: 80%;
     justify-self: center;
     align-self: center;
 }
@@ -275,15 +304,9 @@ h4 > a, .about, .contact, .login {
 .news, #news {
     color: #fff;
     justify-content: right;
-    grid-area: 7/9/span 5/span 6;
+    grid-area: 7/9/span 6/span 6;
     display: flex;
     flex-direction: column;
-}
-
-#entryForm {
-    color: #fff;
-    border: solid white 1px;
-    grid-area: 11/1/span 3/span 5;
 }
 
 li > a {
@@ -300,6 +323,18 @@ li > a {
 #post {
     width: 250px;
     margin-left: 50px;
+}
+
+.entries {
+    grid-area: 11/1/span 2/span 6;
+    justify-content: center;
+    color: #FFF;
+}
+
+#submitEntry, #submissions {
+    color: #FFF05A;
+    height: 25px;
+    margin: 5px;
 }
 
 footer {
