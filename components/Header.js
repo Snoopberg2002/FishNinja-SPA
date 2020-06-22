@@ -82,11 +82,11 @@ export default () => `
                     <label class="postsEls" for="postState">State:</label>
                     <input class="postsEls" type="text" id="postState" name="postState" placeholder="Required for image upload.">
                     <br>
-                    <label class="postsEls" for="addImage">Upload Image</label>
-                    <input class="postsEls" type="file" accept="image/*" id="addImage" name="addImage" value="addImage">
-                    <br>
                     <label class="postsEls" for="addComment">Add Comments</label>
                     <input class="postsEls" type="text" id="addComment" name="addComment" placeholder="Add Text Here">
+                    <br>
+                    <label class="postsEls" for="addImage">Upload Image</label>
+                    <input class="postsEls" type="file" accept="image/*" id="addImage" name="addImage" value="addImage">
                     <br>
                     <input class="postsEls" type="submit" id="createPost" name="createPost" value="Create Post">
                 </form>

@@ -289,8 +289,8 @@ h4 > a, .about, .contact, .login {
 }
 
 #lakeSearch {
-    color: #fff;
-    grid-area: 7/6/span 1/span 2;
+    color: #fff05a;
+    grid-area: 7/5/span 1/span 4;
     justify-self: center;
     align-self: flex-start;
 }
@@ -299,6 +299,7 @@ h4 > a, .about, .contact, .login {
     border: outset; 
     align-self: center;
     margin-top: 50px;
+    margin-bottom: 10px;
 }
 
 .news, #news {
@@ -307,6 +308,10 @@ h4 > a, .about, .contact, .login {
     grid-area: 7/9/span 6/span 6;
     display: flex;
     flex-direction: column;
+}
+
+#news {
+    padding-top: 0px;
 }
 
 li > a {
@@ -325,6 +330,10 @@ li > a {
     margin-left: 50px;
 }
 
+#newPosts {
+    margin-top: 0px;
+}
+
 .entries {
     grid-area: 11/1/span 2/span 6;
     justify-content: center;
@@ -337,9 +346,10 @@ li > a {
     margin: 5px;
 }
 
+/* Footer */
 footer {
     display: grid;
-    grid-template: repeat(5, 1fr)/repeat(12, 1fr);
+    grid-template: repeat(6, 1fr)/repeat(12, 1fr);
     background-color: #00274C;
 }
 
@@ -377,23 +387,25 @@ footer {
     display: flex;
 }
 
-#ninjaImage {
+.ninjas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    color: #FFF05A;
+}
+
+.ninjaImage {
     border: 1px solid #00274C;
     border-radius: 50px;
 }
 
-#ninjaName, #ninjaState {
+.ninjaName, .ninjaState {
     margin: 5px;
 }
 
-#ninjaCity {
+.ninjaCity {
     margin: 0px;
-}
-
-.ninjas {
-    padding-left: 20px;
-    padding-right: 20px;
-    color: #FFF05A;
 }
 
 /* Register Page */
@@ -447,24 +459,32 @@ footer {
     align-self: center;
 }
 
-/* Lake Search Page */
-.searchMain {
+/* Lake Search Page  & Entries Page*/
+.searchMain, .entriesMain {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     padding-left: 50px;
     padding-right: 50px;
-    /* grid-template: repeat(12, 1fr) / repeat(12, 1fr); */
     background-image: url("https://i.imgur.com/mHqV1dN.jpg");
     background-size: cover;
     min-height: 650px;
     }
 
-    #searchHead {
+    #searchHead, .entriesHead {
         align-self: center;
         color: #FFF05A;
         font-family: Merienda;
         padding-top: 50px;
+    }
+
+    .entriesInfo {
+        color: #FFF05a;
+        background-color: #000;
+        opacity: 0.7;
+    }
+
+    .entriesInfoAnchor {
+        color: #FFF;
     }
 
     #searchForm {
@@ -492,11 +512,11 @@ footer {
         border: outset;
     }
     
-    #searchTable {
+    #searchTable, .entriesTable {
             justify-content: center; 
             color: #fff;
             background-color: #000;
-            opacity: 0.5;
+            opacity: 0.6;
         }
     
     th {
@@ -504,8 +524,8 @@ footer {
     }
 
 
-    #searchName {
-        color: #FFF;
+    .searchName, .tableImageAnchor {
+        color: #FFF05A;
     }
 
 /* Lake Page */

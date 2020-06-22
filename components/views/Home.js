@@ -2,7 +2,7 @@ const st = () => `
 <section class="homeMain">
     <h1 class="heading">Keeping Lines Tight Across America!</h1>
     <div id="map"></div>
-    <h2 id="lakeSearch"><a href ="/Search" id="lakeSearch">Lake Search</a></h2>
+    <h2 id="lakeSearch"><a href ="/Search" id="lakeSearch">Refined Lake Search</a></h2>
 
     <div class="news">
         <h3 id="newsHead">Fishing News</h3>
@@ -22,7 +22,7 @@ const st = () => `
     <div class="entries">
         <h2 id="catchOfTheWeek">Catch of the Week</h2>
         <h3 id="submitEntry"><a href="#" id="submitEntry">Submit Entry Here</a></h3>
-        <h3 id="submissions"><a href="#" id="submissions">See This Weeks Submissions</a></h3>
+        <h3 id="submissions"><a href="/Entries" id="submissions">See This Weeks Submissions</a></h3>
     </div>
 </section>
 `

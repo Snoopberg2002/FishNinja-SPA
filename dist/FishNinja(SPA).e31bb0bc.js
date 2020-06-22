@@ -297,7 +297,7 @@ if (state.User.signedIn) {
 }
 
 var _default = function _default() {
-  return "\n<header>\n    <h3 id=\"home\"><a id=\"home\" href=\"/Home\" data-navigo>Home</a></h3>\n\n    ".concat(userState, "\n    <nav>\n        <a href=\"#\" class=\"about\">About</a>\n        <a href=\"#\" class=\"contact\">Contact</a>\n        <a href=\"#\" class=\"login\">Login/Register</a>\n    </nav>\n\n    <h4 class=\"tips\"><a href=\"/Tips\" data-navigo>Tips & Techniques</a></h4>\n\n    <!-- About Modal -->\n    <template class=\"aboutTemplate\">\n        <div class=\"aboutModal\">\n            <section class=\"aboutContent\">\n                <h1 class=\"aboutHead\">About</h1>\n                <h4 class=\"aboutBody\">The Fish Ninja is committed to providing the most complete and comprehensive fishing website available.  It is our ongoing and never ending mission to compile and present any and all information relevant to fishing lakes across the United States.  While it is our intention to remain steadfast in this pledge, we can not do it alone.  It is only through the input and feedback of our users that this site can reach its full potential.  Having all the raw data in the world still only paints part of the picture.  Without boots on the ground to say, this lake's shoreline is packed shoulder to shoulder with anglers every weekend, or there is a major construction project up the road that really has the fish dug in; then we really don't have the whole story.  We, unfortunately, will not be able to visit all of these lakes, which is why we need your help.  Connect with other angler's personally, or post your thoughts for the fishing world to see.  We will do our best to put all comments provided to good use.</h4>\n            </section>\n        </div>\n    </template>\n    <!-- Contacts Modal -->\n    <template class=\"contactsTemplate\">\n        <div class=\"contactsModal\">\n            <section class=\"contactsContent\">\n                <h1>Contacts</h1>\n            </section>\n        </div>\n    </template>\n    <!-- Login Modal -->\n    <template class=\"loginTemplate\">\n        <div class=\"loginModal\">\n            <section class=\"loginContent\">\n                <form action=\"\" method=\"POST\" id=\"login\">\n                    <label for=\"email\">Email:</label>\n                    <input type=\"text\" name=\"email\" id=\"email\">\n                    <br>\n                    <label for=\"pass\">Password:</label>\n                    <input id=\"pass\" type=\"password\" name=\"password\">\n                    <h3>Not already a member?  <a href=\"/Register\" id=\"registerLink\" data-navigo>Register  </a></h3>\n                    <br>\n                    <input id=\"submit\" type=\"submit\" value=\"Submit\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- News Modal -->\n    <template class=\"newsTemplate\">\n        <div class=\"newsModal\">\n            <section class=\"newsContent\">\n                <img src=\"\" alt=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"storyImage>\n                <h2 id=\"title\">Title</h2>\n                <h4 id=\"author\">Author</h4>\n                <a href=\"\" id=\"storyLink\">Link to Page</a>\n                <br>\n                <p id=\"story\">Content</p>\n            </section>\n        </div>\n    </template>\n\n    <!-- Posts Modal -->\n    <template class=\"postsTemplate\">\n        <div class=\"postsModal\">\n            <section class=\"postsContent\">\n                <form class=\"postsForm\" action=\"\" method=\"POST\">\n                    <h2 id=\"createPostHead\">CreatePost</h2>\n                    <br>\n                    <label class=\"postsEls\" for=\"postLake\">Lake Name:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postLake\" name=\"postLake\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"postState\">State:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postState\" name=\"postState\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addImage\">Upload Image</label>\n                    <input class=\"postsEls\" type=\"file\" accept=\"image/*\" id=\"addImage\" name=\"addImage\" value=\"addImage\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addComment\">Add Comments</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"addComment\" name=\"addComment\" placeholder=\"Add Text Here\">\n                    <br>\n                    <input class=\"postsEls\" type=\"submit\" id=\"createPost\" name=\"createPost\" value=\"Create Post\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- New Posts Modal -->\n    <template class=\"newPostTemplate\">\n        <div class=\"newPostModal\">\n            <section class=\"newPostContent\">\n                <img src=\"\" id=\"newPostImage\" class=\"newPostEls\">\n                <h2 id=\"newPostLake\" class=\"newPostEls\">Lake Name</h2>\n                <h3 id=\"newPostState\" class=\"newPostEls\">Lake State</h3> \n                <h4 id=\"postedBy\"class=\"newPostEls\">Posted By:</h4>\n                <p id=\"newPostComments\" class=\"newPostEls\">Comments</p>\n            </section>\n        </div>\n    </template>\n\n    <template class=\"entryTemplate\">\n        <div class=\"entryModal\">\n            <section class=\"entryContent\">\n                <form id=\"entryForm\" action=\"\" method=\"POST\">\n                <h4 id=\"submitEntryHead\">Submit entry for Catch of the Week!</h4>\n                <br>\n                <label class=\"entryEls\" for=\"entrySpecies\">Species:</label>\n                <input class=\"entryEls\" type=\"text\" id=\"entrySpecies\" name=\"entrySpecies\" >\n                <br>\n                <label class=\"entryEls\" for=\"entryLake\">Lake Name:</label>\n                <input class=\"entryEls\" type=\"text\" id=\"entryLake\" name=\"entryLake\">\n                <br>\n                <label class=\"entryEls\" for=\"entryState\">State:</label>\n                <input class=\"entryEls\" type=\"text\" id=\"entryState\" name=\"entryState\">\n                <br>\n                <label class=\"entryEls\" for=\"addImage\">Upload Image</label>\n                <input class=\"entryEls\" type=\"file\" accept=\"image/*\" id=\"entryImage\" name=\"addImage\" value=\"addImage\">\n                <br>\n                <label class=\"entryEls\" for=\"entryDescription\">Description:</label>\n                <input class=\"entryEls\" type=\"text\" id=\"entryDescription\" name=\"entryDescription\">\n                <br>\n                <input class=\"entryEls\" type=\"submit\" id=\"createEntry\" name=\"createEntry\" value=\"Create Entry\">\n                </form>\n            </section>\n        </div>\n    </template>\n</header>\n");
+  return "\n<header>\n    <h3 id=\"home\"><a id=\"home\" href=\"/Home\" data-navigo>Home</a></h3>\n\n    ".concat(userState, "\n    <nav>\n        <a href=\"#\" class=\"about\">About</a>\n        <a href=\"#\" class=\"contact\">Contact</a>\n        <a href=\"#\" class=\"login\">Login/Register</a>\n    </nav>\n\n    <h4 class=\"tips\"><a href=\"/Tips\" data-navigo>Tips & Techniques</a></h4>\n\n    <!-- About Modal -->\n    <template class=\"aboutTemplate\">\n        <div class=\"aboutModal\">\n            <section class=\"aboutContent\">\n                <h1 class=\"aboutHead\">About</h1>\n                <h4 class=\"aboutBody\">The Fish Ninja is committed to providing the most complete and comprehensive fishing website available.  It is our ongoing and never ending mission to compile and present any and all information relevant to fishing lakes across the United States.  While it is our intention to remain steadfast in this pledge, we can not do it alone.  It is only through the input and feedback of our users that this site can reach its full potential.  Having all the raw data in the world still only paints part of the picture.  Without boots on the ground to say, this lake's shoreline is packed shoulder to shoulder with anglers every weekend, or there is a major construction project up the road that really has the fish dug in; then we really don't have the whole story.  We, unfortunately, will not be able to visit all of these lakes, which is why we need your help.  Connect with other angler's personally, or post your thoughts for the fishing world to see.  We will do our best to put all comments provided to good use.</h4>\n            </section>\n        </div>\n    </template>\n    <!-- Contacts Modal -->\n    <template class=\"contactsTemplate\">\n        <div class=\"contactsModal\">\n            <section class=\"contactsContent\">\n                <h1>Contacts</h1>\n            </section>\n        </div>\n    </template>\n    <!-- Login Modal -->\n    <template class=\"loginTemplate\">\n        <div class=\"loginModal\">\n            <section class=\"loginContent\">\n                <form action=\"\" method=\"POST\" id=\"login\">\n                    <label for=\"email\">Email:</label>\n                    <input type=\"text\" name=\"email\" id=\"email\">\n                    <br>\n                    <label for=\"pass\">Password:</label>\n                    <input id=\"pass\" type=\"password\" name=\"password\">\n                    <h3>Not already a member?  <a href=\"/Register\" id=\"registerLink\" data-navigo>Register  </a></h3>\n                    <br>\n                    <input id=\"submit\" type=\"submit\" value=\"Submit\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- News Modal -->\n    <template class=\"newsTemplate\">\n        <div class=\"newsModal\">\n            <section class=\"newsContent\">\n                <img src=\"\" alt=\"https://i.imgur.com/cJsy8d1.jpg\" id=\"storyImage>\n                <h2 id=\"title\">Title</h2>\n                <h4 id=\"author\">Author</h4>\n                <a href=\"\" id=\"storyLink\">Link to Page</a>\n                <br>\n                <p id=\"story\">Content</p>\n            </section>\n        </div>\n    </template>\n\n    <!-- Posts Modal -->\n    <template class=\"postsTemplate\">\n        <div class=\"postsModal\">\n            <section class=\"postsContent\">\n                <form class=\"postsForm\" action=\"\" method=\"POST\">\n                    <h2 id=\"createPostHead\">CreatePost</h2>\n                    <br>\n                    <label class=\"postsEls\" for=\"postLake\">Lake Name:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postLake\" name=\"postLake\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"postState\">State:</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"postState\" name=\"postState\" placeholder=\"Required for image upload.\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addComment\">Add Comments</label>\n                    <input class=\"postsEls\" type=\"text\" id=\"addComment\" name=\"addComment\" placeholder=\"Add Text Here\">\n                    <br>\n                    <label class=\"postsEls\" for=\"addImage\">Upload Image</label>\n                    <input class=\"postsEls\" type=\"file\" accept=\"image/*\" id=\"addImage\" name=\"addImage\" value=\"addImage\">\n                    <br>\n                    <input class=\"postsEls\" type=\"submit\" id=\"createPost\" name=\"createPost\" value=\"Create Post\">\n                </form>\n            </section>\n        </div>\n    </template>\n\n    <!-- New Posts Modal -->\n    <template class=\"newPostTemplate\">\n        <div class=\"newPostModal\">\n            <section class=\"newPostContent\">\n                <img src=\"\" id=\"newPostImage\" class=\"newPostEls\">\n                <h2 id=\"newPostLake\" class=\"newPostEls\">Lake Name</h2>\n                <h3 id=\"newPostState\" class=\"newPostEls\">Lake State</h3> \n                <h4 id=\"postedBy\"class=\"newPostEls\">Posted By:</h4>\n                <p id=\"newPostComments\" class=\"newPostEls\">Comments</p>\n            </section>\n        </div>\n    </template>\n\n    <template class=\"entryTemplate\">\n        <div class=\"entryModal\">\n            <section class=\"entryContent\">\n                <form id=\"entryForm\" action=\"\" method=\"POST\">\n                <h4 id=\"submitEntryHead\">Submit entry for Catch of the Week!</h4>\n                <br>\n                <label class=\"entryEls\" for=\"entrySpecies\">Species:</label>\n                <input class=\"entryEls\" type=\"text\" id=\"entrySpecies\" name=\"entrySpecies\" >\n                <br>\n                <label class=\"entryEls\" for=\"entryLake\">Lake Name:</label>\n                <input class=\"entryEls\" type=\"text\" id=\"entryLake\" name=\"entryLake\">\n                <br>\n                <label class=\"entryEls\" for=\"entryState\">State:</label>\n                <input class=\"entryEls\" type=\"text\" id=\"entryState\" name=\"entryState\">\n                <br>\n                <label class=\"entryEls\" for=\"addImage\">Upload Image</label>\n                <input class=\"entryEls\" type=\"file\" accept=\"image/*\" id=\"entryImage\" name=\"addImage\" value=\"addImage\">\n                <br>\n                <label class=\"entryEls\" for=\"entryDescription\">Description:</label>\n                <input class=\"entryEls\" type=\"text\" id=\"entryDescription\" name=\"entryDescription\">\n                <br>\n                <input class=\"entryEls\" type=\"submit\" id=\"createEntry\" name=\"createEntry\" value=\"Create Entry\">\n                </form>\n            </section>\n        </div>\n    </template>\n</header>\n");
 };
 
 exports.default = _default;
@@ -310,7 +310,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var st = function st() {
-  return "\n<section class=\"homeMain\">\n    <h1 class=\"heading\">Keeping Lines Tight Across America!</h1>\n    <div id=\"map\"></div>\n    <h2 id=\"lakeSearch\"><a href =\"/Search\" id=\"lakeSearch\">Lake Search</a></h2>\n\n    <div class=\"news\">\n        <h3 id=\"newsHead\">Fishing News</h3>\n        <ul id=\"news\">\n            \n        </ul>\n    </div>\n\n    <div class=\"posts\">\n        <h3 id=\"posts\">Recent Posts</h3>\n        <ul id=\"newPosts\">\n        \n        </ul>\n        <input type=\"submit\" value=\"Add Comments / Upload Image\" class=\"post\" id=\"post\">\n    </div>\n\n    <div class=\"entries\">\n        <h2 id=\"catchOfTheWeek\">Catch of the Week</h2>\n        <h3 id=\"submitEntry\"><a href=\"#\" id=\"submitEntry\">Submit Entry Here</a></h3>\n        <h3 id=\"submissions\"><a href=\"#\" id=\"submissions\">See This Weeks Submissions</a></h3>\n    </div>\n</section>\n";
+  return "\n<section class=\"homeMain\">\n    <h1 class=\"heading\">Keeping Lines Tight Across America!</h1>\n    <div id=\"map\"></div>\n    <h2 id=\"lakeSearch\"><a href =\"/Search\" id=\"lakeSearch\">Refined Lake Search</a></h2>\n\n    <div class=\"news\">\n        <h3 id=\"newsHead\">Fishing News</h3>\n        <ul id=\"news\">\n            \n        </ul>\n    </div>\n\n    <div class=\"posts\">\n        <h3 id=\"posts\">Recent Posts</h3>\n        <ul id=\"newPosts\">\n        \n        </ul>\n        <input type=\"submit\" value=\"Add Comments / Upload Image\" class=\"post\" id=\"post\">\n    </div>\n\n    <div class=\"entries\">\n        <h2 id=\"catchOfTheWeek\">Catch of the Week</h2>\n        <h3 id=\"submitEntry\"><a href=\"#\" id=\"submitEntry\">Submit Entry Here</a></h3>\n        <h3 id=\"submissions\"><a href=\"/Entries\" id=\"submissions\">See This Weeks Submissions</a></h3>\n    </div>\n</section>\n";
 };
 
 var _default = st;
@@ -378,7 +378,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _default = function _default(st) {
-  return "\n\n";
+  return "\n    <section class=\"entriesMain\">\n        <h1 class=\"entriesHead\">Catch Of The Week</h1>\n        \n        <p class=\"entriesInfo\">This will be a strictly honor based system as we have no way, right now, of confirming any information.  Perhaps in the future this can evolve into a little more serious contest, but for now it is just for fun. So, let's have some fun and keep it clean.  In addition, this will not be a strictly biggest fish contest.  While we can all agree that a 30 plus inch Northern Pike is a great catch.  In comparison, a 2 1/2 pound bluegill would probably take home the prize.  Other factors will be considered too.  Please provide any and all relevant details, and try to add a photo that gives some idea of the scale of the size of the fish.  This doesn't mean holding it out way in front of you to make it look bigger, or placing a bluegill on a teacup saucer to make it look like it overflows a dinner plate.  Think beer can, etc...  Anyways, let's see what you got, and keep those lines tight!    <a href=\"\" class=\"entriesInfoAnchor\">Enter Here</a></p>\n\n        <table class=\"entriesTable\">\n            <tr class=\"entriesTableHead\">\n                <th class=\"tableUser\">User Name<th>\n                <th class=\"tableSpecies\">Species<th>\n                <th class=\"tableLake\">Lake<th>\n                <th class=\"tableState\">State<th>\n                <th class=\"tableImage\">Image<th>\n                <th class=\"tableDescription\">Description<th>\n            </tr>\n        </table\n    </section>\n";
 };
 
 exports.default = _default;
@@ -36915,9 +36915,9 @@ function AddPosts() {
   _firebase.db.collection("userPosts").orderBy("TimeAdded").get().then(function (res) {
     res.forEach(function (doc) {
       var post = doc.data();
-      var trimmedPost = post.Comment.substring(0, 25);
+      var trimmedPost = post.Comment.substring(0, 35);
       var elem = document.createElement("li");
-      elem.innerHTML = "<a class=\"newPost\" href=\"#\">(".concat(post.LakeName, ")-").concat(post.Comment, "</a>");
+      elem.innerHTML = "<a class=\"newPost\" href=\"#\">(".concat(post.LakeName, ")-").concat(trimmedPost, "...</a>");
       target.appendChild(elem);
       elem.addEventListener("click", function (e) {
         e.preventDefault();
@@ -36927,7 +36927,7 @@ function AddPosts() {
         document.querySelector("#newPostLake").textContent = post.LakeName;
         document.querySelector("#newPostState").textContent = post.LakeState;
         document.querySelector("#postedBy").textContent = "Posted By:  ".concat(post.PostedBy);
-        document.querySelector("#newPostComments").textContent = trimmedPost;
+        document.querySelector("#newPostComments").textContent = post;
       });
     });
   });
@@ -37046,7 +37046,7 @@ function HomeListeners() {
       alert("Please sign in to create a post.");
     } else {
       (0, _ToggleModal.default)(postsModal);
-      post.addEventListener("submit", function (e) {
+      document.querySelector(".postsForm").addEventListener("submit", function (e) {
         e.preventDefault();
         (0, _CreatePosts.default)();
       });
@@ -37060,7 +37060,7 @@ function HomeListeners() {
       alert("Please sign in to submit entry.");
     } else {
       (0, _ToggleModal.default)(entryModal);
-      submit.addEventListener("submit", function (e) {
+      document.querySelector("#entryForm").addEventListener("submit", function (e) {
         e.preventDefault;
         (0, _SubmitEntry.default)();
       });
@@ -56469,8 +56469,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function _default(st) {
-  (0, _SetBackground.default)(document.querySelector(".homeMain"));
-  (0, _News.default)();
+  (0, _SetBackground.default)(document.querySelector(".homeMain")); // NewsFeed();
+
   (0, _AddPosts.default)();
   (0, _HomeListeners.default)();
   setTimeout(function () {
@@ -56619,12 +56619,11 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+var users = _firebase.db.collection("Users");
+
 function CreateUser() {
   document.querySelector("#registerForm").addEventListener("submit", function (event) {
     event.preventDefault();
-
-    var users = _firebase.db.collection("Users");
-
     var homeCity = document.querySelector("#homeCity").value;
     var homeState = document.querySelector("#homeState").value;
     var favoriteLake = document.querySelector("#favLake").value;
@@ -56655,8 +56654,7 @@ function CreateUser() {
         Email: email,
         Id: id
       };
-      var userDoc = users.doc();
-      userDoc.set(newUser).then(function (res) {
+      users.add(newUser).then(function (res) {
         console.log(res);
         (0, _ToggleModal.default)(document.querySelector(".loginTemplate").innerHTML);
         alert("Please re-enter email and password to Log In.");
@@ -56962,12 +56960,48 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _SetBackground = _interopRequireDefault(require("../../lib/SetBackground"));
+
+var _firebase = require("../../firebase");
+
+var state = _interopRequireWildcard(require("../../store"));
+
+var _ToggleModal = _interopRequireDefault(require("../../lib/ToggleModal"));
+
+var _SubmitEntry = _interopRequireDefault(require("../../lib/SubmitEntry"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var _default = function _default(st) {
-  SetBackground(document.querySelector(".registerMain"));
+  (0, _SetBackground.default)(document.querySelector(".entriesMain"));
+  entriesListeners();
 };
 
 exports.default = _default;
-},{}],"components/controllers/index.js":[function(require,module,exports) {
+
+function entriesListeners() {
+  var entryModal = document.querySelector(".entryTemplate").innerHTML;
+  var enter = document.querySelector(".entriesInfoAnchor");
+  var submit = document.querySelector("#entryForm");
+  enter.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    if (state.User.signedIn === false) {
+      alert("Please sign in to submit entry.");
+    } else {
+      (0, _ToggleModal.default)(entryModal);
+      submit.addEventListener("submit", function (e) {
+        e.preventDefault;
+        (0, _SubmitEntry.default)();
+      });
+    }
+  });
+}
+},{"../../lib/SetBackground":"lib/SetBackground.js","../../firebase":"firebase/index.js","../../store":"store/index.js","../../lib/ToggleModal":"lib/ToggleModal.js","../../lib/SubmitEntry":"lib/SubmitEntry.js"}],"components/controllers/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57273,7 +57307,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55927" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52095" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
