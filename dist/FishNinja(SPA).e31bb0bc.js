@@ -293,7 +293,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var userState = "";
 
 if (state.User.signedIn) {
-  userState = "    <div id=\"userLogout\" class=\"logoutDiv\">\n    <h4 id=\"welcome\">Welcome <a id=\"stateUserName\" href=\"#\">".concat(state.User.userName, "</a> <a id=\"logout\" href=\"#\">Logout</a></h4>\n</div>");
+  userState = "    <div id=\"userLogout\" class=\"logoutDiv\">\n    <h4 id=\"welcome\">Welcome <a id=\"stateUserName\" href=\"#\">".concat(state.User.UserName, "</a> <a id=\"logout\" href=\"#\">Logout</a></h4>\n</div>");
 }
 
 var _default = function _default() {
@@ -36803,23 +36803,22 @@ function UserSignin() {
   _firebase.auth.signInWithEmailAndPassword(email, password).then(function (result) {
     console.log(result);
     console.log("user signed in");
-    getUserFromDb(result.user.email);
+    getUserFromDb(result.user.uid);
   });
 
-  function getUserFromDb(email) {
-    users.where("Email", "==", email).get().then(function (snapshot) {
+  function getUserFromDb(id) {
+    users.where("Id", "==", id).get().then(function (snapshot) {
       snapshot.forEach(function (doc) {
         console.log(doc.data());
-        var id = doc.id;
         var User = doc.data();
         var user = {
           signedIn: true,
-          userName: User.UserName,
-          homeCity: User.HomeCity,
-          homeState: User.HomeState,
-          favoriteLake: User.FavoriteLake,
-          gender: User.Gender,
-          userId: id
+          UserName: User.UserName,
+          HomeCity: User.HomeCity,
+          HomeState: User.HomeState,
+          FavoriteLake: User.FavoriteLake,
+          Gender: User.Gender,
+          Id: id
         };
         console.log(user);
         localStorage.setItem("user", JSON.stringify(user)); // window.location.reload();
@@ -36927,7 +36926,7 @@ function AddPosts() {
         document.querySelector("#newPostLake").textContent = post.LakeName;
         document.querySelector("#newPostState").textContent = post.LakeState;
         document.querySelector("#postedBy").textContent = "Posted By:  ".concat(post.PostedBy);
-        document.querySelector("#newPostComments").textContent = post;
+        document.querySelector("#newPostComments").textContent = post.Comment;
       });
     });
   });
@@ -36966,7 +36965,7 @@ function CreatePosts() {
       LakeName: lake,
       LakeState: stateInput,
       Image: reader.result,
-      PostedBy: state.User.userName,
+      PostedBy: state.User.UserName,
       TimeAdded: Date.now()
     });
 
@@ -36982,20 +36981,30 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = SubmitEntry;
 
+var _firebase = require("../firebase");
+
+var state = _interopRequireWildcard(require("../store"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 function SubmitEntry() {
-  var entries = db.collection("Entries");
+  var entries = _firebase.db.collection("Entries");
+
   var species = document.querySelector("#entrySpecies").value;
   var stateInput = document.querySelector("#entryState").value;
   var lake = document.querySelector("#entryLake").value;
   var img = document.querySelector("#entryImage").files[0];
   var description = document.querySelector("#entryDescription").value;
+  var reader = new FileReader();
   reader.addEventListener("load", function () {
     entries.add({
       Species: species,
       LakeName: lake,
       LakeState: stateInput,
       Image: reader.result,
-      PostedBy: state.User.userName,
+      PostedBy: state.User.UserName,
       Description: description,
       TimeAdded: Date.now()
     });
@@ -37003,7 +37012,7 @@ function SubmitEntry() {
   });
   reader.readAsDataURL(img);
 }
-},{}],"lib/HomeListeners.js":[function(require,module,exports) {
+},{"../firebase":"firebase/index.js","../store":"store/index.js"}],"lib/HomeListeners.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56595,7 +56604,42 @@ function GetWeather(lake) {
     document.querySelector("#day4Low").textContent = "Low: ".concat((0, _lodash.round)(temp));
   });
 }
-},{"../../firebase":"firebase/index.js","axios":"node_modules/axios/index.js","lodash":"node_modules/lodash/lodash.js"}],"lib/CreateUser.js":[function(require,module,exports) {
+},{"../../firebase":"firebase/index.js","axios":"node_modules/axios/index.js","lodash":"node_modules/lodash/lodash.js"}],"node_modules/firebase/app/dist/index.cjs.js":[function(require,module,exports) {
+'use strict';
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var firebase = _interopDefault(require('@firebase/app'));
+
+var name = "firebase";
+var version = "7.14.6";
+
+/**
+ * @license
+ * Copyright 2018 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+firebase.registerVersion(name, version, 'app');
+
+module.exports = firebase;
+
+
+},{"@firebase/app":"node_modules/@firebase/app/dist/index.cjs.js"}],"node_modules/firebase/firestore/dist/index.esm.js":[function(require,module,exports) {
+"use strict";
+
+require("@firebase/firestore");
+},{"@firebase/firestore":"node_modules/@firebase/firestore/dist/index.cjs.js"}],"lib/CreateUser.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56613,13 +56657,22 @@ var _UserSignin = _interopRequireDefault(require("./UserSignin"));
 
 var _ToggleModal = _interopRequireDefault(require("./ToggleModal"));
 
+var _app = _interopRequireDefault(require("firebase/app"));
+
+var _firestore = _interopRequireDefault(require("firebase/firestore"));
+
+var _config = _interopRequireDefault(require("../firebase/config"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var users = _firebase.db.collection("Users");
+var localProject = _app.default.initializeApp(_config.default, 'local');
+
+var localDb = localProject.firestore();
+var users = localDb.collection("Users");
 
 function CreateUser() {
   document.querySelector("#registerForm").addEventListener("submit", function (event) {
@@ -56656,15 +56709,16 @@ function CreateUser() {
       };
       users.add(newUser).then(function (res) {
         console.log(res);
-        (0, _ToggleModal.default)(document.querySelector(".loginTemplate").innerHTML);
-        alert("Please re-enter email and password to Log In.");
+        newUser.signedIn = true;
+        localStorage.setItem("user", JSON.stringify(newUser));
+        window.location.reload();
       }).catch(function (e) {
         console.log(e);
       });
     }
   });
 }
-},{"../firebase":"firebase/index.js","./Render":"lib/Render.js","../store":"store/index.js","./UserSignin":"lib/UserSignin.js","./ToggleModal":"lib/ToggleModal.js"}],"components/controllers/Register.js":[function(require,module,exports) {
+},{"../firebase":"firebase/index.js","./Render":"lib/Render.js","../store":"store/index.js","./UserSignin":"lib/UserSignin.js","./ToggleModal":"lib/ToggleModal.js","firebase/app":"node_modules/firebase/app/dist/index.cjs.js","firebase/firestore":"node_modules/firebase/firestore/dist/index.esm.js","../firebase/config":"firebase/config.js"}],"components/controllers/Register.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57307,7 +57361,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52095" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54524" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

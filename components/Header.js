@@ -3,7 +3,7 @@ import * as state from "../store";
 let userState = "";
 if (state.User.signedIn) {
     userState = `    <div id="userLogout" class="logoutDiv">
-    <h4 id="welcome">Welcome <a id="stateUserName" href="#">${state.User.userName}</a> <a id="logout" href="#">Logout</a></h4>
+    <h4 id="welcome">Welcome <a id="stateUserName" href="#">${state.User.UserName}</a> <a id="logout" href="#">Logout</a></h4>
 </div>`
 }
 
