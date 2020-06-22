@@ -37051,16 +37051,19 @@ function HomeListeners() {
 
   addPost.addEventListener("click", function (event) {
     event.preventDefault();
-
-    if (state.User.signedIn === false) {
-      alert("Please sign in to create a post.");
-    } else {
-      (0, _ToggleModal.default)(postsModal);
-      document.querySelector(".postsForm").addEventListener("submit", function (e) {
-        e.preventDefault();
-        (0, _CreatePosts.default)();
-      });
-    }
+    (0, _ToggleModal.default)(postsModal);
+    document.querySelector(".postsForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      (0, _CreatePosts.default)();
+    }); // if (state.User.signedIn === false) {
+    //   alert("Please sign in to create a post.");
+    // } else {
+    //   toggleModal(postsModal);
+    //   document.querySelector(".postsForm").addEventListener("submit", e => {
+    //     e.preventDefault();
+    //     CreatePosts();
+    //     });
+    // }
   }); //Entry Modal
 
   enter.addEventListener("click", function (event) {
@@ -56479,8 +56482,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function _default(st) {
-  (0, _SetBackground.default)(document.querySelector(".homeMain")); // NewsFeed();
-
+  (0, _SetBackground.default)(document.querySelector(".homeMain"));
+  (0, _News.default)();
   (0, _AddPosts.default)();
   (0, _HomeListeners.default)();
   setTimeout(function () {
@@ -57362,7 +57365,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56356" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57332" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
