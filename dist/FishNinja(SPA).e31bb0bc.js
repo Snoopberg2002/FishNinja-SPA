@@ -36915,6 +36915,7 @@ function AddPosts() {
     res.forEach(function (doc) {
       var post = doc.data();
       var trimmedPost = post.Comment.substring(0, 35);
+      post.id = doc.id;
       var elem = document.createElement("li");
       elem.innerHTML = "<a class=\"newPost\" href=\"#\">(".concat(post.LakeName, ")-").concat(trimmedPost, "...</a>");
       target.appendChild(elem);
@@ -57361,7 +57362,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54524" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56356" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
