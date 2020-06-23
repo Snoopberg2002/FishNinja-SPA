@@ -8,12 +8,12 @@ export default st => `
 
         <table class="entriesTable">
             <tr class="entriesTableHead">
-                <th class="tableUser">User Name<th>
-                <th class="tableSpecies">Species<th>
-                <th class="tableLake">Lake<th>
-                <th class="tableState">State<th>
-                <th class="tableImage">Image<th>
-                <th class="tableDescription">Description<th>
+                <th class="tableUser">User Name</th>
+                <th class="tableSpecies">Species</th>
+                <th class="tableLake">Lake</th>
+                <th class="tableState">State</th>
+                <th class="tableImage">Image</th>
+                <th class="tableDescription">Description</th>
             </tr>
         </table
     </section>

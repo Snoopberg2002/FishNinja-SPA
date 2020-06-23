@@ -110,7 +110,7 @@ export default () => `
     <template class="entryTemplate">
         <div class="entryModal">
             <section class="entryContent">
-                <form id="entryForm" action="" method="POST">
+                <form id="entryForm" action="">
                 <h4 id="submitEntryHead">Submit entry for Catch of the Week!</h4>
                 <br>
                 <label class="entryEls" for="entrySpecies">Species:</label>

@@ -3,10 +3,13 @@ import { auth, db } from "../../firebase";
 import * as state from "../../store";
 import toggleModal from "../../lib/ToggleModal";
 import SubmitEntry from "../../lib/SubmitEntry";
+import SetTable from "../../lib/SetTable";
 
 export default (st) => {
     SetBackground(document.querySelector(".entriesMain"));
     entriesListeners();
+    SetTable();
+
 }
 
 function entriesListeners() {
@@ -22,7 +25,7 @@ function entriesListeners() {
             toggleModal(entryModal);
             
             submit.addEventListener("submit", e => {
-              e.preventDefault;
+              e.preventDefault();
               SubmitEntry();
             })
           }
