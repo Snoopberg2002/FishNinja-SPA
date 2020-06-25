@@ -15,7 +15,6 @@ export default (st) => {
 function entriesListeners() {
     let entryModal = document.querySelector(".entryTemplate").innerHTML;
     let enter = document.querySelector(".entriesInfoAnchor");
-    let submit = document.querySelector("#entryForm");
 
     enter.addEventListener("click", e => {
         e.preventDefault();
@@ -24,6 +23,7 @@ function entriesListeners() {
           } else {
             toggleModal(entryModal);
             
+            let submit = document.querySelector("#entryForm");
             submit.addEventListener("submit", e => {
               e.preventDefault();
               SubmitEntry();

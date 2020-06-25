@@ -3,7 +3,7 @@ import axios from "axios";
 import { capitalize, round } from "lodash";
 
 export default (st, lake) => {
-    db.collection("FishingLakes")
+    db.collection("NinjaLakes")
     // .where("id", "==", lake.id)
     .doc(lake.id)
     .get()
@@ -16,7 +16,7 @@ export default (st, lake) => {
 } 
 
 function BuildLakePage(lake) {
-    console.log(lake);
+    // console.log(lake);
 
     document.querySelector("#lakeTitle").textContent = lake.name;
     
@@ -73,11 +73,11 @@ function InitMap(lake) {
 function GetWeather(lake) {
     axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lake.lat}&lon=${lake.lng}&appid=06c7cb455d2c2ecf48244fb8596609f8`)
     .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         let w = res.data;
         let k = w.current.temp;
         let temp = (k - 273.15) * 9/5 + 32;
-        console.log(k);
+        // console.log(k);
         
         document.querySelector("#weatherHead").textContent = `Weather: ${capitalize(w.current.weather[0].description)}`;
         document.querySelector("#rightNow").textContent = `Right Now: ${round(temp)}`;
@@ -86,7 +86,7 @@ function GetWeather(lake) {
 
         k = w.daily[0].temp.max;
         temp = (k - 273.15) * 9/5 + 32;
-        console.log(temp);
+        // console.log(temp);
         document.querySelector("#high").textContent = `High: ${round(temp)}`;
 
         k = w.daily[0].temp.min;
